@@ -1,0 +1,214 @@
+﻿Instalando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+Instalando o serviço EuDiretoSync...
+Criando a origem de EventLog EuDiretoSync no log Application...
+Instalando o serviço Service1...
+Criando a origem de EventLog Service1 no log Application...
+Revertendo o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+Restaurando o log de eventos para o estado anterior da origem Service1.
+Restaurando o log de eventos para o estado anterior da origem EuDiretoSync.
+Instalando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+Instalando o serviço EuDiretoSync...
+Criando a origem de EventLog EuDiretoSync no log Application...
+Instalando o serviço Service1...
+Criando a origem de EventLog Service1 no log Application...
+Revertendo o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+Restaurando o log de eventos para o estado anterior da origem Service1.
+Restaurando o log de eventos para o estado anterior da origem EuDiretoSync.
+Desinstalando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+Removendo a origem do EventLog Service1.
+Serviço Service1 está sendo removido do sistema...
+Serviço Service1 foi removido com êxito do sistema.
+Removendo a origem do EventLog EuDiretoSync.
+Serviço EuDiretoSync está sendo removido do sistema...
+Serviço EuDiretoSync foi removido com êxito do sistema.
+Instalando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+Instalando o serviço EuDiretoSync...
+Serviço EuDiretoSync foi instalado com êxito.
+Criando a origem de EventLog EuDiretoSync no log Application...
+Instalando o serviço Service1...
+Criando a origem de EventLog Service1 no log Application...
+Revertendo o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+Restaurando o log de eventos para o estado anterior da origem Service1.
+Restaurando o log de eventos para o estado anterior da origem EuDiretoSync.
+Serviço EuDiretoSync está sendo removido do sistema...
+Serviço EuDiretoSync foi removido com êxito do sistema.
+Instalando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+Instalando o serviço EuDiretoSync...
+Serviço EuDiretoSync foi instalado com êxito.
+Criando a origem de EventLog EuDiretoSync no log Application...
+Instalando o serviço Service1...
+Criando a origem de EventLog Service1 no log Application...
+Revertendo o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+Restaurando o log de eventos para o estado anterior da origem Service1.
+Restaurando o log de eventos para o estado anterior da origem EuDiretoSync.
+Serviço EuDiretoSync está sendo removido do sistema...
+Serviço EuDiretoSync foi removido com êxito do sistema.
+Instalando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+Instalando o serviço EuDiretoSync...
+Serviço EuDiretoSync foi instalado com êxito.
+Criando a origem de EventLog EuDiretoSync no log Application...
+Instalando o serviço Service1...
+Criando a origem de EventLog Service1 no log Application...
+Revertendo o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+Restaurando o log de eventos para o estado anterior da origem Service1.
+Restaurando o log de eventos para o estado anterior da origem EuDiretoSync.
+Serviço EuDiretoSync está sendo removido do sistema...
+Serviço EuDiretoSync foi removido com êxito do sistema.
+Instalando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Instalando o serviço EuDiretoSync...
+Serviço EuDiretoSync foi instalado com êxito.
+Criando a origem de EventLog EuDiretoSync no log Application...
+Instalando o serviço Service1...
+Criando a origem de EventLog Service1 no log Application...
+Revertendo o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Restaurando o log de eventos para o estado anterior da origem Service1.
+Restaurando o log de eventos para o estado anterior da origem EuDiretoSync.
+Serviço EuDiretoSync está sendo removido do sistema...
+Serviço EuDiretoSync foi removido com êxito do sistema.
+Instalando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Instalando o serviço EuDiretoSync...
+Serviço EuDiretoSync foi instalado com êxito.
+Criando a origem de EventLog EuDiretoSync no log Application...
+Instalando o serviço Service1...
+Criando a origem de EventLog Service1 no log Application...
+Revertendo o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Restaurando o log de eventos para o estado anterior da origem Service1.
+Restaurando o log de eventos para o estado anterior da origem EuDiretoSync.
+Serviço EuDiretoSync está sendo removido do sistema...
+Serviço EuDiretoSync foi removido com êxito do sistema.
+Instalando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Instalando o serviço EuDiretoSync...
+Serviço EuDiretoSync foi instalado com êxito.
+Criando a origem de EventLog EuDiretoSync no log Application...
+Instalando o serviço Service1...
+Criando a origem de EventLog Service1 no log Application...
+Revertendo o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Restaurando o log de eventos para o estado anterior da origem Service1.
+Restaurando o log de eventos para o estado anterior da origem EuDiretoSync.
+Serviço EuDiretoSync está sendo removido do sistema...
+Serviço EuDiretoSync foi removido com êxito do sistema.
+Instalando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Revertendo o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Instalando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Instalando o serviço Service1...
+Serviço Service1 foi instalado com êxito.
+Criando a origem de EventLog Service1 no log Application...
+Confirmando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Desinstalando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Removendo a origem do EventLog Service1.
+Serviço Service1 está sendo removido do sistema...
+Serviço Service1 foi removido com êxito do sistema.
+Instalando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Instalando o serviço EuDireto Sync...
+Serviço EuDireto Sync foi instalado com êxito.
+Criando a origem de EventLog EuDireto Sync no log Application...
+Confirmando o assembly 'C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = C:\Users\rugge\Documents\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Instalando o assembly 'D:\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = D:\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = D:\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Instalando o serviço EuDireto Sync...
+Serviço EuDireto Sync foi instalado com êxito.
+Criando a origem de EventLog EuDireto Sync no log Application...
+Confirmando o assembly 'D:\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = D:\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = D:\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog

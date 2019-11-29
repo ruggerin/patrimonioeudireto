@@ -1,0 +1,20 @@
+﻿var client = new RestClient("https://eudireto.com/api/products?pcode=141334");
+var request = new RestRequest(Method.GET);
+request.AddHeader("cache-control", "no-cache");
+request.AddHeader("Connection", "keep-alive");
+request.AddHeader("Accept-Encoding", "gzip, deflate");
+request.AddHeader("Host", "eudireto.com");
+request.AddHeader("Postman-Token", "4455d738-8c5f-4f2d-bbc2-c6f7d2240488,cfdb3aa8-8d0d-48bf-98eb-014e67b22002");
+request.AddHeader("Cache-Control", "no-cache");
+request.AddHeader("Accept", "*/*");
+request.AddHeader("User-Agent", "PostmanRuntime/7.19.0");
+request.AddHeader("Authorization", "Basic cnVnZ2VyaS5iYXJib3NhQHZpYWNlcnRhLmNvbS5icjpKZjU5MDd3bjYxdHoxMW80N2w0dzEycDVzVWtZeDQyMw==");
+IRestResponse response = client.Execute(request);
+
+
+http://restsharp.org/
+
+(int  codprod, string descricao, int estoque, double preco)
+
+
+Data Source =xe ;User Id=sys; Password=vpceb33fm
