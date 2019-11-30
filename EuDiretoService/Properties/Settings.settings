@@ -26,5 +26,11 @@
     <Setting Name="vendorid" Type="System.String" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
+    <Setting Name="user" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ruggeri.barbosa@viacerta.com.br</Value>
+    </Setting>
+    <Setting Name="password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">hK8421we27khQ80P90H3T9918DMx347k</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

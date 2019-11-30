@@ -1,0 +1,776 @@
+30/11/2019 18:44:46	:Serviço iniciado, vs.:30112019-3
+30/11/2019 18:44:47	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+30/11/2019 18:44:49	:[
+  {
+    "product": "PILHA ALCALINA  AA LR6 TUBO 12X24",
+    "amount": 110,
+    "price": 3983.0,
+    "product_code": 1319
+  },
+  {
+    "product": "PILHA ZINCO MD UM-2SH 24X1",
+    "amount": 322,
+    "price": 3772.0,
+    "product_code": 1335
+  },
+  {
+    "product": "PILHA ZINCO GD UM-1SHS 64X2",
+    "amount": 20,
+    "price": 25587.0,
+    "product_code": 1341
+  },
+  {
+    "product": "PILHA ZINCO GD UM-1SH 24X1",
+    "amount": 0,
+    "price": 3240.0,
+    "product_code": 1336
+  },
+  {
+    "product": "PILHA ALCALINA LR6XAB/2BB AA C/ 1/6 UN",
+    "amount": 0,
+    "price": 1717.0,
+    "product_code": 14105
+  },
+  {
+    "product": "PILHA ALCALINA LR03XAB/2BB AAA C/ 1/6 UN",
+    "amount": 0,
+    "price": 2115.0,
+    "product_code": 14106
+  },
+  {
+    "product": "LAMP. LUZ BRA EFD8E65L3LB / POT 8W 12X1",
+    "amount": 0,
+    "price": 11379.0,
+    "product_code": 1501
+  },
+  {
+    "product": "LAMP. LUZ BRA EFD11E65L3LB / POT11W 12X1",
+    "amount": 34,
+    "price": 1237.0,
+    "product_code": 1502
+  },
+  {
+    "product": "LAMP. LUZ BRA EFD14E65L3LB / POT14W 12X1",
+    "amount": 0,
+    "price": 12016.0,
+    "product_code": 1503
+  },
+  {
+    "product": "PILHA ALCALINA AAA LR03-2BT480 10X2",
+    "amount": 1598,
+    "price": 35.0,
+    "product_code": 142223
+  },
+  {
+    "product": "PILHA ALCALINA PALITO LR03XAB/2B192 96X2",
+    "amount": 19,
+    "price": 41990.0,
+    "product_code": 141422
+  },
+  {
+    "product": "PILHA SUPER HYPER STAND AA PEQ UM-3SH900",
+    "amount": -180,
+    "price": 28.0,
+    "product_code": 131334
+  },
+  {
+    "product": "PILHA SUPER HYPER AA8 UM-3SHSL8P6 CT60X8",
+    "amount": 33,
+    "price": 27769.0,
+    "product_code": 131353
+  },
+  {
+    "product": "BAT. ZINCO AUDITIVA CX/60UN PR-312BR/6C",
+    "amount": 63,
+    "price": 11363.0,
+    "product_code": 1482
+  },
+  {
+    "product": "BAT LITHIUM BOT CR2032-1BT C/10TIRAS C/5",
+    "amount": 30,
+    "price": 11830.0,
+    "product_code": 1483
+  },
+  {
+    "product": "BAT LITHIUM BOT CR2016-1BT C/10TIRAS C/5",
+    "amount": 0,
+    "price": 11290.0,
+    "product_code": 1484
+  },
+  {
+    "product": "BATER NI METAL HIDRETO HHR-P305-1B 12X1",
+    "amount": 0,
+    "price": 17880.0,
+    "product_code": 1401
+  },
+  {
+    "product": "LAMP. LUZ BRA EFD19E65L3LB / POT19W 12X1",
+    "amount": 0,
+    "price": 24593.0,
+    "product_code": 1504
+  },
+  {
+    "product": "LAMP. LUZ BRA EFD22E65L3LB / POT22W 12X1",
+    "amount": 0,
+    "price": 25979.0,
+    "product_code": 1506
+  },
+  {
+    "product": "LAMP. LUZ BRA EFD25E65L3LB / POT25W 12X1",
+    "amount": 0,
+    "price": 27340.0,
+    "product_code": 1507
+  },
+  {
+    "product": "PILHA ALCALINA AA LR6-2BT480 10X2",
+    "amount": 1698,
+    "price": 2985.0,
+    "product_code": 142222
+  },
+  {
+    "product": "PILHA RECARREGAV PALITO HHR4MRT/2BB 24X2",
+    "amount": 0,
+    "price": 24951.0,
+    "product_code": 1413
+  },
+  {
+    "product": "BATERIA LITHIUM 3V CR2025 1BT 10X5",
+    "amount": 8,
+    "price": 13454.0,
+    "product_code": 1450
+  },
+  {
+    "product": "FONE DE OUVIDO RPHV21PPW 1 UN",
+    "amount": 0,
+    "price": 3250.0,
+    "product_code": 1410
+  },
+  {
+    "product": "PILHA ALCALINA 'C' LR14XAB/2B 12X2",
+    "amount": 39,
+    "price": 15543.0,
+    "product_code": 1338
+  },
+  {
+    "product": "PILHA PEQUENA AA C/8 UM3SHS/8B",
+    "amount": 0,
+    "price": 25683.0,
+    "product_code": 14102
+  },
+  {
+    "product": "BATER NI METAL HIDRETO HHR-P501-1B 12X1",
+    "amount": 0,
+    "price": 11494.0,
+    "product_code": 14107
+  },
+  {
+    "product": "PILHA RECARRE HHR3LVT/2BB EVOLTA AA 24X2",
+    "amount": 0,
+    "price": 14290.0,
+    "product_code": 10117
+  },
+  {
+    "product": "PILHA ALCALINA AA PROMO LR6XAB/L6P5192",
+    "amount": 47,
+    "price": 31698.0,
+    "product_code": 14192
+  },
+  {
+    "product": "BAT. ZINCO AUDITIVA CX/60UN PR-230BR/6C",
+    "amount": 91,
+    "price": 11196.0,
+    "product_code": 141481
+  },
+  {
+    "product": "BAT. ZINCO AUDITIVA CX/60UN PR-13BR/6C",
+    "amount": 0,
+    "price": 13816.0,
+    "product_code": 141497
+  },
+  {
+    "product": "PILHA RECARREG PEQUENA HHR3MRT/2BB 24X2",
+    "amount": 0,
+    "price": 25406.0,
+    "product_code": 1496
+  },
+  {
+    "product": "PILHA ALCALINA PEQUENA LR6XAB/4B192 48X4",
+    "amount": 32,
+    "price": 34013.0,
+    "product_code": 141421
+  },
+  {
+    "product": "BATERIA ALCALINA 9V C/24UN 6LF22XAB/1B24",
+    "amount": 169,
+    "price": 21551.0,
+    "product_code": 141470
+  },
+  {
+    "product": "PILHA PLATINUM POWER AA LR6XPB/2B",
+    "amount": 0,
+    "price": 20840.0,
+    "product_code": 141493
+  },
+  {
+    "product": "PILHA SUPER HYPER STAND AA PEQ UM-3SH900",
+    "amount": 0,
+    "price": 56.0,
+    "product_code": 131333
+  },
+  {
+    "product": "PILHA ZINCO PALIT AAA R03UAL/4B400 100X4",
+    "amount": 1,
+    "price": 35922.0,
+    "product_code": 141463
+  },
+  {
+    "product": "PILHA PLATINUM POWER LR6XPB/6B 32X6",
+    "amount": 0,
+    "price": 38421.0,
+    "product_code": 14194
+  },
+  {
+    "product": "PILHA PLATIUM POWER LR03XPB/2B 48X2",
+    "amount": 0,
+    "price": 21551.0,
+    "product_code": 142229
+  },
+  {
+    "product": "PILHA PLATIUM POWER LR03XPB/6B 32X6",
+    "amount": 1,
+    "price": 40516.0,
+    "product_code": 142230
+  },
+  {
+    "product": "PILHA ZINCO MD UM-2SHSP 64X2",
+    "amount": 3,
+    "price": 29870.0,
+    "product_code": 131356
+  },
+  {
+    "product": "BATERIA MANGANES 9V C/24 6F22UPT/1B24",
+    "amount": 19,
+    "price": 13669.0,
+    "product_code": 141462
+  },
+  {
+    "product": "PILHA ALCALINA PALITO LR03XAB/6B192 32X6",
+    "amount": 21,
+    "price": 37728.0,
+    "product_code": 141474
+  },
+  {
+    "product": "BATER NI METAL HIDRETO HHR-P301-1B 12X1",
+    "amount": 0,
+    "price": 22988.0,
+    "product_code": 1407
+  },
+  {
+    "product": "PILHA SUPERHYPER AA PQ UM-3SH936",
+    "amount": 3361,
+    "price": 2833.0,
+    "product_code": 141334
+  },
+  {
+    "product": "PILHA ZINCO PALITO AAA R03UAL/4S40",
+    "amount": 0,
+    "price": 122.0,
+    "product_code": 141465
+  },
+  {
+    "product": "PILHA ALCALINA 'D' LR20XAB/2B 12X2",
+    "amount": 30,
+    "price": 18765.0,
+    "product_code": 2226
+  },
+  {
+    "product": "BLUE RAY ENERGY DRINK PCT 6X2000 LT",
+    "amount": 593,
+    "price": 60.0,
+    "product_code": 64001
+  },
+  {
+    "product": "BLUE RAY ENERGY DRINK PCT 9X1000 LT",
+    "amount": 1153,
+    "price": 54.0,
+    "product_code": 64002
+  },
+  {
+    "product": "ENERGY DRINK BLUE RAY LATA PCT 6X269 ML",
+    "amount": 594,
+    "price": 25.0,
+    "product_code": 64004
+  },
+  {
+    "product": "BLUE RAY ENERGY DRINK PCT 12X350 ML",
+    "amount": 1093,
+    "price": 36.0,
+    "product_code": 64003
+  },
+  {
+    "product": "BAT. ZINCO AUDITIVA CX/60UN PR-675BR/6C",
+    "amount": 0,
+    "price": 16042.0,
+    "product_code": 1480
+  },
+  {
+    "product": "KIT CARREGADOR 2 PIL AA K-KJ50LCC2AB 1X1",
+    "amount": 33,
+    "price": 6543.0,
+    "product_code": 141401
+  },
+  {
+    "product": "PILHA ALC PREM \"AA\" LR6EGR/2B96 DP C/12 ",
+    "amount": 80,
+    "price": 5937.0,
+    "product_code": 141475
+  },
+  {
+    "product": "PILHA ALCALINA PREMIUM \"AA\" LR6EGR/6B192",
+    "amount": 26,
+    "price": 42527.0,
+    "product_code": 141477
+  },
+  {
+    "product": "PILHA ALC PREM \"AAA'LR03EGR/2B96 DP C/12",
+    "amount": 119,
+    "price": 6553.0,
+    "product_code": 141478
+  },
+  {
+    "product": "PILHA ALCALINA PREMIUM \"AAA\"LR03EGR/4B96",
+    "amount": 8,
+    "price": 24917.0,
+    "product_code": 141479
+  },
+  {
+    "product": "PILHA ALCALINA PREMIUM\"AAA\"LR03EGR/6B192",
+    "amount": 25,
+    "price": 46634.0,
+    "product_code": 141480
+  },
+  {
+    "product": "PILHA RECAR ENELOOP PRO AA BK-3HCDE/2BB",
+    "amount": 106,
+    "price": 5515.0,
+    "product_code": 141404
+  },
+  {
+    "product": "PILHA RECAR ENELOOP PRO AAA BK-4HCDE/2BB",
+    "amount": 92,
+    "price": 4202.0,
+    "product_code": 141405
+  },
+  {
+    "product": "BATERIA ALKALINA 12V LRV08 1B 10X1",
+    "amount": 182,
+    "price": 5626.0,
+    "product_code": 1375
+  },
+  {
+    "product": "BATERIA LITHIUM 3V CR123A 10X1",
+    "amount": 43,
+    "price": 15758.0,
+    "product_code": 1387
+  },
+  {
+    "product": "PILHA ALCALINA PALITO LR03XAB/4B192 48X4",
+    "amount": 22,
+    "price": 39836.0,
+    "product_code": 141473
+  },
+  {
+    "product": "PILHA ZINCO PEQUENA AA4 UM-3SHS 80X4",
+    "amount": 18,
+    "price": 20578.0,
+    "product_code": 1353
+  },
+  {
+    "product": "PILHA ALCALINA PEQUENA LR6XAB/2B192 96X2",
+    "amount": 25,
+    "price": 35809.0,
+    "product_code": 141420
+  },
+  {
+    "product": "PILHA RECARRE ENELOP AA BK-3MCCE/2BB 1X1",
+    "amount": 121,
+    "price": 4049.0,
+    "product_code": 141402
+  },
+  {
+    "product": "PILHA RECARRE ENELO AAA BK-4MCCE/2BB 1X1",
+    "amount": 92,
+    "price": 3106.0,
+    "product_code": 141403
+  },
+  {
+    "product": "PILHA ZINCO PALITO AAA R03UAL/4S40",
+    "amount": 6406,
+    "price": 2450.0,
+    "product_code": 1465
+  },
+  {
+    "product": "PILHA ALCALINA 'C' LR14EGR/2B24 12X2",
+    "amount": 0,
+    "price": 17945.0,
+    "product_code": 141338
+  },
+  {
+    "product": "PILHA ALCALINA 'D' LR20EGR/2B24 12X2",
+    "amount": 39,
+    "price": 24042.0,
+    "product_code": 142226
+  },
+  {
+    "product": "BAT PR PANAS ALK 9VTS 6LR61EGR/1B24 24X1",
+    "amount": 36,
+    "price": 31950.0,
+    "product_code": 141471
+  },
+  {
+    "product": "PILHA ZINCO PALITO AAA R03UAL/L8P6 60X8",
+    "amount": 0,
+    "price": 33297.0,
+    "product_code": 141464
+  },
+  {
+    "product": "PILHA EVOLTA AAA LR03EGB/L6P5 24X6",
+    "amount": 0,
+    "price": 23198.0,
+    "product_code": 14104
+  },
+  {
+    "product": "BATERIA MANGANES 9V 6F22UPT 1X1",
+    "amount": 0,
+    "price": 0.0,
+    "product_code": 141461
+  },
+  {
+    "product": "BAT PR PANAS ALK 9VTS 6LR61EGR/1B24 1X1",
+    "amount": 288,
+    "price": 1153.0,
+    "product_code": 141469
+  },
+  {
+    "product": "CARTELAO ALC PREMIUM AA LR6EGR/2BT 6X12",
+    "amount": 319,
+    "price": 2166.0,
+    "product_code": 142224
+  },
+  {
+    "product": "CARTELAO ALC PREMIU AAA LR03EGR/2BT 6X12",
+    "amount": 579,
+    "price": 2369.0,
+    "product_code": 142225
+  },
+  {
+    "product": "PILHA ALCALINA PANASONI AAA LR03 1X1",
+    "amount": 0,
+    "price": 163.0,
+    "product_code": 142221
+  },
+  {
+    "product": "PILHA ALCALINA PANASONIC AA LR6  1X1",
+    "amount": 0,
+    "price": 201.0,
+    "product_code": 142220
+  },
+  {
+    "product": "BATERIA ALCALINA 9V C/01UN 6LF22XAB/1B",
+    "amount": 162,
+    "price": 887.0,
+    "product_code": 141472
+  },
+  {
+    "product": "PILHA SUPER HYPER STAND UM-1SH300 20X1",
+    "amount": 7379,
+    "price": 2943.0,
+    "product_code": 141336
+  },
+  {
+    "product": "PILHA ALCALINA PREMIUM LR6EGR/L4P3 24X4",
+    "amount": 12,
+    "price": 14787.0,
+    "product_code": 142231
+  },
+  {
+    "product": "PILHA ALCALINA PREMIUM LR03EGR/L4P3 24X4",
+    "amount": 11,
+    "price": 16266.0,
+    "product_code": 142232
+  },
+  {
+    "product": "PILHA ALCALINA PREMIUM \"AA\" LR6EGR/4B96 ",
+    "amount": 18,
+    "price": 22717.0,
+    "product_code": 141476
+  }
+]
+30/11/2019 18:44:50	:Subindo produto codigo_distribuidor:1319(product_id: 311)
+30/11/2019 18:44:50	:{"product":"PILHA ALCALINA  AA LR6 TUBO 12X24","amount":110,"price":3983.0,"product_code":1319}
+30/11/2019 18:44:51	:{"product_id":311}
+30/11/2019 18:44:52	:Subindo produto codigo_distribuidor:1335(product_id: 292)
+30/11/2019 18:44:52	:{"product":"PILHA ZINCO MD UM-2SH 24X1","amount":322,"price":3772.0,"product_code":1335}
+30/11/2019 18:44:52	:{"product_id":292}
+30/11/2019 18:44:53	:Subindo produto codigo_distribuidor:1341(product_id: 294)
+30/11/2019 18:44:53	:{"product":"PILHA ZINCO GD UM-1SHS 64X2","amount":20,"price":25587.0,"product_code":1341}
+30/11/2019 18:44:54	:{"product_id":294}
+30/11/2019 18:44:54	:Subindo produto codigo_distribuidor:1336(product_id: 291)
+30/11/2019 18:44:54	:{"product":"PILHA ZINCO GD UM-1SH 24X1","amount":0,"price":3240.0,"product_code":1336}
+30/11/2019 18:44:55	:{"product_id":291}
+30/11/2019 18:44:56	:Subindo produto codigo_distribuidor:14105(product_id: 314)
+30/11/2019 18:44:56	:{"product":"PILHA ALCALINA LR6XAB/2BB AA C/ 1/6 UN","amount":0,"price":1717.0,"product_code":14105}
+30/11/2019 18:44:56	:{"product_id":314}
+30/11/2019 18:44:57	:Subindo produto codigo_distribuidor:14106(product_id: 315)
+30/11/2019 18:44:57	:{"product":"PILHA ALCALINA LR03XAB/2BB AAA C/ 1/6 UN","amount":0,"price":2115.0,"product_code":14106}
+30/11/2019 18:44:58	:{"product_id":315}
+30/11/2019 18:44:58	:Subindo produto codigo_distribuidor:1501(product_id: 334)
+30/11/2019 18:44:58	:{"product":"LAMP. LUZ BRA EFD8E65L3LB / POT 8W 12X1","amount":0,"price":11379.0,"product_code":1501}
+30/11/2019 18:44:59	:{"product_id":334}
+30/11/2019 18:45:00	:Subindo produto codigo_distribuidor:1502(product_id: 335)
+30/11/2019 18:45:00	:{"product":"LAMP. LUZ BRA EFD11E65L3LB / POT11W 12X1","amount":34,"price":1237.0,"product_code":1502}
+30/11/2019 18:45:00	:{"product_id":335}
+30/11/2019 18:45:01	:Subindo produto codigo_distribuidor:1503(product_id: 330)
+30/11/2019 18:45:01	:{"product":"LAMP. LUZ BRA EFD14E65L3LB / POT14W 12X1","amount":0,"price":12016.0,"product_code":1503}
+30/11/2019 18:45:02	:{"product_id":330}
+30/11/2019 18:45:02	:Subindo produto codigo_distribuidor:142223(product_id: 318)
+30/11/2019 18:45:02	:{"product":"PILHA ALCALINA AAA LR03-2BT480 10X2","amount":1598,"price":35.0,"product_code":142223}
+30/11/2019 18:45:03	:{"product_id":318}
+30/11/2019 18:45:04	:Subindo produto codigo_distribuidor:141422(product_id: 319)
+30/11/2019 18:45:04	:{"product":"PILHA ALCALINA PALITO LR03XAB/2B192 96X2","amount":19,"price":41990.0,"product_code":141422}
+30/11/2019 18:45:04	:{"product_id":319}
+30/11/2019 18:45:05	:Subindo produto codigo_distribuidor:131334(product_id: 297)
+30/11/2019 18:45:05	:{"product":"PILHA SUPER HYPER STAND AA PEQ UM-3SH900","amount":-180,"price":28.0,"product_code":131334}
+30/11/2019 18:45:05	:{"product_id":297}
+30/11/2019 18:45:06	:Produto  não cadastrado no CS CART: 131353
+30/11/2019 18:45:07	:Subindo produto codigo_distribuidor:1482(product_id: 352)
+30/11/2019 18:45:07	:{"product":"BAT. ZINCO AUDITIVA CX/60UN PR-312BR/6C","amount":63,"price":11363.0,"product_code":1482}
+30/11/2019 18:45:07	:{"product_id":352}
+30/11/2019 18:45:08	:Subindo produto codigo_distribuidor:1483(product_id: 353)
+30/11/2019 18:45:08	:{"product":"BAT LITHIUM BOT CR2032-1BT C/10TIRAS C/5","amount":30,"price":11830.0,"product_code":1483}
+30/11/2019 18:45:08	:{"product_id":353}
+30/11/2019 18:45:09	:Subindo produto codigo_distribuidor:1484(product_id: 354)
+30/11/2019 18:45:09	:{"product":"BAT LITHIUM BOT CR2016-1BT C/10TIRAS C/5","amount":0,"price":11290.0,"product_code":1484}
+30/11/2019 18:45:10	:{"product_id":354}
+30/11/2019 18:45:10	:Subindo produto codigo_distribuidor:1401(product_id: 350)
+30/11/2019 18:45:11	:{"product":"BATER NI METAL HIDRETO HHR-P305-1B 12X1","amount":0,"price":17880.0,"product_code":1401}
+30/11/2019 18:45:11	:{"product_id":350}
+30/11/2019 18:45:12	:Subindo produto codigo_distribuidor:1504(product_id: 331)
+30/11/2019 18:45:12	:{"product":"LAMP. LUZ BRA EFD19E65L3LB / POT19W 12X1","amount":0,"price":24593.0,"product_code":1504}
+30/11/2019 18:45:12	:{"product_id":331}
+30/11/2019 18:45:13	:Subindo produto codigo_distribuidor:1506(product_id: 332)
+30/11/2019 18:45:13	:{"product":"LAMP. LUZ BRA EFD22E65L3LB / POT22W 12X1","amount":0,"price":25979.0,"product_code":1506}
+30/11/2019 18:45:14	:{"product_id":332}
+30/11/2019 18:45:14	:Subindo produto codigo_distribuidor:1507(product_id: 333)
+30/11/2019 18:45:14	:{"product":"LAMP. LUZ BRA EFD25E65L3LB / POT25W 12X1","amount":0,"price":27340.0,"product_code":1507}
+30/11/2019 18:45:15	:{"product_id":333}
+30/11/2019 18:45:16	:Subindo produto codigo_distribuidor:142222(product_id: 317)
+30/11/2019 18:45:16	:{"product":"PILHA ALCALINA AA LR6-2BT480 10X2","amount":1698,"price":2985.0,"product_code":142222}
+30/11/2019 18:45:16	:{"product_id":317}
+30/11/2019 18:45:17	:Subindo produto codigo_distribuidor:1413(product_id: 326)
+30/11/2019 18:45:17	:{"product":"PILHA RECARREGAV PALITO HHR4MRT/2BB 24X2","amount":0,"price":24951.0,"product_code":1413}
+30/11/2019 18:45:18	:{"product_id":326}
+30/11/2019 18:45:18	:Subindo produto codigo_distribuidor:1450(product_id: 351)
+30/11/2019 18:45:18	:{"product":"BATERIA LITHIUM 3V CR2025 1BT 10X5","amount":8,"price":13454.0,"product_code":1450}
+30/11/2019 18:45:19	:{"product_id":351}
+30/11/2019 18:45:20	:Subindo produto codigo_distribuidor:1410(product_id: 346)
+30/11/2019 18:45:20	:{"product":"FONE DE OUVIDO RPHV21PPW 1 UN","amount":0,"price":3250.0,"product_code":1410}
+30/11/2019 18:45:20	:{"product_id":346}
+30/11/2019 18:45:21	:Subindo produto codigo_distribuidor:1338(product_id: 308)
+30/11/2019 18:45:21	:{"product":"PILHA ALCALINA 'C' LR14XAB/2B 12X2","amount":39,"price":15543.0,"product_code":1338}
+30/11/2019 18:45:22	:{"product_id":308}
+30/11/2019 18:45:22	:Subindo produto codigo_distribuidor:14102(product_id: 296)
+30/11/2019 18:45:22	:{"product":"PILHA PEQUENA AA C/8 UM3SHS/8B","amount":0,"price":25683.0,"product_code":14102}
+30/11/2019 18:45:23	:{"product_id":296}
+30/11/2019 18:45:23	:Produto  não cadastrado no CS CART: 14107
+30/11/2019 18:45:24	:Subindo produto codigo_distribuidor:10117(product_id: 349)
+30/11/2019 18:45:24	:{"product":"PILHA RECARRE HHR3LVT/2BB EVOLTA AA 24X2","amount":0,"price":14290.0,"product_code":10117}
+30/11/2019 18:45:25	:{"product_id":349}
+30/11/2019 18:45:25	:Subindo produto codigo_distribuidor:14192(product_id: 316)
+30/11/2019 18:45:25	:{"product":"PILHA ALCALINA AA PROMO LR6XAB/L6P5192","amount":47,"price":31698.0,"product_code":14192}
+30/11/2019 18:45:26	:{"product_id":316}
+30/11/2019 18:45:27	:Subindo produto codigo_distribuidor:141481(product_id: 359)
+30/11/2019 18:45:27	:{"product":"BAT. ZINCO AUDITIVA CX/60UN PR-230BR/6C","amount":91,"price":11196.0,"product_code":141481}
+30/11/2019 18:45:27	:{"product_id":359}
+30/11/2019 18:45:28	:Subindo produto codigo_distribuidor:141497(product_id: 360)
+30/11/2019 18:45:28	:{"product":"BAT. ZINCO AUDITIVA CX/60UN PR-13BR/6C","amount":0,"price":13816.0,"product_code":141497}
+30/11/2019 18:45:29	:{"product_id":360}
+30/11/2019 18:45:29	:Subindo produto codigo_distribuidor:1496(product_id: 357)
+30/11/2019 18:45:29	:{"product":"PILHA RECARREG PEQUENA HHR3MRT/2BB 24X2","amount":0,"price":25406.0,"product_code":1496}
+30/11/2019 18:45:30	:{"product_id":357}
+30/11/2019 18:45:31	:Subindo produto codigo_distribuidor:141421(product_id: 320)
+30/11/2019 18:45:31	:{"product":"PILHA ALCALINA PEQUENA LR6XAB/4B192 48X4","amount":32,"price":34013.0,"product_code":141421}
+30/11/2019 18:45:31	:{"product_id":320}
+30/11/2019 18:45:32	:Subindo produto codigo_distribuidor:141470(product_id: 365)
+30/11/2019 18:45:32	:{"product":"BATERIA ALCALINA 9V C/24UN 6LF22XAB/1B24","amount":169,"price":21551.0,"product_code":141470}
+30/11/2019 18:45:33	:{"product_id":365}
+30/11/2019 18:45:33	:Subindo produto codigo_distribuidor:141493(product_id: 321)
+30/11/2019 18:45:33	:{"product":"PILHA PLATINUM POWER AA LR6XPB/2B","amount":0,"price":20840.0,"product_code":141493}
+30/11/2019 18:45:34	:{"product_id":321}
+30/11/2019 18:45:35	:Subindo produto codigo_distribuidor:131333(product_id: 302)
+30/11/2019 18:45:35	:{"product":"PILHA SUPER HYPER STAND AA PEQ UM-3SH900","amount":0,"price":56.0,"product_code":131333}
+30/11/2019 18:45:36	:{"product_id":302}
+30/11/2019 18:45:36	:Subindo produto codigo_distribuidor:141463(product_id: 301)
+30/11/2019 18:45:36	:{"product":"PILHA ZINCO PALIT AAA R03UAL/4B400 100X4","amount":1,"price":35922.0,"product_code":141463}
+30/11/2019 18:45:37	:{"product_id":301}
+30/11/2019 18:45:38	:Subindo produto codigo_distribuidor:14194(product_id: 322)
+30/11/2019 18:45:38	:{"product":"PILHA PLATINUM POWER LR6XPB/6B 32X6","amount":0,"price":38421.0,"product_code":14194}
+30/11/2019 18:45:38	:{"product_id":322}
+30/11/2019 18:45:39	:Subindo produto codigo_distribuidor:142229(product_id: 323)
+30/11/2019 18:45:39	:{"product":"PILHA PLATIUM POWER LR03XPB/2B 48X2","amount":0,"price":21551.0,"product_code":142229}
+30/11/2019 18:45:40	:{"product_id":323}
+30/11/2019 18:45:40	:Subindo produto codigo_distribuidor:142230(product_id: 324)
+30/11/2019 18:45:40	:{"product":"PILHA PLATIUM POWER LR03XPB/6B 32X6","amount":1,"price":40516.0,"product_code":142230}
+30/11/2019 18:45:41	:{"product_id":324}
+30/11/2019 18:45:42	:Subindo produto codigo_distribuidor:131356(product_id: 304)
+30/11/2019 18:45:42	:{"product":"PILHA ZINCO MD UM-2SHSP 64X2","amount":3,"price":29870.0,"product_code":131356}
+30/11/2019 18:45:42	:{"product_id":304}
+30/11/2019 18:45:43	:Subindo produto codigo_distribuidor:141462(product_id: 300)
+30/11/2019 18:45:43	:{"product":"BATERIA MANGANES 9V C/24 6F22UPT/1B24","amount":19,"price":13669.0,"product_code":141462}
+30/11/2019 18:45:44	:{"product_id":300}
+30/11/2019 18:45:44	:Subindo produto codigo_distribuidor:141474(product_id: 325)
+30/11/2019 18:45:44	:{"product":"PILHA ALCALINA PALITO LR03XAB/6B192 32X6","amount":21,"price":37728.0,"product_code":141474}
+30/11/2019 18:45:45	:{"product_id":325}
+30/11/2019 18:45:46	:Subindo produto codigo_distribuidor:1407(product_id: 355)
+30/11/2019 18:45:46	:{"product":"BATER NI METAL HIDRETO HHR-P301-1B 12X1","amount":0,"price":22988.0,"product_code":1407}
+30/11/2019 18:45:46	:{"product_id":355}
+30/11/2019 18:45:47	:Subindo produto codigo_distribuidor:141334(product_id: 298)
+30/11/2019 18:45:47	:{"product":"PILHA SUPERHYPER AA PQ UM-3SH936","amount":3361,"price":2833.0,"product_code":141334}
+30/11/2019 18:45:48	:{"product_id":298}
+30/11/2019 18:45:49	:Subindo produto codigo_distribuidor:141465(product_id: 303)
+30/11/2019 18:45:49	:{"product":"PILHA ZINCO PALITO AAA R03UAL/4S40","amount":0,"price":122.0,"product_code":141465}
+30/11/2019 18:45:49	:{"product_id":303}
+30/11/2019 18:45:50	:Subindo produto codigo_distribuidor:2226(product_id: 309)
+30/11/2019 18:45:50	:{"product":"PILHA ALCALINA 'D' LR20XAB/2B 12X2","amount":30,"price":18765.0,"product_code":2226}
+30/11/2019 18:45:50	:{"product_id":309}
+30/11/2019 18:45:51	:Subindo produto codigo_distribuidor:64001(product_id: 371)
+30/11/2019 18:45:51	:{"product":"BLUE RAY ENERGY DRINK PCT 6X2000 LT","amount":593,"price":60.0,"product_code":64001}
+30/11/2019 18:45:52	:{"product_id":371}
+30/11/2019 18:45:53	:Subindo produto codigo_distribuidor:64002(product_id: 372)
+30/11/2019 18:45:53	:{"product":"BLUE RAY ENERGY DRINK PCT 9X1000 LT","amount":1153,"price":54.0,"product_code":64002}
+30/11/2019 18:45:53	:{"product_id":372}
+30/11/2019 18:45:54	:Subindo produto codigo_distribuidor:64004(product_id: 373)
+30/11/2019 18:45:54	:{"product":"ENERGY DRINK BLUE RAY LATA PCT 6X269 ML","amount":594,"price":25.0,"product_code":64004}
+30/11/2019 18:45:55	:{"product_id":373}
+30/11/2019 18:45:55	:Subindo produto codigo_distribuidor:64003(product_id: 374)
+30/11/2019 18:45:55	:{"product":"BLUE RAY ENERGY DRINK PCT 12X350 ML","amount":1093,"price":36.0,"product_code":64003}
+30/11/2019 18:45:56	:{"product_id":374}
+30/11/2019 18:45:57	:Subindo produto codigo_distribuidor:1480(product_id: 358)
+30/11/2019 18:45:57	:{"product":"BAT. ZINCO AUDITIVA CX/60UN PR-675BR/6C","amount":0,"price":16042.0,"product_code":1480}
+30/11/2019 18:45:57	:{"product_id":358}
+30/11/2019 18:45:58	:Subindo produto codigo_distribuidor:141401(product_id: 362)
+30/11/2019 18:45:58	:{"product":"KIT CARREGADOR 2 PIL AA K-KJ50LCC2AB 1X1","amount":33,"price":6543.0,"product_code":141401}
+30/11/2019 18:45:58	:{"product_id":362}
+30/11/2019 18:45:59	:Subindo produto codigo_distribuidor:141475(product_id: 339)
+30/11/2019 18:45:59	:{"product":"PILHA ALC PREM \"AA\" LR6EGR/2B96 DP C/12 ","amount":80,"price":5937.0,"product_code":141475}
+30/11/2019 18:46:00	:{"product_id":339}
+30/11/2019 18:46:01	:Subindo produto codigo_distribuidor:141477(product_id: 341)
+30/11/2019 18:46:01	:{"product":"PILHA ALCALINA PREMIUM \"AA\" LR6EGR/6B192","amount":26,"price":42527.0,"product_code":141477}
+30/11/2019 18:46:01	:{"product_id":341}
+30/11/2019 18:46:02	:Subindo produto codigo_distribuidor:141478(product_id: 336)
+30/11/2019 18:46:02	:{"product":"PILHA ALC PREM \"AAA'LR03EGR/2B96 DP C/12","amount":119,"price":6553.0,"product_code":141478}
+30/11/2019 18:46:02	:{"product_id":336}
+30/11/2019 18:46:03	:Subindo produto codigo_distribuidor:141479(product_id: 337)
+30/11/2019 18:46:03	:{"product":"PILHA ALCALINA PREMIUM \"AAA\"LR03EGR/4B96","amount":8,"price":24917.0,"product_code":141479}
+30/11/2019 18:46:04	:{"product_id":337}
+30/11/2019 18:46:05	:Subindo produto codigo_distribuidor:141480(product_id: 338)
+30/11/2019 18:46:05	:{"product":"PILHA ALCALINA PREMIUM\"AAA\"LR03EGR/6B192","amount":25,"price":46634.0,"product_code":141480}
+30/11/2019 18:46:05	:{"product_id":338}
+30/11/2019 18:46:06	:Subindo produto codigo_distribuidor:141404(product_id: 363)
+30/11/2019 18:46:06	:{"product":"PILHA RECAR ENELOOP PRO AA BK-3HCDE/2BB","amount":106,"price":5515.0,"product_code":141404}
+30/11/2019 18:46:07	:{"product_id":363}
+30/11/2019 18:46:07	:Subindo produto codigo_distribuidor:141405(product_id: 364)
+30/11/2019 18:46:07	:{"product":"PILHA RECAR ENELOOP PRO AAA BK-4HCDE/2BB","amount":92,"price":4202.0,"product_code":141405}
+30/11/2019 18:46:08	:{"product_id":364}
+30/11/2019 18:46:09	:Subindo produto codigo_distribuidor:1375(product_id: 348)
+30/11/2019 18:46:09	:{"product":"BATERIA ALKALINA 12V LRV08 1B 10X1","amount":182,"price":5626.0,"product_code":1375}
+30/11/2019 18:46:09	:{"product_id":348}
+30/11/2019 18:46:10	:Subindo produto codigo_distribuidor:1387(product_id: 347)
+30/11/2019 18:46:10	:{"product":"BATERIA LITHIUM 3V CR123A 10X1","amount":43,"price":15758.0,"product_code":1387}
+30/11/2019 18:46:10	:{"product_id":347}
+30/11/2019 18:46:11	:Subindo produto codigo_distribuidor:141473(product_id: 312)
+30/11/2019 18:46:11	:{"product":"PILHA ALCALINA PALITO LR03XAB/4B192 48X4","amount":22,"price":39836.0,"product_code":141473}
+30/11/2019 18:46:12	:{"product_id":312}
+30/11/2019 18:46:13	:Subindo produto codigo_distribuidor:1353(product_id: 293)
+30/11/2019 18:46:13	:{"product":"PILHA ZINCO PEQUENA AA4 UM-3SHS 80X4","amount":18,"price":20578.0,"product_code":1353}
+30/11/2019 18:46:13	:{"product_id":293}
+30/11/2019 18:46:14	:Subindo produto codigo_distribuidor:141420(product_id: 313)
+30/11/2019 18:46:14	:{"product":"PILHA ALCALINA PEQUENA LR6XAB/2B192 96X2","amount":25,"price":35809.0,"product_code":141420}
+30/11/2019 18:46:14	:{"product_id":313}
+30/11/2019 18:46:15	:Subindo produto codigo_distribuidor:141402(product_id: 366)
+30/11/2019 18:46:15	:{"product":"PILHA RECARRE ENELOP AA BK-3MCCE/2BB 1X1","amount":121,"price":4049.0,"product_code":141402}
+30/11/2019 18:46:16	:{"product_id":366}
+30/11/2019 18:46:17	:Subindo produto codigo_distribuidor:141403(product_id: 367)
+30/11/2019 18:46:17	:{"product":"PILHA RECARRE ENELO AAA BK-4MCCE/2BB 1X1","amount":92,"price":3106.0,"product_code":141403}
+30/11/2019 18:46:17	:{"product_id":367}
+30/11/2019 18:46:18	:Subindo produto codigo_distribuidor:1465(product_id: 295)
+30/11/2019 18:46:18	:{"product":"PILHA ZINCO PALITO AAA R03UAL/4S40","amount":6406,"price":2450.0,"product_code":1465}
+30/11/2019 18:46:18	:{"product_id":295}
+30/11/2019 18:46:19	:Produto  não cadastrado no CS CART: 141338
+30/11/2019 18:46:19	:Produto  não cadastrado no CS CART: 142226
+30/11/2019 18:46:20	:Subindo produto codigo_distribuidor:141471(product_id: 368)
+30/11/2019 18:46:20	:{"product":"BAT PR PANAS ALK 9VTS 6LR61EGR/1B24 24X1","amount":36,"price":31950.0,"product_code":141471}
+30/11/2019 18:46:21	:{"product_id":368}
+30/11/2019 18:46:22	:Subindo produto codigo_distribuidor:141464(product_id: 305)
+30/11/2019 18:46:22	:{"product":"PILHA ZINCO PALITO AAA R03UAL/L8P6 60X8","amount":0,"price":33297.0,"product_code":141464}
+30/11/2019 18:46:22	:{"product_id":305}
+30/11/2019 18:46:23	:Subindo produto codigo_distribuidor:14104(product_id: 310)
+30/11/2019 18:46:23	:{"product":"PILHA EVOLTA AAA LR03EGB/L6P5 24X6","amount":0,"price":23198.0,"product_code":14104}
+30/11/2019 18:46:24	:{"product_id":310}
+30/11/2019 18:46:25	:Subindo produto codigo_distribuidor:141461(product_id: 307)
+30/11/2019 18:46:25	:{"product":"BATERIA MANGANES 9V 6F22UPT 1X1","amount":0,"price":0.0,"product_code":141461}
+30/11/2019 18:46:25	:{"product_id":307}
+30/11/2019 18:46:26	:Subindo produto codigo_distribuidor:141469(product_id: 369)
+30/11/2019 18:46:26	:{"product":"BAT PR PANAS ALK 9VTS 6LR61EGR/1B24 1X1","amount":288,"price":1153.0,"product_code":141469}
+30/11/2019 18:46:27	:{"product_id":369}
+30/11/2019 18:46:27	:Subindo produto codigo_distribuidor:142224(product_id: 342)
+30/11/2019 18:46:27	:{"product":"CARTELAO ALC PREMIUM AA LR6EGR/2BT 6X12","amount":319,"price":2166.0,"product_code":142224}
+30/11/2019 18:46:28	:{"product_id":342}
+30/11/2019 18:46:29	:Subindo produto codigo_distribuidor:142225(product_id: 343)
+30/11/2019 18:46:29	:{"product":"CARTELAO ALC PREMIU AAA LR03EGR/2BT 6X12","amount":579,"price":2369.0,"product_code":142225}
+30/11/2019 18:46:29	:{"product_id":343}
+30/11/2019 18:46:30	:Subindo produto codigo_distribuidor:142221(product_id: 328)
+30/11/2019 18:46:30	:{"product":"PILHA ALCALINA PANASONI AAA LR03 1X1","amount":0,"price":163.0,"product_code":142221}
+30/11/2019 18:46:31	:{"product_id":328}
+30/11/2019 18:46:31	:Subindo produto codigo_distribuidor:142220(product_id: 329)
+30/11/2019 18:46:31	:{"product":"PILHA ALCALINA PANASONIC AA LR6  1X1","amount":0,"price":201.0,"product_code":142220}
+30/11/2019 18:46:32	:{"product_id":329}
+30/11/2019 18:46:33	:Subindo produto codigo_distribuidor:141472(product_id: 370)
+30/11/2019 18:46:33	:{"product":"BATERIA ALCALINA 9V C/01UN 6LF22XAB/1B","amount":162,"price":887.0,"product_code":141472}
+30/11/2019 18:46:33	:{"product_id":370}
+30/11/2019 18:46:34	:Produto  não cadastrado no CS CART: 141336
+30/11/2019 18:46:35	:Subindo produto codigo_distribuidor:142231(product_id: 344)
+30/11/2019 18:46:35	:{"product":"PILHA ALCALINA PREMIUM LR6EGR/L4P3 24X4","amount":12,"price":14787.0,"product_code":142231}
+30/11/2019 18:46:35	:{"product_id":344}
+30/11/2019 18:46:36	:Subindo produto codigo_distribuidor:142232(product_id: 345)
+30/11/2019 18:46:36	:{"product":"PILHA ALCALINA PREMIUM LR03EGR/L4P3 24X4","amount":11,"price":16266.0,"product_code":142232}
+30/11/2019 18:46:36	:{"product_id":345}
+30/11/2019 18:46:37	:Subindo produto codigo_distribuidor:141476(product_id: 340)
+30/11/2019 18:46:37	:{"product":"PILHA ALCALINA PREMIUM \"AA\" LR6EGR/4B96 ","amount":18,"price":22717.0,"product_code":141476}
+30/11/2019 18:46:38	:{"product_id":340}
+30/11/2019 18:46:38	:Fim OnElapsedTimeAsync
+30/11/2019 18:46:38	:upProdutos status enabled?: True Proximo evento: 30/11/2019 18:51:38
+30/11/2019 18:51:38	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+30/11/2019 18:51:38	:[]
+30/11/2019 18:51:38	:Fim OnElapsedTimeAsync
+30/11/2019 18:51:38	:upProdutos status enabled?: True Proximo evento: 30/11/2019 18:51:38
+30/11/2019 18:56:39	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+30/11/2019 18:56:39	:[]
+30/11/2019 18:56:39	:Fim OnElapsedTimeAsync
+30/11/2019 18:56:39	:upProdutos status enabled?: True Proximo evento: 30/11/2019 18:56:39
+30/11/2019 19:01:39	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+30/11/2019 19:01:39	:[]
+30/11/2019 19:01:39	:Fim OnElapsedTimeAsync
+30/11/2019 19:01:39	:upProdutos status enabled?: True Proximo evento: 30/11/2019 19:01:39
+30/11/2019 19:06:40	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+30/11/2019 19:06:40	:[]
+30/11/2019 19:06:40	:Fim OnElapsedTimeAsync
+30/11/2019 19:06:40	:upProdutos status enabled?: True Proximo evento: 30/11/2019 19:06:40
+30/11/2019 19:11:40	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+30/11/2019 19:11:40	:[]
+30/11/2019 19:11:40	:Fim OnElapsedTimeAsync
+30/11/2019 19:11:40	:upProdutos status enabled?: True Proximo evento: 30/11/2019 19:11:40
+30/11/2019 19:16:40	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+30/11/2019 19:16:40	:[]
+30/11/2019 19:16:40	:Fim OnElapsedTimeAsync
+30/11/2019 19:16:40	:upProdutos status enabled?: True Proximo evento: 30/11/2019 19:16:40

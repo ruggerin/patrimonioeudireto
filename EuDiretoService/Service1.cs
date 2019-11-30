@@ -15,6 +15,7 @@ using System.Timers;
 using RestSharp;
 using RestSharp.Authenticators;
 
+
 namespace EuDiretoService
 {
     public partial class Service1 : ServiceBase
@@ -40,7 +41,7 @@ namespace EuDiretoService
             upProdutos.Elapsed += new ElapsedEventHandler(OnElapsedTimeAsync); 
             upProdutos.Interval = 1* 1000;  
             upProdutos.Enabled = true;
-            WriteDebug("Serviço iniciado, vs.:21082019");
+            WriteDebug("Serviço iniciado, vs.:30112019-3");
         }
 
         protected override void OnStop()
@@ -49,14 +50,21 @@ namespace EuDiretoService
 
         private  void OnElapsedTimeAsync(object source, ElapsedEventArgs e)
         {
-            upProdutos.Stop();
+            
             if (timer.AddMinutes(Properties.Settings.Default.UpProdutos) <DateTime.Now)
             {
-                timer = DateTime.Now;
-                WriteDebug("OnElapsedTimeAsync");               
+                upProdutos.Stop();
+                WriteDebug("OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos ");
+                            
                 up_variants();
+                WriteDebug("Fim OnElapsedTimeAsync");
+                upProdutos.Start();
+                timer = DateTime.Now;
+                WriteDebug("upProdutos status enabled?: " + upProdutos.Enabled +" Proximo evento: "+timer.AddMinutes(Properties.Settings.Default.UpProdutos));
+
             }
-            upProdutos.Start();
+         
+
 
         }
         private Int32 ProdutoCadastrado(Int32 codprod)
@@ -66,12 +74,18 @@ namespace EuDiretoService
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
             JObject produtosResponse = JObject.Parse(response.Content);
-            // WriteDegug("Response" + response.Content);
-
-            Int32 product_id =(Int32)produtosResponse["products"][0]["product_id"];
-            WriteDebug("Codigo do produto Winthor:"+codprod+ "\tproduct_id: "+ product_id);
-            return product_id;
-           // return produtosResponse["products"].Count().ToString() == "0"? false: true;
+         
+            if (produtosResponse["products"].Count() == 0)
+            {
+                //Caso o produto não esteja cadastrado no sistema CS Cart, retornar 0;
+                return 0;
+            }
+            else { 
+                Int32 product_id =(Int32)produtosResponse["products"][0]["product_id"];
+               // WriteDebug("Codigo do produto Winthor:"+codprod+ "\tproduct_id: "+ product_id);
+                return product_id;
+            }
+         
 
         }
 
@@ -85,20 +99,33 @@ namespace EuDiretoService
         }
 
         private void processarProduto(Products produto)
-        { 
-            Int32 product_id = ProdutoCadastrado(produto.product_code);
-            WriteDebug("Subindo produto codigo_distribuidor:"+produto.product_code+ "(product_id: "+product_id+")");
+        {
+            try { 
+                if(ProdutoCadastrado(produto.product_code)!=0) { 
+                    Int32 product_id = ProdutoCadastrado(produto.product_code);
+                    WriteDebug("Subindo produto codigo_distribuidor:"+produto.product_code+ "(product_id: "+product_id+")");
+                    var client = new RestClient("https://eudireto.com/api/products/" + product_id);
+                    client.Authenticator = new HttpBasicAuthenticator("ruggeri.barbosa@viacerta.com.br", "hK8421we27khQ80P90H3T9918DMx347k");
+                    var request = new RestRequest(Method.PUT);
+                    request.AddHeader("Accept", "application/json");
+                    WriteDebug(JsonConvert.SerializeObject(produto));
+                    request.AddParameter("application/json", JsonConvert.SerializeObject(produto), ParameterType.RequestBody);
+                    IRestResponse response = client.Execute(request);
+                    WriteDebug(response.Content);
+                }
+                else{
+                    WriteDebug("Produto  não cadastrado no CS CART: "+produto.product_code.ToString());
 
-            var client = new RestClient("https://eudireto.com/api/products/" + product_id);
-            client.Authenticator = new HttpBasicAuthenticator("ruggeri.barbosa@viacerta.com.br", "hK8421we27khQ80P90H3T9918DMx347k");
-            var request = new RestRequest(Method.PUT);
-            request.AddHeader("Accept", "application/json");
-            WriteDebug(JsonConvert.SerializeObject(produto));
-            request.AddParameter("application/json", JsonConvert.SerializeObject(produto), ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);
-            WriteDebug(response.Content);
+                }
 
-           
+            }
+            catch(Exception ex)
+            {
+                erroLogGeneration("Erro ao processar produto "+ produto.product_code+"\n"+ ex.ToString());
+            }
+
+
+
         }
         
 
@@ -223,6 +250,8 @@ namespace EuDiretoService
                     sw.WriteLine(DateTime.Now + "\t:" + Message);
                 }
             }
+
+            
         }
                   
 
