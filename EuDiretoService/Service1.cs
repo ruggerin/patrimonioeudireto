@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using RestSharp;
 using RestSharp.Authenticators;
-
+using System.Globalization;
 
 namespace EuDiretoService
 {
@@ -42,6 +42,7 @@ namespace EuDiretoService
             upProdutos.Interval = 1* 1000;  
             upProdutos.Enabled = true;
             WriteDebug("Serviço iniciado, vs.:30112019-3");
+         
         }
 
         protected override void OnStop()
@@ -67,9 +68,9 @@ namespace EuDiretoService
 
 
         }
-        private Int32 ProdutoCadastrado(Int32 codprod)
+        private string ProdutoCadastrado(Products produto)
         {
-            var client = new RestClient("https://eudireto.com/api/products?pcode="+codprod);
+            var client = new RestClient("https://eudireto.com/api/products?pcode="+ produto.product_code);
             client.Authenticator = new HttpBasicAuthenticator("ruggeri.barbosa@viacerta.com.br", "hK8421we27khQ80P90H3T9918DMx347k");
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
@@ -78,12 +79,24 @@ namespace EuDiretoService
             if (produtosResponse["products"].Count() == 0)
             {
                 //Caso o produto não esteja cadastrado no sistema CS Cart, retornar 0;
-                return 0;
+                return "0";
             }
             else { 
                 Int32 product_id =(Int32)produtosResponse["products"][0]["product_id"];
-               // WriteDebug("Codigo do produto Winthor:"+codprod+ "\tproduct_id: "+ product_id);
-                return product_id;
+                if( (string)produtosResponse["products"][0]["amount"] ==produto.amount.ToString() && float.Parse( (string)produtosResponse["products"][0]["price"], CultureInfo.InvariantCulture.NumberFormat)== float.Parse(produto.price, CultureInfo.InvariantCulture.NumberFormat) && (string)produtosResponse["products"][0]["status"] == produto.status.ToString())
+                {
+                    return  "na";
+                }
+                else {
+                    // WriteDebug("Codigo do produto Winthor:"+codprod+ "\tproduct_id: "+ product_id);
+                    WriteDebug(produto.product_code+"\n"+
+                        (string)produtosResponse["products"][0]["amount"] +"=="+ produto.amount.ToString()+"\n" +
+                        Convert.ToDouble((string)produtosResponse["products"][0]["price"]) +"=="+ Convert.ToDouble(produto.price)+"\n"+
+                        (string)produtosResponse["products"][0]["status"] +"=="+produto.status.ToString()
+
+                    );
+                return product_id.ToString();
+                }
             }
          
 
@@ -101,20 +114,41 @@ namespace EuDiretoService
         private void processarProduto(Products produto)
         {
             try { 
-                if(ProdutoCadastrado(produto.product_code)!=0) { 
-                    Int32 product_id = ProdutoCadastrado(produto.product_code);
+                if(ProdutoCadastrado(produto)!="0") { 
+                    string product_id = ProdutoCadastrado(produto);
                     WriteDebug("Subindo produto codigo_distribuidor:"+produto.product_code+ "(product_id: "+product_id+")");
                     var client = new RestClient("https://eudireto.com/api/products/" + product_id);
                     client.Authenticator = new HttpBasicAuthenticator("ruggeri.barbosa@viacerta.com.br", "hK8421we27khQ80P90H3T9918DMx347k");
                     var request = new RestRequest(Method.PUT);
                     request.AddHeader("Accept", "application/json");
+                    
+
                     WriteDebug(JsonConvert.SerializeObject(produto));
                     request.AddParameter("application/json", JsonConvert.SerializeObject(produto), ParameterType.RequestBody);
                     IRestResponse response = client.Execute(request);
                     WriteDebug(response.Content);
+                }if(ProdutoCadastrado(produto) != "na")
+                {
+                    WriteDebug("Produto cadastrado, mas não possui modificações no ambiente Eu Direto");
                 }
                 else{
                     WriteDebug("Produto  não cadastrado no CS CART: "+produto.product_code.ToString());
+                    if(produto.status == 'A') {
+                        WriteDebug("Produto ativo, tentativa de cadastro");
+                        var client = new RestClient("https://eudireto.com/api/products/");
+                        client.Authenticator = new HttpBasicAuthenticator("ruggeri.barbosa@viacerta.com.br", "hK8421we27khQ80P90H3T9918DMx347k");
+                        var request = new RestRequest(Method.POST);
+                        request.AddHeader("Accept", "application/json");
+                        WriteDebug(JsonConvert.SerializeObject(produto));
+                        request.AddParameter("application/json", JsonConvert.SerializeObject(produto), ParameterType.RequestBody);
+                        IRestResponse response = client.Execute(request);
+                        WriteDebug(response.Content);
+                    }
+                    else
+                    {
+                        WriteDebug("Produto inativo, sem necessidade de cadastro");
+                    }
+
 
                 }
 
@@ -131,30 +165,32 @@ namespace EuDiretoService
 
         private List<Products> LstProdutos()
         {
+            string produtoproblema = "";
             try { 
             con.Open();
             DataSet dataSet = new DataSet();
 
             string query = @"
                 select
-                pcprodut.codprod, 
+                 lpad( pcprodut.codprod , 6, '0') CODPROD, 
                 pcprodut.descricao,
-                case when pcprodut.codepto = 14 then 'Pilhas e Baterias' when  pcprodut.codepto = 64 then 'Energéticos' end categoria , 
+                pcprodut.codepto categoria , 
                 TRUNC((pcest.qtestger - ( pcest.qtreserv + pcest.qtbloqueada)) ,0)  estoque ,
                 TRUNC(nvl( PCTABPR.pvenda,0),2)  PRECO,
                 PCPRODUT.embalagem,
                 pcprodut.nbm,
                 PCPRODUT.codauxiliar ean,
                 pcprodut.codauxiliar2 dun,
+                case when  PCPRODUT.obs2 = 'FL' then 'D' ELSE 'A' END status,
                 greatest(PCPRODUT.dtultalter, PCTABPR.dtultaltpvenda, PCEST.DTULTALTERSRVPRC) ULTIMA_MOVIMENTACAO 
 
                 from pcprodut, pcest , PCTABPR
                 where
-                PCPRODUT.obs2 <>'FL'
-                AND PCEST.codprod = PCPRODUT.CODPROD
+                PCEST.codprod = PCPRODUT.CODPROD
                 AND PCPRODUT.codprod = PCTABPR.codprod
                 AND PCEST.codfilial  IN (:CODFILIAL)
-                AND PCPRODUT.CODEPTO IN(64,14) /*DEPARTAMENTOS ELEGÍVEIS PARA VENDAS  (12,14,40,70,71,55,42,64,63)*/
+                AND PCPRODUT.CODEPTO IN(12,64,14,71) /*DEPARTAMENTOS ELEGÍVEIS PARA VENDAS  (12,14,40,70,71,55,42,64,63)*/
+               /* AND PCPRODUT.CODPROD = 4*/
                 AND PCTABPR.numregiao IN(:REGIAO)
            
                 AND greatest(PCPRODUT.dtultalter, PCTABPR.dtultaltpvenda, PCEST.DTULTALTERSRVPRC) >= to_date(:DTULTALT,'dd/mm/yyyy hh24:mi:ss')
@@ -191,18 +227,21 @@ namespace EuDiretoService
                 "}";
                    
                 JObject feature =  JObject.Parse(objetostr);
-                Int32 codprod =     Convert.ToInt32(dataSet.Tables[0].Rows[cont]["CODPROD"].ToString());
+                string  codprod =  dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
+                produtoproblema = dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
                 Int32  estoque =    Convert.ToInt32(dataSet.Tables[0].Rows[cont]["ESTOQUE"].ToString());
                 string descricao =  dataSet.Tables[0].Rows[cont]["DESCRICAO"].ToString();
                 string preco =      dataSet.Tables[0].Rows[cont]["PRECO"].ToString().Replace(",",".");
-               itemsRows.Add(new Products(codprod,descricao,estoque, Convert.ToDouble(preco), feature));
+                char status = (char)dataSet.Tables[0].Rows[cont]["STATUS"].ToString().ToCharArray()[0];
+                Int32 categoria = category_code(dataSet.Tables[0].Rows[cont]["CATEGORIA"].ToString());
+                itemsRows.Add(new Products(codprod,descricao,categoria,status,estoque, preco, feature));
             }
             con.Close();
             return itemsRows;
             }
             catch(Exception ex)
             {
-                erroLogGeneration(ex.ToString());
+                erroLogGeneration(ex.ToString() + "\n Produto problema: " + produtoproblema);
                 if(con.State == ConnectionState.Open)
                 {
                     con.Close();
@@ -247,6 +286,15 @@ namespace EuDiretoService
             }
         }
 
+        private Int32 category_code(string codigo_interno)
+        {
+            string filepath = AppDomain.CurrentDomain.BaseDirectory + "categorias.json";
+
+            JObject teste = JObject.Parse(File.ReadAllText(filepath));
+           
+            return (Int32)teste[codigo_interno]["category_id"];
+        }
+
         public void erroLogGeneration(string Message)
         {
             string path = AppDomain.CurrentDomain.BaseDirectory + "\\Logs";
@@ -277,19 +325,25 @@ namespace EuDiretoService
 
         internal class Products
         {   
-            public Products(Int32 codprod, string descricao, Int32 estoque, double preco, JObject product_features)
+            public Products(string codprod, string descricao,Int32 category_id, char status, Int32 estoque, string preco, JObject product_features)
             {
                 product_code = codprod;
                 product = descricao;
+                this.category_ids = new List<string> { category_id.ToString() };
                 amount = estoque;
                 price = preco;
                 this.product_features =  product_features;
+                this.status = status;
+               
             }
             public string product { get; set; }
+            public char status { get; set; }
+            public List<string> category_ids { get; set; }
             public Int32 amount { get; set; }
-            public double price { get; set; }
-            public Int32 product_code { get; set; }
+            public string price { get; set; }
+            public string product_code { get; set; }
             public JObject product_features { get; set; }
+        
 
         }
        

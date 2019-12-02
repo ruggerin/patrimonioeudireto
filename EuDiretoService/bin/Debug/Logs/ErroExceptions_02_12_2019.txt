@@ -1,0 +1,21 @@
+02/12/2019 00:33:58	:Newtonsoft.Json.JsonReaderException: After parsing a value an unexpected character was encountered: ". Path '12', line 11, position 1.
+   em Newtonsoft.Json.JsonTextReader.ParsePostValue(Boolean ignoreComments)
+   em Newtonsoft.Json.JsonTextReader.Read()
+   em Newtonsoft.Json.Linq.JContainer.ReadContentFrom(JsonReader r, JsonLoadSettings settings)
+   em Newtonsoft.Json.Linq.JContainer.ReadTokenFrom(JsonReader reader, JsonLoadSettings options)
+   em Newtonsoft.Json.Linq.JObject.Load(JsonReader reader, JsonLoadSettings settings)
+   em Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   em Newtonsoft.Json.Linq.JObject.Parse(String json)
+   em EuDiretoService.Service1.category_code(String codigo_interno) na D:\Projetos\winthor2eudireto\EuDiretoService\Service1.cs:linha 276
+   em EuDiretoService.Service1.LstProdutos() na D:\Projetos\winthor2eudireto\EuDiretoService\Service1.cs:linha 219
+02/12/2019 00:37:48	:Newtonsoft.Json.JsonReaderException: After parsing a value an unexpected character was encountered: ". Path '12', line 11, position 1.
+   em Newtonsoft.Json.JsonTextReader.ParsePostValue(Boolean ignoreComments)
+   em Newtonsoft.Json.JsonTextReader.Read()
+   em Newtonsoft.Json.Linq.JContainer.ReadContentFrom(JsonReader r, JsonLoadSettings settings)
+   em Newtonsoft.Json.Linq.JContainer.ReadTokenFrom(JsonReader reader, JsonLoadSettings options)
+   em Newtonsoft.Json.Linq.JObject.Load(JsonReader reader, JsonLoadSettings settings)
+   em Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   em Newtonsoft.Json.Linq.JObject.Parse(String json)
+   em EuDiretoService.Service1.category_code(String codigo_interno) na D:\Projetos\winthor2eudireto\EuDiretoService\Service1.cs:linha 278
+   em EuDiretoService.Service1.LstProdutos() na D:\Projetos\winthor2eudireto\EuDiretoService\Service1.cs:linha 221
+ Produto problema: 000006
