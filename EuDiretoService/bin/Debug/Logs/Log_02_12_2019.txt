@@ -10094,3 +10094,154 @@ R==A
 02/12/2019 01:32:33	:{"message":"Bad Request: Cannot add more products: you have reached the maximum number of products allowed by your plan. To change your plan, please <a href=\"https:\/\/eudireto.com\/admin.php?dispatch=companies.update&company_id=3&selected_section=plan\">follow this link<\/a>.","status":400}
 02/12/2019 01:32:33	:Fim OnElapsedTimeAsync
 02/12/2019 01:32:33	:upProdutos status enabled?: True Proximo evento: 02/12/2019 01:52:33
+02/12/2019 01:52:33	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 01:52:33	:[]
+02/12/2019 01:52:33	:Fim OnElapsedTimeAsync
+02/12/2019 01:52:33	:upProdutos status enabled?: True Proximo evento: 02/12/2019 02:12:33
+02/12/2019 02:12:33	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 02:12:33	:[]
+02/12/2019 02:12:33	:Fim OnElapsedTimeAsync
+02/12/2019 02:12:33	:upProdutos status enabled?: True Proximo evento: 02/12/2019 02:32:33
+02/12/2019 02:32:34	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 02:32:34	:[]
+02/12/2019 02:32:34	:Fim OnElapsedTimeAsync
+02/12/2019 02:32:34	:upProdutos status enabled?: True Proximo evento: 02/12/2019 02:52:34
+02/12/2019 02:52:34	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 02:52:34	:[]
+02/12/2019 02:52:34	:Fim OnElapsedTimeAsync
+02/12/2019 02:52:34	:upProdutos status enabled?: True Proximo evento: 02/12/2019 03:12:34
+02/12/2019 03:12:34	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 03:12:34	:[]
+02/12/2019 03:12:34	:Fim OnElapsedTimeAsync
+02/12/2019 03:12:34	:upProdutos status enabled?: True Proximo evento: 02/12/2019 03:32:34
+02/12/2019 03:32:34	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 03:32:34	:[]
+02/12/2019 03:32:34	:Fim OnElapsedTimeAsync
+02/12/2019 03:32:34	:upProdutos status enabled?: True Proximo evento: 02/12/2019 03:52:34
+02/12/2019 03:52:35	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 03:52:35	:[]
+02/12/2019 03:52:35	:Fim OnElapsedTimeAsync
+02/12/2019 03:52:35	:upProdutos status enabled?: True Proximo evento: 02/12/2019 04:12:35
+02/12/2019 04:12:35	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 04:12:35	:[]
+02/12/2019 04:12:35	:Fim OnElapsedTimeAsync
+02/12/2019 04:12:35	:upProdutos status enabled?: True Proximo evento: 02/12/2019 04:32:35
+02/12/2019 04:32:35	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 04:32:35	:[]
+02/12/2019 04:32:35	:Fim OnElapsedTimeAsync
+02/12/2019 04:32:35	:upProdutos status enabled?: True Proximo evento: 02/12/2019 04:52:35
+02/12/2019 04:52:35	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 04:52:35	:[]
+02/12/2019 04:52:35	:Fim OnElapsedTimeAsync
+02/12/2019 04:52:35	:upProdutos status enabled?: True Proximo evento: 02/12/2019 05:12:35
+02/12/2019 05:12:36	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 05:12:36	:[]
+02/12/2019 05:12:36	:Fim OnElapsedTimeAsync
+02/12/2019 05:12:36	:upProdutos status enabled?: True Proximo evento: 02/12/2019 05:32:36
+02/12/2019 05:32:36	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 05:32:36	:[]
+02/12/2019 05:32:36	:Fim OnElapsedTimeAsync
+02/12/2019 05:32:36	:upProdutos status enabled?: True Proximo evento: 02/12/2019 05:52:36
+02/12/2019 05:52:37	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 05:52:37	:[]
+02/12/2019 05:52:37	:Fim OnElapsedTimeAsync
+02/12/2019 05:52:37	:upProdutos status enabled?: True Proximo evento: 02/12/2019 06:12:37
+02/12/2019 06:12:37	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 06:12:37	:[]
+02/12/2019 06:12:37	:Fim OnElapsedTimeAsync
+02/12/2019 06:12:37	:upProdutos status enabled?: True Proximo evento: 02/12/2019 06:32:37
+02/12/2019 06:32:37	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 06:32:37	:[]
+02/12/2019 06:32:37	:Fim OnElapsedTimeAsync
+02/12/2019 06:32:37	:upProdutos status enabled?: True Proximo evento: 02/12/2019 06:52:37
+02/12/2019 06:52:37	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 06:52:37	:[]
+02/12/2019 06:52:37	:Fim OnElapsedTimeAsync
+02/12/2019 06:52:37	:upProdutos status enabled?: True Proximo evento: 02/12/2019 07:12:37
+02/12/2019 07:12:38	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 07:12:38	:[
+  {
+    "product": "PILHA ALCALINA AAA LR03-2BT480 10X2",
+    "status": "A",
+    "category_ids": [
+      "266"
+    ],
+    "amount": 1597,
+    "price": "35",
+    "product_code": "142223",
+    "product_features": {
+      "551": {
+        "feature_type": "T",
+        "value": "85061010"
+      },
+      "552": {
+        "feature_type": "T",
+        "value": "7896067202265"
+      },
+      "553": {
+        "feature_type": "T",
+        "value": "17896067203290"
+      }
+    }
+  },
+  {
+    "product": "PILHA ALCALINA AA LR6-2BT480 10X2",
+    "status": "A",
+    "category_ids": [
+      "266"
+    ],
+    "amount": 1697,
+    "price": "29.85",
+    "product_code": "142222",
+    "product_features": {
+      "551": {
+        "feature_type": "T",
+        "value": "85061010"
+      },
+      "552": {
+        "feature_type": "T",
+        "value": "7896067202241"
+      },
+      "553": {
+        "feature_type": "T",
+        "value": "17896067203306"
+      }
+    }
+  }
+]
+02/12/2019 07:12:40	:142223
+1598==1597
+35000000==35
+A==A
+02/12/2019 07:12:40	:142223
+1598==1597
+35000000==35
+A==A
+02/12/2019 07:12:40	:Subindo produto codigo_distribuidor:142223(product_id: 421)
+02/12/2019 07:12:40	:{"product":"PILHA ALCALINA AAA LR03-2BT480 10X2","status":"A","category_ids":["266"],"amount":1597,"price":"35","product_code":"142223","product_features":{"551":{"feature_type":"T","value":"85061010"},"552":{"feature_type":"T","value":"7896067202265"},"553":{"feature_type":"T","value":"17896067203290"}}}
+02/12/2019 07:12:41	:{"product_id":421}
+02/12/2019 07:12:41	:Produto  não cadastrado no CS CART: 142223
+02/12/2019 07:12:41	:Produto ativo, tentativa de cadastro
+02/12/2019 07:12:41	:{"product":"PILHA ALCALINA AAA LR03-2BT480 10X2","status":"A","category_ids":["266"],"amount":1597,"price":"35","product_code":"142223","product_features":{"551":{"feature_type":"T","value":"85061010"},"552":{"feature_type":"T","value":"7896067202265"},"553":{"feature_type":"T","value":"17896067203290"}}}
+02/12/2019 07:12:42	:{"message":"Bad Request: Cannot add more products: you have reached the maximum number of products allowed by your plan. To change your plan, please <a href=\"https:\/\/eudireto.com\/admin.php?dispatch=companies.update&company_id=3&selected_section=plan\">follow this link<\/a>.","status":400}
+02/12/2019 07:12:43	:142222
+1698==1697
+29850000==2985
+A==A
+02/12/2019 07:12:43	:142222
+1698==1697
+29850000==2985
+A==A
+02/12/2019 07:12:43	:Subindo produto codigo_distribuidor:142222(product_id: 432)
+02/12/2019 07:12:43	:{"product":"PILHA ALCALINA AA LR6-2BT480 10X2","status":"A","category_ids":["266"],"amount":1697,"price":"29.85","product_code":"142222","product_features":{"551":{"feature_type":"T","value":"85061010"},"552":{"feature_type":"T","value":"7896067202241"},"553":{"feature_type":"T","value":"17896067203306"}}}
+02/12/2019 07:12:44	:{"product_id":432}
+02/12/2019 07:12:44	:Produto  não cadastrado no CS CART: 142222
+02/12/2019 07:12:44	:Produto ativo, tentativa de cadastro
+02/12/2019 07:12:44	:{"product":"PILHA ALCALINA AA LR6-2BT480 10X2","status":"A","category_ids":["266"],"amount":1697,"price":"29.85","product_code":"142222","product_features":{"551":{"feature_type":"T","value":"85061010"},"552":{"feature_type":"T","value":"7896067202241"},"553":{"feature_type":"T","value":"17896067203306"}}}
+02/12/2019 07:12:45	:{"message":"Bad Request: Cannot add more products: you have reached the maximum number of products allowed by your plan. To change your plan, please <a href=\"https:\/\/eudireto.com\/admin.php?dispatch=companies.update&company_id=3&selected_section=plan\">follow this link<\/a>.","status":400}
+02/12/2019 07:12:45	:Fim OnElapsedTimeAsync
+02/12/2019 07:12:45	:upProdutos status enabled?: True Proximo evento: 02/12/2019 07:32:45
+02/12/2019 07:32:45	:OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos 
+02/12/2019 07:32:45	:[]
+02/12/2019 07:32:45	:Fim OnElapsedTimeAsync
+02/12/2019 07:32:45	:upProdutos status enabled?: True Proximo evento: 02/12/2019 07:52:45
