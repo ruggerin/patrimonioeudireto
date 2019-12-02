@@ -171,11 +171,31 @@ namespace EuDiretoService
             List<Products> itemsRows = new List<Products>();
             for (int cont = 0; cont < dataSet.Tables[0].Rows.Count; cont++)
             {
+                //Criando jObject da sub-classe product_features
+                string  objetostr =  "{" +
+                    //NCM
+                    "\"551\":{" +
+                        "\"feature_type\":\"T\"," +
+                        "\"value\":\"" + dataSet.Tables[0].Rows[cont]["NBM"].ToString() + "\"" +
+                    "}," +
+                    //EAN
+                    "\"552\":{" +
+                        "\"feature_type\":\"T\"," +
+                        "\"value\":\"" + dataSet.Tables[0].Rows[cont]["EAN"].ToString() + "\"" +
+                    "}," +                      
+                    //DUN
+                    "\"553\":{" +
+                        "\"feature_type\":\"T\"," +
+                        "\"value\":\"" + dataSet.Tables[0].Rows[cont]["DUN"].ToString() + "\"" +
+                    "}" +                        
+                "}";
+                   
+                JObject feature =  JObject.Parse(objetostr);
                 Int32 codprod =     Convert.ToInt32(dataSet.Tables[0].Rows[cont]["CODPROD"].ToString());
                 Int32  estoque =    Convert.ToInt32(dataSet.Tables[0].Rows[cont]["ESTOQUE"].ToString());
                 string descricao =  dataSet.Tables[0].Rows[cont]["DESCRICAO"].ToString();
                 string preco =      dataSet.Tables[0].Rows[cont]["PRECO"].ToString().Replace(",",".");
-                itemsRows.Add(new Products(codprod,descricao,estoque, Convert.ToDouble(preco)));
+               itemsRows.Add(new Products(codprod,descricao,estoque, Convert.ToDouble(preco), feature));
             }
             con.Close();
             return itemsRows;
@@ -257,19 +277,21 @@ namespace EuDiretoService
 
         internal class Products
         {   
-            public Products(Int32 codprod, string descricao, Int32 estoque, double preco)
+            public Products(Int32 codprod, string descricao, Int32 estoque, double preco, JObject product_features)
             {
                 product_code = codprod;
                 product = descricao;
                 amount = estoque;
                 price = preco;
+                this.product_features =  product_features;
             }
             public string product { get; set; }
             public Int32 amount { get; set; }
             public double price { get; set; }
             public Int32 product_code { get; set; }
+            public JObject product_features { get; set; }
 
         }
-
+       
     }
 }

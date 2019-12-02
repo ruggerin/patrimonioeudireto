@@ -212,3 +212,16 @@ Parâmetros afetados são:
    logtoconsole = 
    assemblypath = D:\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
    logfile = D:\Projetos\winthor-eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Instalando o assembly 'D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Instalando o serviço EuDireto Sync...
+Serviço EuDireto Sync foi instalado com êxito.
+Criando a origem de EventLog EuDireto Sync no log Application...
+Confirmando o assembly 'D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog

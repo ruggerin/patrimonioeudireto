@@ -1,0 +1,12 @@
+01/12/2019 19:32:19	:System.ArgumentNullException: Valor não pode ser nulo.
+Nome do parâmetro: s
+   em System.IO.StringReader..ctor(String s)
+   em Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   em Newtonsoft.Json.Linq.JObject.Parse(String json)
+   em EuDiretoService.Service1.LstProdutos() na D:\Projetos\winthor2eudireto\EuDiretoService\Service1.cs:linha 193
+01/12/2019 19:33:31	:System.ArgumentNullException: Valor não pode ser nulo.
+Nome do parâmetro: s
+   em System.IO.StringReader..ctor(String s)
+   em Newtonsoft.Json.Linq.JObject.Parse(String json, JsonLoadSettings settings)
+   em Newtonsoft.Json.Linq.JObject.Parse(String json)
+   em EuDiretoService.Service1.LstProdutos() na D:\Projetos\winthor2eudireto\EuDiretoService\Service1.cs:linha 193
