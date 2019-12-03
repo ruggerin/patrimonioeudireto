@@ -41,7 +41,7 @@ namespace EuDiretoService
             upProdutos.Elapsed += new ElapsedEventHandler(OnElapsedTimeAsync); 
             upProdutos.Interval = 1* 1000;  
             upProdutos.Enabled = true;
-            WriteDebug("Serviço iniciado, vs.:30112019-3");
+            WriteDebug("Serviço iniciado, vs.:02-12-19: 15:44");
          
         }
 
@@ -56,7 +56,6 @@ namespace EuDiretoService
             {
                 upProdutos.Stop();
                 WriteDebug("OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos ");
-                            
                 up_variants();
                 WriteDebug("Fim OnElapsedTimeAsync");
                 upProdutos.Start();
@@ -75,23 +74,25 @@ namespace EuDiretoService
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
             JObject produtosResponse = JObject.Parse(response.Content);
-         
-            if (produtosResponse["products"].Count() == 0)
-            {
+            WriteDebug(produto.product_code + "-"+produtosResponse["products"].Children().Count());
+            if (produtosResponse["products"].Children().Count() == 0) {
                 //Caso o produto não esteja cadastrado no sistema CS Cart, retornar 0;
                 return "0";
-            }
-            else { 
+            }else { 
+                //Produto cadastrado, capturando id no sistema cs cart
                 Int32 product_id =(Int32)produtosResponse["products"][0]["product_id"];
-                if( (string)produtosResponse["products"][0]["amount"] ==produto.amount.ToString() && float.Parse( (string)produtosResponse["products"][0]["price"], CultureInfo.InvariantCulture.NumberFormat)== float.Parse(produto.price, CultureInfo.InvariantCulture.NumberFormat) && (string)produtosResponse["products"][0]["status"] == produto.status.ToString())
+
+                //Verificando se exite alguma alteração na base do CS CART
+                if( (string)produtosResponse["products"][0]["amount"] ==produto.amount.ToString() && Convert.ToDouble( (string)produtosResponse["products"][0]["price"], CultureInfo.InvariantCulture.NumberFormat)== produto.price && (string)produtosResponse["products"][0]["status"] == produto.status.ToString())
                 {
                     return  "na";
                 }
                 else {
                     // WriteDebug("Codigo do produto Winthor:"+codprod+ "\tproduct_id: "+ product_id);
+                    CultureInfo provider = new CultureInfo("en-us");
                     WriteDebug(produto.product_code+"\n"+
                         (string)produtosResponse["products"][0]["amount"] +"=="+ produto.amount.ToString()+"\n" +
-                        Convert.ToDouble((string)produtosResponse["products"][0]["price"]) +"=="+ Convert.ToDouble(produto.price)+"\n"+
+                        Convert.ToDouble((string)produtosResponse["products"][0]["price"],provider) +"=="+produto.price+"\n"+
                         (string)produtosResponse["products"][0]["status"] +"=="+produto.status.ToString()
 
                     );
@@ -105,7 +106,7 @@ namespace EuDiretoService
         private  void up_variants()
         {  
             List<Products> lstProdutos = LstProdutos();
-            WriteDebug(JsonConvert.SerializeObject( lstProdutos,Formatting.Indented));
+            //WriteDebug(JsonConvert.SerializeObject( lstProdutos,Formatting.Indented));
             lstProdutos.ForEach(processarProduto);
             ult_sinc_produtos = DateTime.Now;
 
@@ -113,27 +114,11 @@ namespace EuDiretoService
 
         private void processarProduto(Products produto)
         {
-            try { 
-                if(ProdutoCadastrado(produto)!="0") { 
-                    string product_id = ProdutoCadastrado(produto);
-                    WriteDebug("Subindo produto codigo_distribuidor:"+produto.product_code+ "(product_id: "+product_id+")");
-                    var client = new RestClient("https://eudireto.com/api/products/" + product_id);
-                    client.Authenticator = new HttpBasicAuthenticator("ruggeri.barbosa@viacerta.com.br", "hK8421we27khQ80P90H3T9918DMx347k");
-                    var request = new RestRequest(Method.PUT);
-                    request.AddHeader("Accept", "application/json");
-                    
-
-                    WriteDebug(JsonConvert.SerializeObject(produto));
-                    request.AddParameter("application/json", JsonConvert.SerializeObject(produto), ParameterType.RequestBody);
-                    IRestResponse response = client.Execute(request);
-                    WriteDebug(response.Content);
-                }if(ProdutoCadastrado(produto) != "na")
-                {
-                    WriteDebug("Produto cadastrado, mas não possui modificações no ambiente Eu Direto");
-                }
-                else{
-                    WriteDebug("Produto  não cadastrado no CS CART: "+produto.product_code.ToString());
-                    if(produto.status == 'A') {
+            try {
+                string produtct_id = ProdutoCadastrado(produto);
+                if (produtct_id == "0") {
+                    WriteDebug("Produto  não cadastrado no CS CART: " + produto.product_code.ToString());
+                    if (produto.status == 'A'){
                         WriteDebug("Produto ativo, tentativa de cadastro");
                         var client = new RestClient("https://eudireto.com/api/products/");
                         client.Authenticator = new HttpBasicAuthenticator("ruggeri.barbosa@viacerta.com.br", "hK8421we27khQ80P90H3T9918DMx347k");
@@ -144,10 +129,27 @@ namespace EuDiretoService
                         IRestResponse response = client.Execute(request);
                         WriteDebug(response.Content);
                     }
-                    else
-                    {
+                    else{
                         WriteDebug("Produto inativo, sem necessidade de cadastro");
                     }
+
+                }
+                else if(ProdutoCadastrado(produto) == "na")
+                {
+                    WriteDebug("Produto cadastrado, mas não possui modificações no ambiente Eu Direto");
+                }
+                else{
+                    WriteDebug("Produto cadastrado, alterações pendentes ");
+                    string product_id = ProdutoCadastrado(produto);
+                    WriteDebug("Subindo produto codigo_distribuidor:" + produto.product_code + "(product_id: " + product_id + ")");
+                    var client = new RestClient("https://eudireto.com/api/products/" + product_id);
+                    client.Authenticator = new HttpBasicAuthenticator("ruggeri.barbosa@viacerta.com.br", "hK8421we27khQ80P90H3T9918DMx347k");
+                    var request = new RestRequest(Method.PUT);
+                    request.AddHeader("Accept", "application/json");
+                    WriteDebug(JsonConvert.SerializeObject(produto));
+                    request.AddParameter("application/json", JsonConvert.SerializeObject(produto), ParameterType.RequestBody);
+                    IRestResponse response = client.Execute(request);
+                    WriteDebug(response.Content);
 
 
                 }
@@ -207,31 +209,14 @@ namespace EuDiretoService
             List<Products> itemsRows = new List<Products>();
             for (int cont = 0; cont < dataSet.Tables[0].Rows.Count; cont++)
             {
-                //Criando jObject da sub-classe product_features
-                string  objetostr =  "{" +
-                    //NCM
-                    "\"551\":{" +
-                        "\"feature_type\":\"T\"," +
-                        "\"value\":\"" + dataSet.Tables[0].Rows[cont]["NBM"].ToString() + "\"" +
-                    "}," +
-                    //EAN
-                    "\"552\":{" +
-                        "\"feature_type\":\"T\"," +
-                        "\"value\":\"" + dataSet.Tables[0].Rows[cont]["EAN"].ToString() + "\"" +
-                    "}," +                      
-                    //DUN
-                    "\"553\":{" +
-                        "\"feature_type\":\"T\"," +
-                        "\"value\":\"" + dataSet.Tables[0].Rows[cont]["DUN"].ToString() + "\"" +
-                    "}" +                        
-                "}";
-                   
-                JObject feature =  JObject.Parse(objetostr);
+                    //Criando jObject da sub-classe product_features
+                JObject feature = SerializeFeatures(dataSet.Tables[0].Rows[cont]["NBM"].ToString(), dataSet.Tables[0].Rows[cont]["EAN"].ToString(), dataSet.Tables[0].Rows[cont]["DUN"].ToString());
                 string  codprod =  dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
                 produtoproblema = dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
                 Int32  estoque =    Convert.ToInt32(dataSet.Tables[0].Rows[cont]["ESTOQUE"].ToString());
                 string descricao =  dataSet.Tables[0].Rows[cont]["DESCRICAO"].ToString();
-                string preco =      dataSet.Tables[0].Rows[cont]["PRECO"].ToString().Replace(",",".");
+                CultureInfo provider = new CultureInfo("en-us");
+                double preco =     Convert.ToDouble( dataSet.Tables[0].Rows[cont]["PRECO"].ToString().Replace(",","."),provider);
                 char status = (char)dataSet.Tables[0].Rows[cont]["STATUS"].ToString().ToCharArray()[0];
                 Int32 categoria = category_code(dataSet.Tables[0].Rows[cont]["CATEGORIA"].ToString());
                 itemsRows.Add(new Products(codprod,descricao,categoria,status,estoque, preco, feature));
@@ -250,7 +235,30 @@ namespace EuDiretoService
             }
         }
 
-        
+        private JObject SerializeFeatures(string ncm, string ean , string dun)
+        {
+
+            string objetostr = "{" +
+               //NCM
+               "\"551\":{" +
+                   "\"feature_type\":\"T\"," +
+                   "\"value\":\"" + ncm + "\"" +
+               "}," +
+               //EAN
+               "\"552\":{" +
+                   "\"feature_type\":\"T\"," +
+                   "\"value\":\"" + ean + "\"" +
+               "}," +
+               //DUN
+               "\"553\":{" +
+                   "\"feature_type\":\"T\"," +
+                   "\"value\":\"" + dun + "\"" +
+               "}" +
+           "}";
+
+            JObject feature = JObject.Parse(objetostr);
+            return feature;
+        }
 
         public void WriteDebug(string texto)
         {
@@ -289,9 +297,7 @@ namespace EuDiretoService
         private Int32 category_code(string codigo_interno)
         {
             string filepath = AppDomain.CurrentDomain.BaseDirectory + "categorias.json";
-
             JObject teste = JObject.Parse(File.ReadAllText(filepath));
-           
             return (Int32)teste[codigo_interno]["category_id"];
         }
 
@@ -318,14 +324,16 @@ namespace EuDiretoService
                     sw.WriteLine(DateTime.Now + "\t:" + Message);
                 }
             }
+            upProdutos.Stop();
+            upProdutos.Start();
 
-            
+
         }
                   
 
         internal class Products
         {   
-            public Products(string codprod, string descricao,Int32 category_id, char status, Int32 estoque, string preco, JObject product_features)
+            public Products(string codprod, string descricao,Int32 category_id, char status, Int32 estoque, double preco, JObject product_features)
             {
                 product_code = codprod;
                 product = descricao;
@@ -340,7 +348,7 @@ namespace EuDiretoService
             public char status { get; set; }
             public List<string> category_ids { get; set; }
             public Int32 amount { get; set; }
-            public string price { get; set; }
+            public double price { get; set; }
             public string product_code { get; set; }
             public JObject product_features { get; set; }
         
