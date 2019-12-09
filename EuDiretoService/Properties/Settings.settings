@@ -14,9 +14,6 @@
     <Setting Name="RegiaoTblPreco" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">7</Value>
     </Setting>
-    <Setting Name="token_account" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Basic cnVnZ2VyaS5iYXJib3NhQHZpYWNlcnRhLmNvbS5icjpKZjU5MDd3bjYxdHoxMW80N2w0dzEycDVzVWtZeDQyMw==</Value>
-    </Setting>
     <Setting Name="codfilial" Type="System.String" Scope="Application">
       <Value Profile="(Default)">2</Value>
     </Setting>
@@ -31,6 +28,24 @@
     </Setting>
     <Setting Name="password" Type="System.String" Scope="User">
       <Value Profile="(Default)">hK8421we27khQ80P90H3T9918DMx347k</Value>
+    </Setting>
+    <Setting Name="ambiente_api" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://eudireto.com/api</Value>
+    </Setting>
+    <Setting Name="db_host" Type="System.String" Scope="User">
+      <Value Profile="(Default)">viacerta.ddns.net</Value>
+    </Setting>
+    <Setting Name="db_port" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8016</Value>
+    </Setting>
+    <Setting Name="db_service_name" Type="System.String" Scope="User">
+      <Value Profile="(Default)">WINT</Value>
+    </Setting>
+    <Setting Name="db_user" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cfmanaus</Value>
+    </Setting>
+    <Setting Name="db_pass" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cfmanaus</Value>
     </Setting>
   </Settings>
 </SettingsFile>

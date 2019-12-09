@@ -61,16 +61,6 @@ namespace EuDiretoService.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Basic cnVnZ2VyaS5iYXJib3NhQHZpYWNlcnRhLmNvbS5icjpKZjU5MDd3bjYxdHoxMW80N2w0dzEycDV" +
-            "zVWtZeDQyMw==")]
-        public string token_account {
-            get {
-                return ((string)(this["token_account"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public string codfilial {
             get {
@@ -120,6 +110,78 @@ namespace EuDiretoService.Properties {
             }
             set {
                 this["password"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://eudireto.com/api")]
+        public string ambiente_api {
+            get {
+                return ((string)(this["ambiente_api"]));
+            }
+            set {
+                this["ambiente_api"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("viacerta.ddns.net")]
+        public string db_host {
+            get {
+                return ((string)(this["db_host"]));
+            }
+            set {
+                this["db_host"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8016")]
+        public string db_port {
+            get {
+                return ((string)(this["db_port"]));
+            }
+            set {
+                this["db_port"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("WINT")]
+        public string db_service_name {
+            get {
+                return ((string)(this["db_service_name"]));
+            }
+            set {
+                this["db_service_name"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("cfmanaus")]
+        public string db_user {
+            get {
+                return ((string)(this["db_user"]));
+            }
+            set {
+                this["db_user"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("cfmanaus")]
+        public string db_pass {
+            get {
+                return ((string)(this["db_pass"]));
+            }
+            set {
+                this["db_pass"] = value;
             }
         }
     }

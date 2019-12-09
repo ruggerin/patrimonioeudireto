@@ -15,6 +15,8 @@ using System.Timers;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Globalization;
+using System.Net.NetworkInformation;
+using System.Net;
 
 namespace EuDiretoService
 {
@@ -32,8 +34,8 @@ namespace EuDiretoService
 
         protected override void OnStart(string[] args)
         {
-            try { 
-               con = new OracleConnection(Properties.Settings.Default.stringConection);
+            try {
+                con = oCon();
             }catch(Exception ex)
             {
                 erroLogGeneration(ex.ToString());
@@ -41,12 +43,13 @@ namespace EuDiretoService
             upProdutos.Elapsed += new ElapsedEventHandler(OnElapsedTimeAsync); 
             upProdutos.Interval = 1* 1000;  
             upProdutos.Enabled = true;
-            WriteDebug("Serviço iniciado, vs.:02-12-19: 15:44");
+            WriteDebugHeader("Serviço iniciado, vs.:02-12-19: 15:44");
          
         }
 
         protected override void OnStop()
         {
+
         }
 
         private  void OnElapsedTimeAsync(object source, ElapsedEventArgs e)
@@ -55,46 +58,55 @@ namespace EuDiretoService
             if (timer.AddMinutes(Properties.Settings.Default.UpProdutos) <DateTime.Now)
             {
                 upProdutos.Stop();
-                WriteDebug("OnElapsedTimeAsync dentro do time programado, iniciando evento Cadastro de Produtos ");
+                
+                WriteDebugHeader("Início evento Cadastro de Produtos[");
                 up_variants();
-                WriteDebug("Fim OnElapsedTimeAsync");
+                WriteDebugHeader("\n]\nFim evento 'Cadastro de Produtos");
                 upProdutos.Start();
                 timer = DateTime.Now;
-                WriteDebug("upProdutos status enabled?: " + upProdutos.Enabled +" Proximo evento: "+timer.AddMinutes(Properties.Settings.Default.UpProdutos));
+                WriteDebugHeader("upProdutos status enabled?: " + upProdutos.Enabled +" Proximo evento: "+timer.AddMinutes(Properties.Settings.Default.UpProdutos));
 
             }
          
 
 
         }
-        private string ProdutoCadastrado(Products produto)
-        {
-            var client = new RestClient("https://eudireto.com/api/products?pcode="+ produto.product_code);
-            client.Authenticator = new HttpBasicAuthenticator("ruggeri.barbosa@viacerta.com.br", "hK8421we27khQ80P90H3T9918DMx347k");
+        //Verificar se o produto está cadastrado no Eu Direto Admin
+        private string ProdutoCadastrado(Products produto)        {
+            var client = new RestClient(Properties.Settings.Default.ambiente_api+ "/api/products?pcode=" + produto.product_code);
+            client.Authenticator = new HttpBasicAuthenticator(Properties.Settings.Default.user,Properties.Settings.Default.password);
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
             JObject produtosResponse = JObject.Parse(response.Content);
-            WriteDebug(produto.product_code + "-"+produtosResponse["products"].Children().Count());
+           // WriteDebug(produto.product_code + "-"+produtosResponse["products"].Children().Count());
+            WriteDebug(response.Content);
             if (produtosResponse["products"].Children().Count() == 0) {
-                //Caso o produto não esteja cadastrado no sistema CS Cart, retornar 0;
+                //Caso o produto não esteja cadastrado no sistema Eu Direto Admin, retornar 0;
                 return "0";
             }else { 
-                //Produto cadastrado, capturando id no sistema cs cart
+                //Produto cadastrado, capturando id no sistema Eu Direto Admin
                 Int32 product_id =(Int32)produtosResponse["products"][0]["product_id"];
 
-                //Verificando se exite alguma alteração na base do CS CART
-                if( (string)produtosResponse["products"][0]["amount"] ==produto.amount.ToString() && Convert.ToDouble( (string)produtosResponse["products"][0]["price"], CultureInfo.InvariantCulture.NumberFormat)== produto.price && (string)produtosResponse["products"][0]["status"] == produto.status.ToString())
+                //Verificando se exite alguma alteração na base do Eu Direto Admin
+                if( 
+                    //Verificação de estoque
+                    (string)produtosResponse["products"][0]["amount"] ==produto.amount.ToString() && 
+                    //Verificação de preço
+                    Convert.ToDouble( (string)produtosResponse["products"][0]["price"], CultureInfo.InvariantCulture.NumberFormat)== produto.price && 
+                    //Verificação de status
+                    (string)produtosResponse["products"][0]["status"] == produto.status.ToString()
+                )
                 {
+                    //Resposta da função caso não haja nem uma alteração a ser enviada ao ambiente Eu Direto
                     return  "na";
                 }
                 else {
-                    // WriteDebug("Codigo do produto Winthor:"+codprod+ "\tproduct_id: "+ product_id);
+                    //Caso exista alguma diferença entre as bases, imprime a diferença e envia para o método de atualização
                     CultureInfo provider = new CultureInfo("en-us");
                     WriteDebug(produto.product_code+"\n"+
-                        (string)produtosResponse["products"][0]["amount"] +"=="+ produto.amount.ToString()+"\n" +
-                        Convert.ToDouble((string)produtosResponse["products"][0]["price"],provider) +"=="+produto.price+"\n"+
-                        (string)produtosResponse["products"][0]["status"] +"=="+produto.status.ToString()
-
+                      "Estoque: "+  (string)produtosResponse["products"][0]["amount"] +"=="+ produto.amount.ToString()+"\n" +
+                      "Preço: "+  Convert.ToDouble((string)produtosResponse["products"][0]["price"],provider) +"=="+produto.price+"\n"+
+                      "Ativo: " +  (string)produtosResponse["products"][0]["status"] +"=="+produto.status.ToString()
                     );
                 return product_id.ToString();
                 }
@@ -117,11 +129,11 @@ namespace EuDiretoService
             try {
                 string produtct_id = ProdutoCadastrado(produto);
                 if (produtct_id == "0") {
-                    WriteDebug("Produto  não cadastrado no CS CART: " + produto.product_code.ToString());
+                    WriteDebug("Produto  não cadastrado no Eu Direto Admin: " + produto.product_code.ToString());
                     if (produto.status == 'A'){
                         WriteDebug("Produto ativo, tentativa de cadastro");
-                        var client = new RestClient("https://eudireto.com/api/products/");
-                        client.Authenticator = new HttpBasicAuthenticator("ruggeri.barbosa@viacerta.com.br", "hK8421we27khQ80P90H3T9918DMx347k");
+                        var client = new RestClient(Properties.Settings.Default.ambiente_api + "/api/products/");
+                        client.Authenticator = new HttpBasicAuthenticator(Properties.Settings.Default.user, Properties.Settings.Default.password);
                         var request = new RestRequest(Method.POST);
                         request.AddHeader("Accept", "application/json");
                         WriteDebug(JsonConvert.SerializeObject(produto));
@@ -142,8 +154,8 @@ namespace EuDiretoService
                     WriteDebug("Produto cadastrado, alterações pendentes ");
                     string product_id = ProdutoCadastrado(produto);
                     WriteDebug("Subindo produto codigo_distribuidor:" + produto.product_code + "(product_id: " + product_id + ")");
-                    var client = new RestClient("https://eudireto.com/api/products/" + product_id);
-                    client.Authenticator = new HttpBasicAuthenticator("ruggeri.barbosa@viacerta.com.br", "hK8421we27khQ80P90H3T9918DMx347k");
+                    var client = new RestClient(Properties.Settings.Default.ambiente_api + "/api/products/" + product_id);
+                    client.Authenticator = new HttpBasicAuthenticator(Properties.Settings.Default.user, Properties.Settings.Default.password);
                     var request = new RestRequest(Method.PUT);
                     request.AddHeader("Accept", "application/json");
                     WriteDebug(JsonConvert.SerializeObject(produto));
@@ -209,7 +221,8 @@ namespace EuDiretoService
             List<Products> itemsRows = new List<Products>();
             for (int cont = 0; cont < dataSet.Tables[0].Rows.Count; cont++)
             {
-                    //Criando jObject da sub-classe product_features
+                //Criando jObject da sub-classe product_features
+             
                 JObject feature = SerializeFeatures(dataSet.Tables[0].Rows[cont]["NBM"].ToString(), dataSet.Tables[0].Rows[cont]["EAN"].ToString(), dataSet.Tables[0].Rows[cont]["DUN"].ToString());
                 string  codprod =  dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
                 produtoproblema = dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
@@ -235,39 +248,23 @@ namespace EuDiretoService
             }
         }
 
-        private JObject SerializeFeatures(string ncm, string ean , string dun)
-        {
-
-            string objetostr = "{" +
-               //NCM
-               "\"551\":{" +
-                   "\"feature_type\":\"T\"," +
-                   "\"value\":\"" + ncm + "\"" +
-               "}," +
-               //EAN
-               "\"552\":{" +
-                   "\"feature_type\":\"T\"," +
-                   "\"value\":\"" + ean + "\"" +
-               "}," +
-               //DUN
-               "\"553\":{" +
-                   "\"feature_type\":\"T\"," +
-                   "\"value\":\"" + dun + "\"" +
-               "}" +
-           "}";
-
-            JObject feature = JObject.Parse(objetostr);
-            return feature;
-        }
+      
 
         public void WriteDebug(string texto)
         {
             if (Properties.Settings.Default.debugmode)
             {
-                WriteToFile(DateTime.Now+"\t:"+texto);
+                WriteToFile("\t"+DateTime.Now+"\t:"+texto);
             }
         }
 
+        public void WriteDebugHeader(string texto)
+        {
+            if (Properties.Settings.Default.debugmode)
+            {
+                WriteToFile(DateTime.Now + "\t:" + texto);
+            }
+        }
 
         public void WriteToFile(string Message)
         {
@@ -329,31 +326,53 @@ namespace EuDiretoService
 
 
         }
+
+        //Adaptação para criação de uma sub-classe com descrição de numeros inteiros
+        public JObject SerializeFeatures(string ncm, string ean, string dun)
+        {
+
+            string objetostr = "{" +
+               //NCM
+               "\"551\":{" +
+                   "\"feature_type\":\"T\"," +
+                   "\"value\":\"" + ncm + "\"" +
+               "}," +
+               //EAN
+               "\"552\":{" +
+                   "\"feature_type\":\"T\"," +
+                   "\"value\":\"" + ean + "\"" +
+               "}," +
+               //DUN
+               "\"553\":{" +
+                   "\"feature_type\":\"T\"," +
+                   "\"value\":\"" + dun + "\"" +
+               "}" +
+           "}";
+
+            JObject feature = JObject.Parse(objetostr);
+            return feature;
+        }
+        public bool ActivetedServer(string host)
+        {
+              Ping pinger = new Ping();
+              PingReply reply = pinger.Send(host,100);
+              return reply.Status == IPStatus.Success;
+           
+        }
+
+        public OracleConnection oCon()
+        {
+            string 
+                userId = Properties.Settings.Default.db_user , 
+                pwd = Properties.Settings.Default.db_pass, 
+                host = Properties.Settings.Default.db_host,
+                port = Properties.Settings.Default.db_port,
+                servicename = Properties.Settings.Default.db_service_name;
+            string stringConnection = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=" + Properties.Settings.Default.db_host + ")(PORT=" + Properties.Settings.Default.db_port + "))(CONNECT_DATA=(SERVICE_NAME=" + Properties.Settings.Default.db_service_name + ")));user id=" + userId + ";password=" + pwd + ";";
+            return new OracleConnection(stringConnection);
+        }
                   
 
-        internal class Products
-        {   
-            public Products(string codprod, string descricao,Int32 category_id, char status, Int32 estoque, double preco, JObject product_features)
-            {
-                product_code = codprod;
-                product = descricao;
-                this.category_ids = new List<string> { category_id.ToString() };
-                amount = estoque;
-                price = preco;
-                this.product_features =  product_features;
-                this.status = status;
-               
-            }
-            public string product { get; set; }
-            public char status { get; set; }
-            public List<string> category_ids { get; set; }
-            public Int32 amount { get; set; }
-            public double price { get; set; }
-            public string product_code { get; set; }
-            public JObject product_features { get; set; }
-        
-
-        }
        
     }
 }
