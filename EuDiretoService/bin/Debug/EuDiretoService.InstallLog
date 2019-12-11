@@ -225,3 +225,24 @@ Parâmetros afetados são:
    logtoconsole = 
    assemblypath = D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
    logfile = D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Desinstalando o assembly 'D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Removendo a origem do EventLog EuDireto Sync.
+Serviço EuDireto Sync está sendo removido do sistema...
+Serviço EuDireto Sync foi removido com êxito do sistema.
+Instalando o assembly 'D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog
+Instalando o serviço EuDireto Sync...
+Serviço EuDireto Sync foi instalado com êxito.
+Criando a origem de EventLog EuDireto Sync no log Application...
+Confirmando o assembly 'D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe'.
+Parâmetros afetados são:
+   logtoconsole = 
+   assemblypath = D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.exe
+   logfile = D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\EuDiretoService.InstallLog

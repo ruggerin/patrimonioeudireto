@@ -30,12 +30,12 @@
       <Value Profile="(Default)">hK8421we27khQ80P90H3T9918DMx347k</Value>
     </Setting>
     <Setting Name="ambiente_api" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://eudireto.com/api</Value>
+      <Value Profile="(Default)">eudireto.com</Value>
     </Setting>
     <Setting Name="db_host" Type="System.String" Scope="User">
       <Value Profile="(Default)">viacerta.ddns.net</Value>
     </Setting>
-    <Setting Name="db_port" Type="System.String" Scope="User">
+    <Setting Name="db_port" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8016</Value>
     </Setting>
     <Setting Name="db_service_name" Type="System.String" Scope="User">
@@ -46,6 +46,35 @@
     </Setting>
     <Setting Name="db_pass" Type="System.String" Scope="User">
       <Value Profile="(Default)">cfmanaus</Value>
+    </Setting>
+    <Setting Name="ambiente_api_porta" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">80</Value>
+    </Setting>
+    <Setting Name="query_colecao_produtos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">select
+	lpad( pcprodut.codprod , 6, '0') CODPROD, 
+	pcprodut.descricao,
+	pcprodut.codepto categoria , 
+	TRUNC((pcest.qtestger - ( pcest.qtreserv + pcest.qtbloqueada)) ,0)  estoque ,
+	TRUNC(nvl( PCTABPR.pvenda,0),2)  PRECO,
+	PCPRODUT.embalagem,
+	pcprodut.nbm,
+	PCPRODUT.codauxiliar ean,
+	pcprodut.codauxiliar2 dun,
+	case when  PCPRODUT.obs2 = 'FL' then 'D' ELSE 'A' END status,
+	greatest(PCPRODUT.dtultalter, PCTABPR.dtultaltpvenda, PCEST.DTULTALTERSRVPRC) ULTIMA_MOVIMENTACAO 
+
+from 
+	pcprodut, pcest , PCTABPR
+where
+	PCEST.codprod = PCPRODUT.CODPROD
+	AND PCPRODUT.codprod = PCTABPR.codprod
+	AND PCEST.codfilial  IN (:CODFILIAL)
+	AND PCPRODUT.CODEPTO IN(12,64,14,71) /*DEPARTAMENTOS ELEGÍVEIS PARA VENDAS  (12,14,40,70,71,55,42,64,63)*/
+	/* AND PCPRODUT.CODPROD = 4*/
+	AND PCTABPR.numregiao IN(:REGIAO)
+
+	AND greatest(PCPRODUT.dtultalter, PCTABPR.dtultaltpvenda, PCEST.DTULTALTERSRVPRC) &gt;= to_date(:DTULTALT,'dd/mm/yyyy hh24:mi:ss')</Value>
     </Setting>
   </Settings>
 </SettingsFile>

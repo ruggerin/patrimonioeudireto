@@ -115,7 +115,7 @@ namespace EuDiretoService.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://eudireto.com/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("eudireto.com")]
         public string ambiente_api {
             get {
                 return ((string)(this["ambiente_api"]));
@@ -140,9 +140,9 @@ namespace EuDiretoService.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("8016")]
-        public string db_port {
+        public int db_port {
             get {
-                return ((string)(this["db_port"]));
+                return ((int)(this["db_port"]));
             }
             set {
                 this["db_port"] = value;
@@ -182,6 +182,53 @@ namespace EuDiretoService.Properties {
             }
             set {
                 this["db_pass"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("80")]
+        public int ambiente_api_porta {
+            get {
+                return ((int)(this["ambiente_api_porta"]));
+            }
+            set {
+                this["ambiente_api_porta"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"select
+	lpad( pcprodut.codprod , 6, '0') CODPROD, 
+	pcprodut.descricao,
+	pcprodut.codepto categoria , 
+	TRUNC((pcest.qtestger - ( pcest.qtreserv + pcest.qtbloqueada)) ,0)  estoque ,
+	TRUNC(nvl( PCTABPR.pvenda,0),2)  PRECO,
+	PCPRODUT.embalagem,
+	pcprodut.nbm,
+	PCPRODUT.codauxiliar ean,
+	pcprodut.codauxiliar2 dun,
+	case when  PCPRODUT.obs2 = 'FL' then 'D' ELSE 'A' END status,
+	greatest(PCPRODUT.dtultalter, PCTABPR.dtultaltpvenda, PCEST.DTULTALTERSRVPRC) ULTIMA_MOVIMENTACAO 
+
+from 
+	pcprodut, pcest , PCTABPR
+where
+	PCEST.codprod = PCPRODUT.CODPROD
+	AND PCPRODUT.codprod = PCTABPR.codprod
+	AND PCEST.codfilial  IN (:CODFILIAL)
+	AND PCPRODUT.CODEPTO IN(12,64,14,71) /*DEPARTAMENTOS ELEGÍVEIS PARA VENDAS  (12,14,40,70,71,55,42,64,63)*/
+	/* AND PCPRODUT.CODPROD = 4*/
+	AND PCTABPR.numregiao IN(:REGIAO)
+
+	AND greatest(PCPRODUT.dtultalter, PCTABPR.dtultaltpvenda, PCEST.DTULTALTERSRVPRC) >= to_date(:DTULTALT,'dd/mm/yyyy hh24:mi:ss')")]
+        public string query_colecao_produtos {
+            get {
+                return ((string)(this["query_colecao_produtos"]));
+            }
+            set {
+                this["query_colecao_produtos"] = value;
             }
         }
     }

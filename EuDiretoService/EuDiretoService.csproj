@@ -75,6 +75,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categories.cs" />
+    <Compile Include="CategoriesList.cs" />
     <Compile Include="Products.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>

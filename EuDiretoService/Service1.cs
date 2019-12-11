@@ -17,6 +17,7 @@ using RestSharp.Authenticators;
 using System.Globalization;
 using System.Net.NetworkInformation;
 using System.Net;
+using System.Net.Sockets;
 
 namespace EuDiretoService
 {
@@ -31,6 +32,7 @@ namespace EuDiretoService
         OracleConnection con;
         DateTime ult_sinc_produtos = DateTime.MinValue;
         DateTime timer = DateTime.MinValue;
+        private static List<Categories> categories = new List<Categories>();
 
         protected override void OnStart(string[] args)
         {
@@ -58,13 +60,28 @@ namespace EuDiretoService
             if (timer.AddMinutes(Properties.Settings.Default.UpProdutos) <DateTime.Now)
             {
                 upProdutos.Stop();
-                
-                WriteDebugHeader("Início evento Cadastro de Produtos[");
-                up_variants();
-                WriteDebugHeader("\n]\nFim evento 'Cadastro de Produtos");
+                WriteDebugHeader("Verificando status Servidores[");
+                WriteDebug("Vericiando status servidor Eu Direto:");
+                bool statusEuDiretoServer = PingHost(Properties.Settings.Default.ambiente_api , Properties.Settings.Default.ambiente_api_porta);
+                WriteDebug("Conexão com servidor Eu Direto estabelecida?: " + statusEuDiretoServer);
+                WriteDebug("Vericiando status servidor Winthor - Oracle");
+                bool statusWinthor = PingHost(Properties.Settings.Default.db_host , Properties.Settings.Default.db_port);
+                WriteDebug("Conexão com servidor Winthor - Oracle estabelecida?: " + statusWinthor);
+                WriteDebugHeader("\n] Verificação status Servidore Concluída");
+
+                if (statusEuDiretoServer && statusWinthor)
+                {
+                    WriteDebugHeader("Início evento Cadastro de Produtos[");
+                    up_variants();
+                    WriteDebugHeader("\n]\nFim evento 'Cadastro de Produtos");
+                }
+                else
+                {
+                    WriteDebugHeader("Não foi possível se conectar ao servidor");
+                }
                 upProdutos.Start();
                 timer = DateTime.Now;
-                WriteDebugHeader("upProdutos status enabled?: " + upProdutos.Enabled +" Proximo evento: "+timer.AddMinutes(Properties.Settings.Default.UpProdutos));
+                WriteDebugHeader("Ciclo de atualização ativo?: " + upProdutos.Enabled +" Proximo evento: "+timer.AddMinutes(Properties.Settings.Default.UpProdutos));
 
             }
          
@@ -73,7 +90,7 @@ namespace EuDiretoService
         }
         //Verificar se o produto está cadastrado no Eu Direto Admin
         private string ProdutoCadastrado(Products produto)        {
-            var client = new RestClient(Properties.Settings.Default.ambiente_api+ "/api/products?pcode=" + produto.product_code);
+            var client = new RestClient("https://" + Properties.Settings.Default.ambiente_api+ "/api/products?pcode=" + produto.product_code);
             client.Authenticator = new HttpBasicAuthenticator(Properties.Settings.Default.user,Properties.Settings.Default.password);
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
@@ -118,21 +135,27 @@ namespace EuDiretoService
         private  void up_variants()
         {  
             List<Products> lstProdutos = LstProdutos();
+            //Imprime a coleção de informação de produtos
             //WriteDebug(JsonConvert.SerializeObject( lstProdutos,Formatting.Indented));
             lstProdutos.ForEach(processarProduto);
             ult_sinc_produtos = DateTime.Now;
 
         }
 
+
+
         private void processarProduto(Products produto)
         {
+          
             try {
-                string produtct_id = ProdutoCadastrado(produto);
-                if (produtct_id == "0") {
+                string product_id = ProdutoCadastrado(produto);
+                if (product_id == "0") {
+                    //Cadastrar novo produto
                     WriteDebug("Produto  não cadastrado no Eu Direto Admin: " + produto.product_code.ToString());
                     if (produto.status == 'A'){
+                        //Verifica se o produto está ativo na base do Winthor
                         WriteDebug("Produto ativo, tentativa de cadastro");
-                        var client = new RestClient(Properties.Settings.Default.ambiente_api + "/api/products/");
+                        var client = new RestClient(@"https://"+Properties.Settings.Default.ambiente_api + "/api/products/");
                         client.Authenticator = new HttpBasicAuthenticator(Properties.Settings.Default.user, Properties.Settings.Default.password);
                         var request = new RestRequest(Method.POST);
                         request.AddHeader("Accept", "application/json");
@@ -142,19 +165,20 @@ namespace EuDiretoService
                         WriteDebug(response.Content);
                     }
                     else{
+                        //Caso produto esteja inativo, o serviço ignora o cadastro
                         WriteDebug("Produto inativo, sem necessidade de cadastro");
                     }
 
                 }
-                else if(ProdutoCadastrado(produto) == "na")
-                {
+                else if(product_id == "na"){
+                    //Produto cadastado, mas não nescessita de atualização no Eu Direto
                     WriteDebug("Produto cadastrado, mas não possui modificações no ambiente Eu Direto");
                 }
                 else{
-                    WriteDebug("Produto cadastrado, alterações pendentes ");
-                    string product_id = ProdutoCadastrado(produto);
+                    //Produto cadastrado na base do Eu Direto, e nescessita de atualizações de informações
+                    WriteDebug("Produto cadastrado, alterações pendentes ");                    
                     WriteDebug("Subindo produto codigo_distribuidor:" + produto.product_code + "(product_id: " + product_id + ")");
-                    var client = new RestClient(Properties.Settings.Default.ambiente_api + "/api/products/" + product_id);
+                    var client = new RestClient(@"https://" + Properties.Settings.Default.ambiente_api + "/api/products/" + product_id);
                     client.Authenticator = new HttpBasicAuthenticator(Properties.Settings.Default.user, Properties.Settings.Default.password);
                     var request = new RestRequest(Method.PUT);
                     request.AddHeader("Accept", "application/json");
@@ -162,7 +186,6 @@ namespace EuDiretoService
                     request.AddParameter("application/json", JsonConvert.SerializeObject(produto), ParameterType.RequestBody);
                     IRestResponse response = client.Execute(request);
                     WriteDebug(response.Content);
-
 
                 }
 
@@ -184,31 +207,7 @@ namespace EuDiretoService
             con.Open();
             DataSet dataSet = new DataSet();
 
-            string query = @"
-                select
-                 lpad( pcprodut.codprod , 6, '0') CODPROD, 
-                pcprodut.descricao,
-                pcprodut.codepto categoria , 
-                TRUNC((pcest.qtestger - ( pcest.qtreserv + pcest.qtbloqueada)) ,0)  estoque ,
-                TRUNC(nvl( PCTABPR.pvenda,0),2)  PRECO,
-                PCPRODUT.embalagem,
-                pcprodut.nbm,
-                PCPRODUT.codauxiliar ean,
-                pcprodut.codauxiliar2 dun,
-                case when  PCPRODUT.obs2 = 'FL' then 'D' ELSE 'A' END status,
-                greatest(PCPRODUT.dtultalter, PCTABPR.dtultaltpvenda, PCEST.DTULTALTERSRVPRC) ULTIMA_MOVIMENTACAO 
-
-                from pcprodut, pcest , PCTABPR
-                where
-                PCEST.codprod = PCPRODUT.CODPROD
-                AND PCPRODUT.codprod = PCTABPR.codprod
-                AND PCEST.codfilial  IN (:CODFILIAL)
-                AND PCPRODUT.CODEPTO IN(12,64,14,71) /*DEPARTAMENTOS ELEGÍVEIS PARA VENDAS  (12,14,40,70,71,55,42,64,63)*/
-               /* AND PCPRODUT.CODPROD = 4*/
-                AND PCTABPR.numregiao IN(:REGIAO)
-           
-                AND greatest(PCPRODUT.dtultalter, PCTABPR.dtultaltpvenda, PCEST.DTULTALTERSRVPRC) >= to_date(:DTULTALT,'dd/mm/yyyy hh24:mi:ss')
-                 ";
+            string query = Properties.Settings.Default.query_colecao_produtos;
             OracleCommand fbcmd = new OracleCommand(query, con) { CommandType = CommandType.Text, BindByName = true };
 
             fbcmd.Parameters.Add(":CODFILIAL", Properties.Settings.Default.codfilial);
@@ -352,21 +351,33 @@ namespace EuDiretoService
             JObject feature = JObject.Parse(objetostr);
             return feature;
         }
-        public bool ActivetedServer(string host)
+
+        public void atualizarListaCategorias()
         {
-              Ping pinger = new Ping();
-              PingReply reply = pinger.Send(host,100);
-              return reply.Status == IPStatus.Success;
-           
+
+        }
+
+        public  bool PingHost(string hostUri, int portNumber)
+        {
+            try
+            {
+                using (var client = new TcpClient(hostUri, portNumber))
+                    return true;
+            }
+            catch (SocketException ex)
+            {
+                WriteDebug("host '"+hostUri+":"+portNumber+"' não diponível, Erro:\n" +ex.ToString());
+                return false;
+            }
         }
 
         public OracleConnection oCon()
         {
+            int port = Properties.Settings.Default.db_port;
             string 
                 userId = Properties.Settings.Default.db_user , 
                 pwd = Properties.Settings.Default.db_pass, 
-                host = Properties.Settings.Default.db_host,
-                port = Properties.Settings.Default.db_port,
+                host = Properties.Settings.Default.db_host,             
                 servicename = Properties.Settings.Default.db_service_name;
             string stringConnection = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=" + Properties.Settings.Default.db_host + ")(PORT=" + Properties.Settings.Default.db_port + "))(CONNECT_DATA=(SERVICE_NAME=" + Properties.Settings.Default.db_service_name + ")));user id=" + userId + ";password=" + pwd + ";";
             return new OracleConnection(stringConnection);
