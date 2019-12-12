@@ -3,20 +3,13 @@ using Newtonsoft.Json.Linq;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using RestSharp;
 using RestSharp.Authenticators;
-using System.Globalization;
-using System.Net.NetworkInformation;
-using System.Net;
 using System.Net.Sockets;
 
 namespace EuDiretoService
@@ -108,7 +101,7 @@ namespace EuDiretoService
                     //Verificação de estoque
                     (string)produtosResponse["products"][0]["amount"] ==produto.amount.ToString() && 
                     //Verificação de preço
-                    Convert.ToDouble( (string)produtosResponse["products"][0]["price"], CultureInfo.InvariantCulture.NumberFormat)== produto.price && 
+                    Convert.ToDouble( (string)produtosResponse["products"][0]["price"], System.Globalization.CultureInfo.InvariantCulture.NumberFormat)== produto.price && 
                     //Verificação de status
                     (string)produtosResponse["products"][0]["status"] == produto.status.ToString()
                 )
@@ -118,7 +111,7 @@ namespace EuDiretoService
                 }
                 else {
                     //Caso exista alguma diferença entre as bases, imprime a diferença e envia para o método de atualização
-                    CultureInfo provider = new CultureInfo("en-us");
+                    System.Globalization.CultureInfo provider = new System.Globalization.CultureInfo("en-us");
                     WriteDebug(produto.product_code+"\n"+
                       "Estoque: "+  (string)produtosResponse["products"][0]["amount"] +"=="+ produto.amount.ToString()+"\n" +
                       "Preço: "+  Convert.ToDouble((string)produtosResponse["products"][0]["price"],provider) +"=="+produto.price+"\n"+
@@ -228,7 +221,7 @@ namespace EuDiretoService
                     produtoproblema = dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
                     Int32  estoque =    Convert.ToInt32(dataSet.Tables[0].Rows[cont]["ESTOQUE"].ToString());
                     string descricao =  dataSet.Tables[0].Rows[cont]["DESCRICAO"].ToString();
-                    CultureInfo provider = new CultureInfo("en-us");
+                    System.Globalization.CultureInfo provider = new System.Globalization.CultureInfo("en-us");
                     double preco =     Convert.ToDouble( dataSet.Tables[0].Rows[cont]["PRECO"].ToString().Replace(",","."),provider);
                     char status = (char)dataSet.Tables[0].Rows[cont]["STATUS"].ToString().ToCharArray()[0];
                     int category_id = 0;
