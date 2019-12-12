@@ -385,7 +385,8 @@ namespace EuDiretoService
                  "{" +
                      "\"category\": \"" + category + "\"," +
                      "\"position\": \"0\"," +
-                     "\"status\": \"A\"" +
+                     "\"status\": \"A\"," +
+                     "\"company_id\": \""+Properties.Settings.Default.vendorid+"\"" +
                  "}";
 
                 var client = new RestClient("https://" + Properties.Settings.Default.ambiente_api + "/api/categories");
