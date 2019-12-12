@@ -202,7 +202,8 @@ namespace EuDiretoService.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute(@"select
 	lpad( pcprodut.codprod , 6, '0') CODPROD, 
 	pcprodut.descricao,
-	pcprodut.codepto categoria , 
+	(select pcdepto.descricao from pcdepto where pcdepto.codepto =  pcprodut.codepto) categoria , 
+
 	TRUNC((pcest.qtestger - ( pcest.qtreserv + pcest.qtbloqueada)) ,0)  estoque ,
 	TRUNC(nvl( PCTABPR.pvenda,0),2)  PRECO,
 	PCPRODUT.embalagem,

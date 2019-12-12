@@ -32,7 +32,7 @@ namespace EuDiretoService
         OracleConnection con;
         DateTime ult_sinc_produtos = DateTime.MinValue;
         DateTime timer = DateTime.MinValue;
-        private static List<Categories> categories = new List<Categories>();
+      
 
         protected override void OnStart(string[] args)
         {
@@ -95,7 +95,6 @@ namespace EuDiretoService
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
             JObject produtosResponse = JObject.Parse(response.Content);
-           // WriteDebug(produto.product_code + "-"+produtosResponse["products"].Children().Count());
             WriteDebug(response.Content);
             if (produtosResponse["products"].Children().Count() == 0) {
                 //Caso o produto não esteja cadastrado no sistema Eu Direto Admin, retornar 0;
@@ -141,9 +140,7 @@ namespace EuDiretoService
             ult_sinc_produtos = DateTime.Now;
 
         }
-
-
-
+               
         private void processarProduto(Products produto)
         {
           
@@ -199,42 +196,56 @@ namespace EuDiretoService
 
         }
         
-
         private List<Products> LstProdutos()
         {
             string produtoproblema = "";
-            try { 
-            con.Open();
-            DataSet dataSet = new DataSet();
+            try {
 
-            string query = Properties.Settings.Default.query_colecao_produtos;
-            OracleCommand fbcmd = new OracleCommand(query, con) { CommandType = CommandType.Text, BindByName = true };
+                List<Categories> categories = atualizarListaCategorias();
+                
+                //return null;
 
-            fbcmd.Parameters.Add(":CODFILIAL", Properties.Settings.Default.codfilial);
-            fbcmd.Parameters.Add(":REGIAO", Properties.Settings.Default.RegiaoTblPreco);
-            fbcmd.Parameters.Add(":DTULTALT", ult_sinc_produtos.ToString("dd/MM/yyyy HH:mm:ss"));
+                con.Open();
+                DataSet dataSet = new DataSet();
 
-            OracleDataAdapter da = new OracleDataAdapter(fbcmd);
-            da.Fill(dataSet);
-            con.Close();
-            List<Products> itemsRows = new List<Products>();
-            for (int cont = 0; cont < dataSet.Tables[0].Rows.Count; cont++)
-            {
-                //Criando jObject da sub-classe product_features
+                string query = Properties.Settings.Default.query_colecao_produtos;
+                OracleCommand fbcmd = new OracleCommand(query, con) { CommandType = CommandType.Text, BindByName = true };
+
+                fbcmd.Parameters.Add(":CODFILIAL", Properties.Settings.Default.codfilial);
+                fbcmd.Parameters.Add(":REGIAO", Properties.Settings.Default.RegiaoTblPreco);
+                fbcmd.Parameters.Add(":DTULTALT", ult_sinc_produtos.ToString("dd/MM/yyyy HH:mm:ss"));
+
+                OracleDataAdapter da = new OracleDataAdapter(fbcmd);
+                da.Fill(dataSet);
+                con.Close();
+                List<Products> itemsRows = new List<Products>();
+                for (int cont = 0; cont < dataSet.Tables[0].Rows.Count; cont++)
+                {
+                    //Criando jObject da sub-classe product_features
              
-                JObject feature = SerializeFeatures(dataSet.Tables[0].Rows[cont]["NBM"].ToString(), dataSet.Tables[0].Rows[cont]["EAN"].ToString(), dataSet.Tables[0].Rows[cont]["DUN"].ToString());
-                string  codprod =  dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
-                produtoproblema = dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
-                Int32  estoque =    Convert.ToInt32(dataSet.Tables[0].Rows[cont]["ESTOQUE"].ToString());
-                string descricao =  dataSet.Tables[0].Rows[cont]["DESCRICAO"].ToString();
-                CultureInfo provider = new CultureInfo("en-us");
-                double preco =     Convert.ToDouble( dataSet.Tables[0].Rows[cont]["PRECO"].ToString().Replace(",","."),provider);
-                char status = (char)dataSet.Tables[0].Rows[cont]["STATUS"].ToString().ToCharArray()[0];
-                Int32 categoria = category_code(dataSet.Tables[0].Rows[cont]["CATEGORIA"].ToString());
-                itemsRows.Add(new Products(codprod,descricao,categoria,status,estoque, preco, feature));
-            }
-            con.Close();
-            return itemsRows;
+                    JObject feature = SerializeFeatures(dataSet.Tables[0].Rows[cont]["NBM"].ToString(), dataSet.Tables[0].Rows[cont]["EAN"].ToString(), dataSet.Tables[0].Rows[cont]["DUN"].ToString());
+                    string  codprod =  dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
+                    produtoproblema = dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
+                    Int32  estoque =    Convert.ToInt32(dataSet.Tables[0].Rows[cont]["ESTOQUE"].ToString());
+                    string descricao =  dataSet.Tables[0].Rows[cont]["DESCRICAO"].ToString();
+                    CultureInfo provider = new CultureInfo("en-us");
+                    double preco =     Convert.ToDouble( dataSet.Tables[0].Rows[cont]["PRECO"].ToString().Replace(",","."),provider);
+                    char status = (char)dataSet.Tables[0].Rows[cont]["STATUS"].ToString().ToCharArray()[0];
+                    int category_id = 0;
+                    if(categories.Where(x => x.category == dataSet.Tables[0].Rows[cont]["CATEGORIA"].ToString()).Count() == 0){
+                      category_id =   cadastrarCatetory(dataSet.Tables[0].Rows[cont]["CATEGORIA"].ToString());
+                      categories = atualizarListaCategorias();
+                    }
+                    else
+                    {
+                        Categories categoriesY =    categories.Where(x => x.category == dataSet.Tables[0].Rows[cont]["CATEGORIA"].ToString()).First();
+                        category_id = categoriesY.category_id;
+                    }
+                    
+                    itemsRows.Add(new Products(codprod,descricao, category_id, status,estoque, preco, feature));
+                }
+                con.Close();
+                return itemsRows;
             }
             catch(Exception ex)
             {
@@ -246,9 +257,7 @@ namespace EuDiretoService
                 return null;
             }
         }
-
-      
-
+             
         public void WriteDebug(string texto)
         {
             if (Properties.Settings.Default.debugmode)
@@ -289,14 +298,7 @@ namespace EuDiretoService
                 }
             }
         }
-
-        private Int32 category_code(string codigo_interno)
-        {
-            string filepath = AppDomain.CurrentDomain.BaseDirectory + "categorias.json";
-            JObject teste = JObject.Parse(File.ReadAllText(filepath));
-            return (Int32)teste[codigo_interno]["category_id"];
-        }
-
+               
         public void erroLogGeneration(string Message)
         {
             string path = AppDomain.CurrentDomain.BaseDirectory + "\\Logs";
@@ -352,8 +354,56 @@ namespace EuDiretoService
             return feature;
         }
 
-        public void atualizarListaCategorias()
+        public List<Categories> atualizarListaCategorias()
         {
+            WriteDebugHeader("Atualizando informações das categorias do Eu Direto");
+            var client = new RestClient("https://" + Properties.Settings.Default.ambiente_api + "/api/categories");
+            client.Authenticator = new HttpBasicAuthenticator(Properties.Settings.Default.user, Properties.Settings.Default.password);
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            JObject produtosResponse = JObject.Parse(response.Content);
+            IList<JToken> pReponseCategorys = produtosResponse["categories"].Children().ToList();
+            List<Categories> categories = new List<Categories>();
+            foreach (JToken cat in pReponseCategorys)
+            {
+                // WriteDebug("Verificando se a categoria \"" + cat["category"].ToString()+"\" Contida no eu direto ");
+                //int vExiste = categories.Where(x => x.category ==cat["category"].ToString() ).Count(); Vou usar isso depois
+                categories.Add(new Categories(Convert.ToInt32(cat["category_id"].ToString()), cat["category"].ToString()));
+
+            }
+            WriteDebugHeader("Total categorias baixadas"+categories.Count() );
+
+            return categories;
+        }
+
+        public int cadastrarCatetory(string category)
+        {
+            int new_category_id = 0;
+            try
+            {
+                string serialize =
+                 "{" +
+                     "\"category\": \"" + category + "\"," +
+                     "\"position\": \"0\"," +
+                     "\"status\": \"A\"" +
+                 "}";
+
+                var client = new RestClient("https://" + Properties.Settings.Default.ambiente_api + "/api/categories");
+                client.Authenticator = new HttpBasicAuthenticator(Properties.Settings.Default.user, Properties.Settings.Default.password);
+                var request = new RestRequest(Method.POST);               
+                request.AddHeader("Accept", "application/json");             
+                request.AddParameter("application/json", serialize, ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+                JObject categoryResponse = JObject.Parse(response.Content);
+                new_category_id = (Int32)categoryResponse["category_id"];
+                WriteDebug(response.Content.ToString());
+
+            }
+            catch(Exception ex)
+            {
+                erroLogGeneration(ex.ToString());
+            }
+            return new_category_id;
 
         }
 
