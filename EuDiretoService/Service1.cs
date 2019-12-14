@@ -55,7 +55,8 @@ namespace EuDiretoService
                 upProdutos.Stop();
                 WriteDebugHeader("Verificando status Servidores[");
                 WriteDebug("Vericiando status servidor Eu Direto:");
-                bool statusEuDiretoServer = PingHost(Properties.Settings.Default.ambiente_api , Properties.Settings.Default.ambiente_api_porta);
+                //bool statusEuDiretoServer = PingHost(Properties.Settings.Default.ambiente_api , Properties.Settings.Default.ambiente_api_porta);
+                bool statusEuDiretoServer = true ;
                 WriteDebug("Conexão com servidor Eu Direto estabelecida?: " + statusEuDiretoServer);
                 WriteDebug("Vericiando status servidor Winthor - Oracle");
                 bool statusWinthor = PingHost(Properties.Settings.Default.db_host , Properties.Settings.Default.db_port);
@@ -172,8 +173,21 @@ namespace EuDiretoService
                     client.Authenticator = new HttpBasicAuthenticator(Properties.Settings.Default.user, Properties.Settings.Default.password);
                     var request = new RestRequest(Method.PUT);
                     request.AddHeader("Accept", "application/json");
-                    WriteDebug(JsonConvert.SerializeObject(produto));
-                    request.AddParameter("application/json", JsonConvert.SerializeObject(produto), ParameterType.RequestBody);
+
+                    //Criação de um novo objeto para atualizar sem alterar os campos de categorias
+                    List<Products> teste_ = new List<Products>();
+                    teste_.Add(produto);
+
+                    var teste = (from p in teste_
+                                 select new
+                                {
+                                     product = p.product,
+                                     status = p.status,
+                                     amount = p.amount,
+                                     price = p.price
+                                 }).First();
+                   
+                    request.AddParameter("application/json", JsonConvert.SerializeObject(teste), ParameterType.RequestBody);
                     IRestResponse response = client.Execute(request);
                     WriteDebug(response.Content);
 
@@ -327,17 +341,17 @@ namespace EuDiretoService
 
             string objetostr = "{" +
                //NCM
-               "\"551\":{" +
+               "\"556\":{" +
                    "\"feature_type\":\"T\"," +
                    "\"value\":\"" + ncm + "\"" +
                "}," +
                //EAN
-               "\"552\":{" +
+               "\"555\":{" +
                    "\"feature_type\":\"T\"," +
                    "\"value\":\"" + ean + "\"" +
                "}," +
                //DUN
-               "\"553\":{" +
+               "\"554\":{" +
                    "\"feature_type\":\"T\"," +
                    "\"value\":\"" + dun + "\"" +
                "}" +

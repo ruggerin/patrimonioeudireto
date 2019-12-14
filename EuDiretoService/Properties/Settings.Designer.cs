@@ -103,7 +103,7 @@ namespace EuDiretoService.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("hK8421we27khQ80P90H3T9918DMx347k")]
+        [global::System.Configuration.DefaultSettingValueAttribute("xHH68G08z5631H0d4564Q9V1P6W8u54a")]
         public string password {
             get {
                 return ((string)(this["password"]));
@@ -115,7 +115,7 @@ namespace EuDiretoService.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("eudireto.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("eudireto.com/eudireto_dev")]
         public string ambiente_api {
             get {
                 return ((string)(this["ambiente_api"]));

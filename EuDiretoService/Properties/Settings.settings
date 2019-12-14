@@ -27,10 +27,10 @@
       <Value Profile="(Default)">ruggeri.barbosa@viacerta.com.br</Value>
     </Setting>
     <Setting Name="password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">hK8421we27khQ80P90H3T9918DMx347k</Value>
+      <Value Profile="(Default)">xHH68G08z5631H0d4564Q9V1P6W8u54a</Value>
     </Setting>
     <Setting Name="ambiente_api" Type="System.String" Scope="User">
-      <Value Profile="(Default)">eudireto.com</Value>
+      <Value Profile="(Default)">eudireto.com/eudireto_dev</Value>
     </Setting>
     <Setting Name="db_host" Type="System.String" Scope="User">
       <Value Profile="(Default)">viacerta.ddns.net</Value>
