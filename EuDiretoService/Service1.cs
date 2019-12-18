@@ -50,7 +50,7 @@ namespace EuDiretoService
         private  void OnElapsedTimeAsync(object source, ElapsedEventArgs e)
         {
             
-            if (timer.AddMinutes(Properties.Settings.Default.UpProdutos) <DateTime.Now)
+            if (timer.AddMinutes(Properties.Settings.Default.min_subida_produtos) <DateTime.Now)
             {
                 upProdutos.Stop();
                 WriteDebugHeader("Verificando status Servidores[");
@@ -75,7 +75,7 @@ namespace EuDiretoService
                 }
                 upProdutos.Start();
                 timer = DateTime.Now;
-                WriteDebugHeader("Ciclo de atualização ativo?: " + upProdutos.Enabled +" Proximo evento: "+timer.AddMinutes(Properties.Settings.Default.UpProdutos));
+                WriteDebugHeader("Ciclo de atualização ativo?: " + upProdutos.Enabled +" Proximo evento: "+timer.AddMinutes(Properties.Settings.Default.min_subida_produtos));
 
             }
          
@@ -379,7 +379,7 @@ namespace EuDiretoService
             List<Categories> categories = new List<Categories>();
             foreach (JToken cat in pReponseCategorys)
             {
-                // WriteDebug("Verificando se a categoria \"" + cat["category"].ToString()+"\" Contida no eu direto ");
+                //WriteDebug("Verificando se a categoria \"" + cat["category"].ToString()+"\" Contida no eu direto ");
                 //int vExiste = categories.Where(x => x.category ==cat["category"].ToString() ).Count(); Vou usar isso depois
                 categories.Add(new Categories(Convert.ToInt32(cat["category_id"].ToString()), cat["category"].ToString()));
 

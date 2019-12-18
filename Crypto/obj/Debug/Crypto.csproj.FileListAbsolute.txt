@@ -1,0 +1,6 @@
+D:\Projetos\winthor2eudireto\Crypto\bin\Debug\Crypto.dll
+D:\Projetos\winthor2eudireto\Crypto\bin\Debug\Crypto.pdb
+D:\Projetos\winthor2eudireto\Crypto\obj\Debug\Crypto.csprojAssemblyReference.cache
+D:\Projetos\winthor2eudireto\Crypto\obj\Debug\Crypto.csproj.CoreCompileInputs.cache
+D:\Projetos\winthor2eudireto\Crypto\obj\Debug\Crypto.dll
+D:\Projetos\winthor2eudireto\Crypto\obj\Debug\Crypto.pdb

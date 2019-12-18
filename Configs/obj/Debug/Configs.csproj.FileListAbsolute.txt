@@ -1,0 +1,15 @@
+D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\Configs.exe
+D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\Configs.pdb
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\Configs.csprojAssemblyReference.cache
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\MainWindow.g.cs
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\App.g.cs
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\Configs_MarkupCompile.cache
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\Configs_MarkupCompile.lref
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\MainWindow.baml
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\Configs.g.resources
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\Configs.Properties.Resources.resources
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\Configs.csproj.GenerateResource.cache
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\Configs.csproj.CoreCompileInputs.cache
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\Configs.exe
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\Configs.pdb
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\Configs.csproj.CopyComplete

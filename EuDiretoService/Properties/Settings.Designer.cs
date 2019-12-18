@@ -25,28 +25,10 @@ namespace EuDiretoService.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source =PROD ;User Id=cfmanaus; Password=cfmanaus")]
-        public string stringConection {
-            get {
-                return ((string)(this["stringConection"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int UpProdutos {
+        public int min_subida_produtos {
             get {
-                return ((int)(this["UpProdutos"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("30")]
-        public int DowPedidos {
-            get {
-                return ((int)(this["DowPedidos"]));
+                return ((int)(this["min_subida_produtos"]));
             }
         }
         

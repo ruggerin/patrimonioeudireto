@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace EuDiretoService
 {
@@ -20,7 +21,8 @@ namespace EuDiretoService
                 new Service1()
             };
             ServiceBase.Run(ServicesToRun);
-      
+            
+
         }
     }
 }
