@@ -9,7 +9,7 @@ namespace EuDiretoService
 {
     public class Products
     {
-        public Products(string codprod, string descricao, Int32 category_id, char status, Int32 estoque, double preco, JObject product_features)
+        public Products(string codprod, string descricao, Int32 category_id, double weight, char status, Int32 estoque, double preco, JObject product_features)
         {
             product_code = codprod;
             product = descricao;
@@ -18,6 +18,7 @@ namespace EuDiretoService
             price = preco;
             this.product_features = product_features;
             this.status = status;
+            this.weight = weight;
 
         }
         public string product { get; set; }
@@ -27,9 +28,11 @@ namespace EuDiretoService
         public double price { get; set; }
         public string product_code { get; set; }
         public JObject product_features { get; set; }
+        public double weight { get; set; }
 
 
-        
+
+
     }
 
    

@@ -174,20 +174,21 @@ namespace EuDiretoService
                     var request = new RestRequest(Method.PUT);
                     request.AddHeader("Accept", "application/json");
 
-                    //Criação de um novo objeto para atualizar sem alterar os campos de categorias
-                    List<Products> teste_ = new List<Products>();
-                    teste_.Add(produto);
+                    //Criação de um novo objeto para atualizar para atualizar somente campos específicos, status, estoque, preço e características
+                    List<Products> tmp_lst_produtos = new List<Products>();
+                    tmp_lst_produtos.Add(produto);
 
-                    var teste = (from p in teste_
+                    var product_update = (from p in tmp_lst_produtos
                                  select new
-                                {
-                                     product = p.product,
-                                     status = p.status,
-                                     amount = p.amount,
-                                     price = p.price
+                                {                                   
+                                     p.status,
+                                     p.amount,
+                                     p.price,
+                                     p.product_features,
+                                     p.weight
                                  }).First();
                    
-                    request.AddParameter("application/json", JsonConvert.SerializeObject(teste), ParameterType.RequestBody);
+                    request.AddParameter("application/json", JsonConvert.SerializeObject(product_update), ParameterType.RequestBody);
                     IRestResponse response = client.Execute(request);
                     WriteDebug(response.Content);
 
@@ -230,13 +231,14 @@ namespace EuDiretoService
                 {
                     //Criando jObject da sub-classe product_features
              
-                    JObject feature = SerializeFeatures(dataSet.Tables[0].Rows[cont]["NBM"].ToString(), dataSet.Tables[0].Rows[cont]["EAN"].ToString(), dataSet.Tables[0].Rows[cont]["DUN"].ToString());
+                    JObject feature = SerializeFeatures(dataSet.Tables[0].Rows[cont]["NBM"].ToString(), dataSet.Tables[0].Rows[cont]["EAN"].ToString(), dataSet.Tables[0].Rows[cont]["DUN"].ToString(), dataSet.Tables[0].Rows[cont]["EMBALAGEM"].ToString());
                     string  codprod =  dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
                     produtoproblema = dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
                     Int32  estoque =    Convert.ToInt32(dataSet.Tables[0].Rows[cont]["ESTOQUE"].ToString());
                     string descricao =  dataSet.Tables[0].Rows[cont]["DESCRICAO"].ToString();
                     System.Globalization.CultureInfo provider = new System.Globalization.CultureInfo("en-us");
                     double preco =     Convert.ToDouble( dataSet.Tables[0].Rows[cont]["PRECO"].ToString().Replace(",","."),provider);
+                    double peso = Convert.ToDouble(dataSet.Tables[0].Rows[cont]["pesobruto"].ToString().Replace(",", "."), provider); 
                     char status = (char)dataSet.Tables[0].Rows[cont]["STATUS"].ToString().ToCharArray()[0];
                     int category_id = 0;
                     if(categories.Where(x => x.category == dataSet.Tables[0].Rows[cont]["CATEGORIA"].ToString()).Count() == 0){
@@ -249,7 +251,7 @@ namespace EuDiretoService
                         category_id = categoriesY.category_id;
                     }
                     
-                    itemsRows.Add(new Products(codprod,descricao, category_id, status,estoque, preco, feature));
+                    itemsRows.Add(new Products(codprod,descricao, category_id, peso, status, estoque, preco, feature));
                 }
                 con.Close();
                 return itemsRows;
@@ -336,7 +338,7 @@ namespace EuDiretoService
         }
 
         //Adaptação para criação de uma sub-classe com descrição de numeros inteiros
-        public JObject SerializeFeatures(string ncm, string ean, string dun)
+        public JObject SerializeFeatures(string ncm, string ean, string dun, string embalagem)
         {
 
             string objetostr = "{" +
@@ -354,7 +356,11 @@ namespace EuDiretoService
                "\"554\":{" +
                    "\"feature_type\":\"T\"," +
                    "\"value\":\"" + dun + "\"" +
-               "}" +
+               "}," +
+               "\"557\":{" +
+                   "\"feature_type\":\"T\"," +
+                   "\"value\":\"" + embalagem + "\"" +
+               "}," +
            "}";
 
             JObject feature = JObject.Parse(objetostr);
