@@ -28,18 +28,15 @@ namespace Configs
             InitializeComponent();
         }
         
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+       
+        /*  Criptografia criptografia = new Criptografia(CryptProvider.RC2);
+            criptografia.Key = "23ko84jezk";
+            txDecodificado.Text = criptografia.Decrypt(txCodificado.Text);
+
             Criptografia criptografia = new Criptografia(Crypto.CryptProvider.RC2);
             criptografia.Key = "23ko84jezk"; // chave
             txCodificado.Text = criptografia.Encrypt(txOriginal.Text);
-        }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Criptografia criptografia = new Criptografia(CryptProvider.RC2);
-            criptografia.Key = "23ko84jezk";
-            txDecodificado.Text = criptografia.Decrypt(txCodificado.Text);
-        }
+         */
     }
 }

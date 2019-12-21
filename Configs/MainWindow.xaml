@@ -7,17 +7,24 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <StackPanel HorizontalAlignment="Left" Height="346.928" Margin="10,40.691,0,0" VerticalAlignment="Top" Width="732.398">
-            <Label Content="Texto Original" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-            <TextBox Name="txOriginal" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
-            <Button Content="Codificar" Margin="0,0,616.843,0" Click="Button_Click"/>
-            <Label Content="Texto Codificado" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-            <TextBox Name="txCodificado" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
-            <Button Content="Decodificar" Margin="0,0,616.843,0" Click="Button_Click_1"/>
-            <Label Content="Texto Codificado" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
-            <TextBox Name="txDecodificado" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
 
+
+        <TabControl x:Name="tabWindows" HorizontalAlignment="Stretch" Height="Auto" Margin="8.28,0,0,36.229" VerticalAlignment="Stretch" Width="Auto" Grid.Column="1"/>
+        <TreeView BorderBrush="Transparent" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Grid.Column="0" Margin="3.28,0,0,0">
+            <TreeViewItem Header =  "Configurações gerais"/>
+            <TreeViewItem Header =  "Autenticação API - Eu Direto"/>
+            <TreeViewItem Header =  "Dados Conexão Oracle - Winthor"/>
+            <TreeViewItem Header =  "Script de Consultas"/>
+            <TreeViewItem Header =  "Arquivos de Log De Eventos"/>
+
+        </TreeView>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Center" Width="5"/>
+        <Button Content="Aplicar" Background="#16a085" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Width="85.483" Margin="9.047,0,0,10"/>
+        <Button Content="Cancelar" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Width="75" Margin="99.53,0,0,10"/>
 
     </Grid>
 </Window>
