@@ -13,9 +13,9 @@
         </Grid.ColumnDefinitions>
 
 
-        <TabControl x:Name="tabWindows" HorizontalAlignment="Stretch" Height="Auto" Margin="8.28,0,0,36.229" VerticalAlignment="Stretch" Width="Auto" Grid.Column="1"/>
-        <TreeView BorderBrush="Transparent" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Grid.Column="0" Margin="3.28,0,0,0">
-            <TreeViewItem Header =  "Configurações gerais"/>
+        <Frame x:Name="tabWindows" HorizontalAlignment="Stretch" Height="Auto" Background="LightGray" VerticalAlignment="Stretch" Width="Auto" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+        <TreeView BorderBrush="Transparent" Name="treeView" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Grid.Column="0" Margin="3.28,0,0,0">
+            <TreeViewItem Header =  "Configurações gerais" MouseDoubleClick="TreeViewItem_MouseDoubleClick"/>
             <TreeViewItem Header =  "Autenticação API - Eu Direto"/>
             <TreeViewItem Header =  "Dados Conexão Oracle - Winthor"/>
             <TreeViewItem Header =  "Script de Consultas"/>
@@ -23,8 +23,7 @@
 
         </TreeView>
         <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Height="100" VerticalAlignment="Center" Width="5"/>
-        <Button Content="Aplicar" Background="#16a085" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Width="85.483" Margin="9.047,0,0,10"/>
-        <Button Content="Cancelar" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Width="75" Margin="99.53,0,0,10"/>
+        
 
     </Grid>
 </Window>

@@ -26,9 +26,18 @@ namespace Configs
         public MainWindow()
         {
             InitializeComponent();
+            ConfiguracoesGerais configuracoesGerais = new ConfiguracoesGerais();
+            tabWindows.NavigationService.Content = configuracoesGerais;
         }
-        
-       
+        //Abrir tela de configurações gerais
+        private void TreeViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ConfiguracoesGerais configuracoesGerais = new ConfiguracoesGerais();
+            tabWindows.NavigationService.Content = configuracoesGerais;
+            
+        }
+
+
         /*  Criptografia criptografia = new Criptografia(CryptProvider.RC2);
             criptografia.Key = "23ko84jezk";
             txDecodificado.Text = criptografia.Decrypt(txCodificado.Text);
