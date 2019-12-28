@@ -93,3 +93,4 @@ C:\Users\rugge\Documents\Projetos\winthor2eudireto\EuDiretoService\obj\Debug\EuD
 C:\Users\rugge\Documents\Projetos\winthor2eudireto\EuDiretoService\obj\Debug\EuDiretoService.csproj.CopyComplete
 C:\Users\rugge\Documents\Projetos\winthor2eudireto\EuDiretoService\obj\Debug\EuDiretoService.exe
 C:\Users\rugge\Documents\Projetos\winthor2eudireto\EuDiretoService\obj\Debug\EuDiretoService.pdb
+D:\Projetos\winthor2eudireto\EuDiretoService\obj\Debug\EuDiretoService.Configscs.resources

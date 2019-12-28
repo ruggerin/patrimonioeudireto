@@ -83,6 +83,7 @@
     <Compile Include="Configscs.Designer.cs">
       <DependentUpon>Configscs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Parametros.cs" />
     <Compile Include="Products.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>

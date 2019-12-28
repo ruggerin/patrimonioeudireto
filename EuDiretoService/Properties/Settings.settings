@@ -2,49 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EuDiretoService.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="min_subida_produtos" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="RegiaoTblPreco" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">7</Value>
-    </Setting>
-    <Setting Name="codfilial" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">2</Value>
-    </Setting>
-    <Setting Name="debugmode" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="vendorid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">3</Value>
-    </Setting>
-    <Setting Name="user" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ruggeri.barbosa@viacerta.com.br</Value>
-    </Setting>
-    <Setting Name="password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">xHH68G08z5631H0d4564Q9V1P6W8u54a</Value>
-    </Setting>
-    <Setting Name="ambiente_api" Type="System.String" Scope="User">
-      <Value Profile="(Default)">eudireto.com/eudireto_dev</Value>
-    </Setting>
-    <Setting Name="db_host" Type="System.String" Scope="User">
-      <Value Profile="(Default)">viacerta.ddns.net</Value>
-    </Setting>
-    <Setting Name="db_port" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">8016</Value>
-    </Setting>
-    <Setting Name="db_service_name" Type="System.String" Scope="User">
-      <Value Profile="(Default)">WINT</Value>
-    </Setting>
-    <Setting Name="db_user" Type="System.String" Scope="User">
-      <Value Profile="(Default)">cfmanaus</Value>
-    </Setting>
-    <Setting Name="db_pass" Type="System.String" Scope="User">
-      <Value Profile="(Default)">cfmanaus</Value>
-    </Setting>
-    <Setting Name="ambiente_api_porta" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">80</Value>
-    </Setting>
-    <Setting Name="query_colecao_produtos" Type="System.String" Scope="User">
+    <Setting Name="query_colecao_produtos" Type="System.String" Scope="Application">
       <Value Profile="(Default)">select
 	lpad( pcprodut.codprod , 6, '0') CODPROD, 
 	pcprodut.descricao,

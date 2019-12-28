@@ -22,24 +22,20 @@ namespace EuDiretoService
             this.ServiceName = "EuDiretoSync";
         }
         Timer upProdutos = new Timer();
-        OracleConnection con;
+        
         DateTime ult_sinc_produtos = DateTime.MinValue;
         DateTime timer = DateTime.MinValue;
       
 
         protected override void OnStart(string[] args)
-        {
-            try {
-                con = oCon();
-            }catch(Exception ex)
-            {
-                erroLogGeneration(ex.ToString());
-            }
+        {  
             upProdutos.Elapsed += new ElapsedEventHandler(OnElapsedTimeAsync); 
             upProdutos.Interval = 1* 1000;  
             upProdutos.Enabled = true;
-            WriteDebugHeader("Serviço iniciado, vs.:02-12-19: 15:44");
-         
+            WriteDebugHeader("Serviço iniciado, vs.:27-12-19: 15:44");
+            WriteDebugHeader("Carregando arquivo de configurações");
+          
+
         }
 
         protected override void OnStop()
@@ -49,17 +45,18 @@ namespace EuDiretoService
 
         private  void OnElapsedTimeAsync(object source, ElapsedEventArgs e)
         {
-            
-            if (timer.AddMinutes(Properties.Settings.Default.min_subida_produtos) <DateTime.Now)
+           
+            if (timer.AddMinutes(new Parametros().sincronismo_cad_produtos()) <DateTime.Now)
             {
                 upProdutos.Stop();
                 WriteDebugHeader("Verificando status Servidores[");
                 WriteDebug("Vericiando status servidor Eu Direto:");
-                //bool statusEuDiretoServer = PingHost(Properties.Settings.Default.ambiente_api , Properties.Settings.Default.ambiente_api_porta);
+                //bool statusEuDiretoServer = PingHost(eudireto_api_host , eudireto_api_host_porta);
                 bool statusEuDiretoServer = true ;
                 WriteDebug("Conexão com servidor Eu Direto estabelecida?: " + statusEuDiretoServer);
                 WriteDebug("Vericiando status servidor Winthor - Oracle");
-                bool statusWinthor = PingHost(Properties.Settings.Default.db_host , Properties.Settings.Default.db_port);
+                AcessoWinthor parametros = new AcessoWinthor();
+                bool statusWinthor = PingHost(parametros.winthor_host, parametros.winthor_port);
                 WriteDebug("Conexão com servidor Winthor - Oracle estabelecida?: " + statusWinthor);
                 WriteDebugHeader("\n] Verificação status Servidore Concluída");
 
@@ -75,7 +72,7 @@ namespace EuDiretoService
                 }
                 upProdutos.Start();
                 timer = DateTime.Now;
-                WriteDebugHeader("Ciclo de atualização ativo?: " + upProdutos.Enabled +" Proximo evento: "+timer.AddMinutes(Properties.Settings.Default.min_subida_produtos));
+                WriteDebugHeader("Ciclo de atualização ativo?: " + upProdutos.Enabled +" Proximo evento: "+timer.AddMinutes(new Parametros().sincronismo_cad_produtos()));
 
             }
          
@@ -83,9 +80,10 @@ namespace EuDiretoService
 
         }
         //Verificar se o produto está cadastrado no Eu Direto Admin
-        private string ProdutoCadastrado(Products produto)        {
-            var client = new RestClient("https://" + Properties.Settings.Default.ambiente_api+ "/api/products?pcode=" + produto.product_code);
-            client.Authenticator = new HttpBasicAuthenticator(Properties.Settings.Default.user,Properties.Settings.Default.password);
+        private string ProdutoCadastrado(Products produto){
+            AcessoEuDireto parametros = new AcessoEuDireto();
+            var client = new RestClient("https://" + parametros.eudireto_api_host + "/api/products?pcode=" + produto.product_code);
+            client.Authenticator = new HttpBasicAuthenticator(parametros.eudireto_api_usuario, parametros.eudireto_api_senha);
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
             JObject produtosResponse = JObject.Parse(response.Content);
@@ -140,14 +138,15 @@ namespace EuDiretoService
           
             try {
                 string product_id = ProdutoCadastrado(produto);
+                AcessoEuDireto parametros = new AcessoEuDireto();
                 if (product_id == "0") {
                     //Cadastrar novo produto
                     WriteDebug("Produto  não cadastrado no Eu Direto Admin: " + produto.product_code.ToString());
                     if (produto.status == 'A'){
                         //Verifica se o produto está ativo na base do Winthor
                         WriteDebug("Produto ativo, tentativa de cadastro");
-                        var client = new RestClient(@"https://"+Properties.Settings.Default.ambiente_api + "/api/products/");
-                        client.Authenticator = new HttpBasicAuthenticator(Properties.Settings.Default.user, Properties.Settings.Default.password);
+                        var client = new RestClient(@"https://"+ parametros.eudireto_api_host + "/api/products/");
+                        client.Authenticator = new HttpBasicAuthenticator(parametros.eudireto_api_usuario, parametros.eudireto_api_senha);
                         var request = new RestRequest(Method.POST);
                         request.AddHeader("Accept", "application/json");
                         WriteDebug(JsonConvert.SerializeObject(produto));
@@ -169,8 +168,8 @@ namespace EuDiretoService
                     //Produto cadastrado na base do Eu Direto, e nescessita de atualizações de informações
                     WriteDebug("Produto cadastrado, alterações pendentes ");                    
                     WriteDebug("Subindo produto codigo_distribuidor:" + produto.product_code + "(product_id: " + product_id + ")");
-                    var client = new RestClient(@"https://" + Properties.Settings.Default.ambiente_api + "/api/products/" + product_id);
-                    client.Authenticator = new HttpBasicAuthenticator(Properties.Settings.Default.user, Properties.Settings.Default.password);
+                    var client = new RestClient(@"https://" + parametros.eudireto_api_host + "/api/products/" + product_id);
+                    client.Authenticator = new HttpBasicAuthenticator(parametros.eudireto_api_usuario, parametros.eudireto_api_senha);
                     var request = new RestRequest(Method.PUT);
                     request.AddHeader("Accept", "application/json");
 
@@ -178,16 +177,7 @@ namespace EuDiretoService
                     List<Products> tmp_lst_produtos = new List<Products>();
                     tmp_lst_produtos.Add(produto);
 
-                    var product_update = (from p in tmp_lst_produtos
-                                 select new
-                                {                                   
-                                     p.status,
-                                     p.amount,
-                                     p.price,
-                                     p.product_features,
-                                     p.weight
-                                 }).First();
-                   
+                    var product_update = (from p in tmp_lst_produtos select new  {  p.status, p.amount, p.price, p.product_features,p.weight}).First();                   
                     request.AddParameter("application/json", JsonConvert.SerializeObject(product_update), ParameterType.RequestBody);
                     IRestResponse response = client.Execute(request);
                     WriteDebug(response.Content);
@@ -206,21 +196,23 @@ namespace EuDiretoService
         
         private List<Products> LstProdutos()
         {
+            OracleConnection con = oCon();
             string produtoproblema = "";
             try {
+               
 
                 List<Categories> categories = atualizarListaCategorias();
-                
-                //return null;
 
+                //return null;
+                
                 con.Open();
                 DataSet dataSet = new DataSet();
 
                 string query = Properties.Settings.Default.query_colecao_produtos;
                 OracleCommand fbcmd = new OracleCommand(query, con) { CommandType = CommandType.Text, BindByName = true };
-
-                fbcmd.Parameters.Add(":CODFILIAL", Properties.Settings.Default.codfilial);
-                fbcmd.Parameters.Add(":REGIAO", Properties.Settings.Default.RegiaoTblPreco);
+                FiltroWinthor filtroWinthor = new FiltroWinthor();
+                fbcmd.Parameters.Add(":CODFILIAL", filtroWinthor.codfilial);
+                fbcmd.Parameters.Add(":REGIAO", filtroWinthor.regiao_tbl_preco);
                 fbcmd.Parameters.Add(":DTULTALT", ult_sinc_produtos.ToString("dd/MM/yyyy HH:mm:ss"));
 
                 OracleDataAdapter da = new OracleDataAdapter(fbcmd);
@@ -269,7 +261,7 @@ namespace EuDiretoService
              
         public void WriteDebug(string texto)
         {
-            if (Properties.Settings.Default.debugmode)
+            if (new Parametros().debug_mode())
             {
                 WriteToFile("\t"+DateTime.Now+"\t:"+texto);
             }
@@ -277,7 +269,7 @@ namespace EuDiretoService
 
         public void WriteDebugHeader(string texto)
         {
-            if (Properties.Settings.Default.debugmode)
+            if (new Parametros().debug_mode())
             {
                 WriteToFile(DateTime.Now + "\t:" + texto);
             }
@@ -369,9 +361,10 @@ namespace EuDiretoService
 
         public List<Categories> atualizarListaCategorias()
         {
+            AcessoEuDireto acessoEuDireto = new AcessoEuDireto();
             WriteDebugHeader("Atualizando informações das categorias do Eu Direto");
-            var client = new RestClient("https://" + Properties.Settings.Default.ambiente_api + "/api/categories");
-            client.Authenticator = new HttpBasicAuthenticator(Properties.Settings.Default.user, Properties.Settings.Default.password);
+            var client = new RestClient("https://" + acessoEuDireto.eudireto_api_host + "/api/categories");
+            client.Authenticator = new HttpBasicAuthenticator(acessoEuDireto.eudireto_api_usuario, acessoEuDireto.eudireto_api_senha);
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
             JObject produtosResponse = JObject.Parse(response.Content);
@@ -392,6 +385,7 @@ namespace EuDiretoService
         public int cadastrarCatetory(string category)
         {
             int new_category_id = 0;
+            AcessoEuDireto acessoEuDireto = new AcessoEuDireto();
             try
             {
                 string serialize =
@@ -399,11 +393,11 @@ namespace EuDiretoService
                      "\"category\": \"" + category + "\"," +
                      "\"position\": \"0\"," +
                      "\"status\": \"A\"," +
-                     "\"company_id\": \""+Properties.Settings.Default.vendorid+"\"" +
+                     "\"company_id\": \""+ acessoEuDireto.eudireto_vendedor_id + "\"" +
                  "}";
 
-                var client = new RestClient("https://" + Properties.Settings.Default.ambiente_api + "/api/categories");
-                client.Authenticator = new HttpBasicAuthenticator(Properties.Settings.Default.user, Properties.Settings.Default.password);
+                var client = new RestClient("https://" + acessoEuDireto.eudireto_api_host + "/api/categories");
+                client.Authenticator = new HttpBasicAuthenticator(acessoEuDireto.eudireto_api_usuario, acessoEuDireto.eudireto_api_senha);
                 var request = new RestRequest(Method.POST);               
                 request.AddHeader("Accept", "application/json");             
                 request.AddParameter("application/json", serialize, ParameterType.RequestBody);
@@ -437,16 +431,11 @@ namespace EuDiretoService
 
         public OracleConnection oCon()
         {
-            int port = Properties.Settings.Default.db_port;
-            string 
-                userId = Properties.Settings.Default.db_user , 
-                pwd = Properties.Settings.Default.db_pass, 
-                host = Properties.Settings.Default.db_host,             
-                servicename = Properties.Settings.Default.db_service_name;
-            string stringConnection = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=" + Properties.Settings.Default.db_host + ")(PORT=" + Properties.Settings.Default.db_port + "))(CONNECT_DATA=(SERVICE_NAME=" + Properties.Settings.Default.db_service_name + ")));user id=" + userId + ";password=" + pwd + ";";
+            AcessoWinthor acessoWinthor = new AcessoWinthor();
+            string stringConnection = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=" + acessoWinthor.winthor_host + ")(PORT=" + acessoWinthor.winthor_port + "))(CONNECT_DATA=(SERVICE_NAME=" + acessoWinthor.winthor_service_name + ")));user id=" + acessoWinthor.winthor_user + ";password=" + acessoWinthor.winthor_key + ";";
             return new OracleConnection(stringConnection);
         }
-                  
+
 
        
     }

@@ -1,0 +1,16 @@
+{
+    "tempo_sincronismo_cad_produtos":5,
+    "regiao_tbl_preco": 7,
+    "codfilial": 2,
+    "modo_debug": true,
+    "eudireto_vendedor_id": 3,
+    "eudireto_api_usuario": "ruggeri.barbosa@viacerta.com.br",
+    "eudireto_api_senha": "xHH68G08z5631H0d4564Q9V1P6W8u54a",
+    "eudireto_api_host": "eudireto.com/eudireto_dev",
+    "eudireto_api_port":80,
+    "winthor_host": "viacerta.ddns.net",
+    "winthor_port": 8016,
+    "winthor_service_name": "WINT",
+    "winthor_user": "cfmanaus",
+    "winthor_key": "cfmanaus"
+}
