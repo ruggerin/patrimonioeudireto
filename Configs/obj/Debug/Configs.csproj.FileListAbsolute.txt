@@ -13,5 +13,10 @@ D:\Projetos\winthor2eudireto\Configs\obj\Debug\Configs.csproj.CoreCompileInputs.
 D:\Projetos\winthor2eudireto\Configs\obj\Debug\Configs.exe
 D:\Projetos\winthor2eudireto\Configs\obj\Debug\Configs.pdb
 D:\Projetos\winthor2eudireto\Configs\obj\Debug\Configs.csproj.CopyComplete
+<<<<<<< HEAD
 D:\Projetos\winthor2eudireto\Configs\obj\Debug\Gerais.g.cs
 D:\Projetos\winthor2eudireto\Configs\obj\Debug\Gerais.baml
+=======
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\ConfiguracoesGerais.g.cs
+D:\Projetos\winthor2eudireto\Configs\obj\Debug\ConfiguracoesGerais.baml
+>>>>>>> 9dc7b5ef2f6f3e4421971cb237015a67c28711d0

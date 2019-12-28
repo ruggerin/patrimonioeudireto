@@ -10,11 +10,19 @@ none
 false
 DEBUG;TRACE
 D:\Projetos\winthor2eudireto\Configs\App.xaml
+<<<<<<< HEAD
 21081427200
 
 7905496206
 12-487101618
 Gerais.xaml;MainWindow.xaml;
+=======
+2-263631173
+
+6-116912181
+11-1634899461
+ConfiguracoesGerais.xaml;MainWindow.xaml;
+>>>>>>> 9dc7b5ef2f6f3e4421971cb237015a67c28711d0
 
 False
 
