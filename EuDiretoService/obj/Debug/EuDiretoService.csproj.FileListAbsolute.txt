@@ -94,3 +94,5 @@ C:\Users\rugge\Documents\Projetos\winthor2eudireto\EuDiretoService\obj\Debug\EuD
 C:\Users\rugge\Documents\Projetos\winthor2eudireto\EuDiretoService\obj\Debug\EuDiretoService.exe
 C:\Users\rugge\Documents\Projetos\winthor2eudireto\EuDiretoService\obj\Debug\EuDiretoService.pdb
 D:\Projetos\winthor2eudireto\EuDiretoService\obj\Debug\EuDiretoService.Configscs.resources
+D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\Crypto.dll
+D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\Crypto.pdb

@@ -1,11 +1,11 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
 using System.IO;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 using Crypto;
 
-
-
-namespace EuDiretoService
+namespace ParamsConfig
 {
     class Parametros
     {
@@ -30,12 +30,32 @@ namespace EuDiretoService
 
             return tempo_sincronismo_cad_produtos;
         }
-      
+
         public bool debug_mode()
         {
             CarregarConfiguracoes();
             return modo_debug;
         }
+
+        public void SalvarParametros()
+        {
+            string filepath = AppDomain.CurrentDomain.BaseDirectory + "\\propriedades.json";
+
+
+            Criptografia criptografia = new Criptografia(CryptProvider.RC2);
+            criptografia.Key = "23ko84jezk";
+
+            winthor_key = criptografia.Encrypt(winthor_key);
+            string parametros =  JsonConvert.SerializeObject(this,Formatting.Indented);
+            // Create a file to write to.   
+            using (StreamWriter sw = File.CreateText(filepath))
+            {
+                sw.Write(parametros);
+            }
+        }
+            
+            
+
 
         public void CarregarConfiguracoes()
         {
@@ -55,8 +75,8 @@ namespace EuDiretoService
             winthor_service_name = (string)config["winthor_service_name"];
             winthor_user = (string)config["winthor_user"];
             Criptografia criptografia = new Criptografia(CryptProvider.RC2);
-            criptografia.Key = "23ko84jezk";
-            winthor_key = criptografia.Decrypt((string)config["winthor_key"]);
+            criptografia.Key = "23ko84jezk";        
+            winthor_key = criptografia.Decrypt( (string)config["winthor_key"]);
 
 
         }
@@ -92,24 +112,28 @@ namespace EuDiretoService
 
         }
 
+
+
+
         public string winthor_host { get; set; }
         public int winthor_port { get; set; }
         public string winthor_service_name { get; set; }
         public string winthor_user { get; set; }
         public string winthor_key { get; set; }
     }
-    public class AcessoEuDireto{
+    public class AcessoEuDireto
+    {
         public AcessoEuDireto()
         {
             Parametros parametros = new Parametros();
             parametros.CarregarConfiguracoes();
             eudireto_api_usuario = parametros.eudireto_api_usuario;
-            eudireto_api_senha =parametros.eudireto_api_senha;
+            eudireto_api_senha = parametros.eudireto_api_senha;
             eudireto_api_host = parametros.eudireto_api_host;
             eudireto_api_port = parametros.eudireto_api_port;
             eudireto_vendedor_id = parametros.eudireto_vendedor_id;
-             
-    }
+
+        }
 
         public string eudireto_api_usuario { get; set; }
         public string eudireto_api_senha { get; set; }
@@ -131,6 +155,6 @@ namespace EuDiretoService
         public string codfilial { get; set; }
     }
 
-
+   
 
 }
