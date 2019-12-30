@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Management.Automation;
 
 namespace ParamsConfig
 {
@@ -94,6 +95,23 @@ namespace ParamsConfig
                 MessageBox.Show(ex.ToString());
             }
 
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {/*
+            try
+            {
+                PowerShell ps = PowerShell.Create();
+                string cmd = "New-Service -Name \"EuDireto Sync\" -BinaryPathName \"" + AppDomain.CurrentDomain.BaseDirectory + "EuDiretoService.exe" + "\"";
+                Clipboard.SetText(cmd);
+                ps.AddCommand(cmd);
+                ps.Invoke();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }*/
+            this.Close();
         }
     }
 }

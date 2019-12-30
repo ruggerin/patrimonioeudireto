@@ -41,7 +41,6 @@
             // serviceInstaller1
             // 
             this.serviceInstaller1.ServiceName = "EuDireto Sync";
-            this.serviceInstaller1.Description = "EuDireto Sync";
             this.serviceInstaller1.Description = "Serviço de sincronização de dados ERP para o portal EuDireto";
             this.serviceInstaller1.AfterInstall += new System.Configuration.Install.InstallEventHandler(this.serviceInstaller1_AfterInstall);
             // 

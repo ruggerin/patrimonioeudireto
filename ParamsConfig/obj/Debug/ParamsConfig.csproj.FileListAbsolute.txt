@@ -17,3 +17,6 @@ D:\Projetos\winthor2eudireto\ParamsConfig\bin\Debug\Newtonsoft.Json.xml
 D:\Projetos\winthor2eudireto\ParamsConfig\obj\Debug\ParamsConfig.csproj.CopyComplete
 D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\ParamsConfig.exe
 D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\ParamsConfig.pdb
+D:\Projetos\winthor2eudireto\ParamsConfig\obj\Debug\InstallServiceWindows.g.cs
+D:\Projetos\winthor2eudireto\EuDiretoService\bin\Debug\ParamsConfig.exe.config
+D:\Projetos\winthor2eudireto\ParamsConfig\obj\Debug\InstallServiceWindows.baml

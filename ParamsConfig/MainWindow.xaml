@@ -73,7 +73,7 @@
         </ScrollViewer>
         <GridSplitter Height="100" VerticalAlignment="Center" Width="5" Background="Gray"/>
         <Button Width="100" Height="25" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="4.765,0,0,3.812" Content="Salvar" Click="Button_Click"/>
-        <Button Width="100" Height="25" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="108.642,0,0,3.812" Content="Cancelar"/>
+        <Button Width="100" Height="25" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="108.642,0,0,3.812" Content="Cancelar" Click="Button_Click_1"/>
 
     </Grid>
 </Window>
