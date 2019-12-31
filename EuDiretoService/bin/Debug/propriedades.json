@@ -1,5 +1,5 @@
 {
-  "tempo_sincronismo_cad_produtos": 5,
+  "tempo_sincronismo_cad_produtos": 30,
   "regiao_tbl_preco": 7,
   "codfilial": "2",
   "modo_debug": true,
@@ -12,5 +12,6 @@
   "winthor_port": 8016,
   "winthor_service_name": "WINT",
   "winthor_user": "cfmanaus",
-  "winthor_key": "J8HKR7BkjvL8PlO602YGkQ=="
+  "winthor_key": "J8HKR7BkjvL8PlO602YGkQ==",
+  "ult_sinc_produtos": "2019-12-31T14:19:57.0513385-04:00"
 }

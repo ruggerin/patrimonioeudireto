@@ -28,6 +28,7 @@ namespace ParamsConfig
             parametros = new Parametros();
             parametros.CarregarConfiguracoes();
             PreencherCampos();
+          
 
         }
 
@@ -64,6 +65,7 @@ namespace ParamsConfig
             winthor_service_name.Text = parametros.winthor_service_name;
             winthor_user.Text = parametros.winthor_user;         
             winthor_key.Password =parametros.winthor_key;
+            ult_sinc_produtos.Text = parametros.ult_sinc_produtos.ToString();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -86,6 +88,7 @@ namespace ParamsConfig
                 parametros.winthor_service_name                     = winthor_service_name.Text;
                 parametros.winthor_user                             = winthor_user.Text;
                 parametros.winthor_key                              = winthor_key.Password;
+               // parametros.ult_sinc_produtos = ult_sinc_produtos.SelectedDate.Value;
                 parametros.SalvarParametros();
 
                 MessageBox.Show("Parâmetros salvos com sucesso.");

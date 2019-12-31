@@ -54,7 +54,7 @@ namespace ParamsConfig
             }
         }
             
-            
+        
 
 
         public void CarregarConfiguracoes()
@@ -74,6 +74,8 @@ namespace ParamsConfig
             winthor_port = (Int32)config["winthor_port"];
             winthor_service_name = (string)config["winthor_service_name"];
             winthor_user = (string)config["winthor_user"];
+            ult_sinc_produtos = (string)config["ult_sinc_produtos"] == null ? DateTime.MinValue : (DateTime)config["ult_sinc_produtos"];
+ 
             Criptografia criptografia = new Criptografia(CryptProvider.RC2);
             criptografia.Key = "23ko84jezk";        
             winthor_key = criptografia.Decrypt( (string)config["winthor_key"]);
@@ -94,6 +96,7 @@ namespace ParamsConfig
         public string winthor_service_name { get; set; }
         public string winthor_user { get; set; }
         public string winthor_key { get; set; }
+        public DateTime ult_sinc_produtos { get; set; }
 
     }
     class AcessoWinthor

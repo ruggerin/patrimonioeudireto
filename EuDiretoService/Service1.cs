@@ -23,7 +23,7 @@ namespace EuDiretoService
         }
         Timer upProdutos = new Timer();
         
-        DateTime ult_sinc_produtos = DateTime.MinValue;
+       // DateTime ult_sinc_produtos = DateTime.MinValue;
         DateTime timer = DateTime.MinValue;
       
 
@@ -129,8 +129,15 @@ namespace EuDiretoService
             //Imprime a coleção de informação de produtos
             //WriteDebug(JsonConvert.SerializeObject( lstProdutos,Formatting.Indented));
             lstProdutos.ForEach(processarProduto);
-            ult_sinc_produtos = DateTime.Now;
-
+            try { 
+                Parametros parametros = new Parametros();
+                parametros.CarregarConfiguracoes();
+                parametros.ult_sinc_produtos = DateTime.Now;
+                parametros.SalvarParametros();
+            }catch(Exception ex)
+            {
+                erroLogGeneration(ex.ToString());
+            }
         }
                
         private void processarProduto(Products produto)
@@ -213,7 +220,7 @@ namespace EuDiretoService
                 FiltroWinthor filtroWinthor = new FiltroWinthor();
                 fbcmd.Parameters.Add(":CODFILIAL", filtroWinthor.codfilial);
                 fbcmd.Parameters.Add(":REGIAO", filtroWinthor.regiao_tbl_preco);
-                fbcmd.Parameters.Add(":DTULTALT", ult_sinc_produtos.ToString("dd/MM/yyyy HH:mm:ss"));
+                fbcmd.Parameters.Add(":DTULTALT", new Parametros().get_sincronismo_cad_produtos().ToString("dd/MM/yyyy HH:mm:ss"));
 
                 OracleDataAdapter da = new OracleDataAdapter(fbcmd);
                 da.Fill(dataSet);
@@ -234,6 +241,7 @@ namespace EuDiretoService
                     char status = (char)dataSet.Tables[0].Rows[cont]["STATUS"].ToString().ToCharArray()[0];
                     int category_id = 0;
                     if(categories.Where(x => x.category == dataSet.Tables[0].Rows[cont]["CATEGORIA"].ToString()).Count() == 0){
+                        WriteDebug(JsonConvert.SerializeObject(categories, Formatting.Indented));
                       category_id =   cadastrarCatetory(dataSet.Tables[0].Rows[cont]["CATEGORIA"].ToString());
                       categories = atualizarListaCategorias();
                     }
@@ -363,7 +371,7 @@ namespace EuDiretoService
         {
             AcessoEuDireto acessoEuDireto = new AcessoEuDireto();
             WriteDebugHeader("Atualizando informações das categorias do Eu Direto");
-            var client = new RestClient("https://" + acessoEuDireto.eudireto_api_host + "/api/categories");
+            var client = new RestClient("https://" + acessoEuDireto.eudireto_api_host + "/api/categories?items_per_page=10000");
             client.Authenticator = new HttpBasicAuthenticator(acessoEuDireto.eudireto_api_usuario, acessoEuDireto.eudireto_api_senha);
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);

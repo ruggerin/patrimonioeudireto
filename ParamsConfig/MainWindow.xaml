@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ParamsConfig"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Eu Direto - Integração" Height="450" Width="800" Icon="runconfig_plaz_6295.ico">
     <Window.Resources>
         <Style x:Key="LabelStyleCabecalho" TargetType="{x:Type Label}">
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
@@ -43,8 +43,11 @@
                 <Label>Região para tabela de preço</Label>
                 <TextBox Width="200" HorizontalAlignment="Left" Name="regiao_tbl_preco"></TextBox>
                 <Label>Código Filial Estoque</Label>
-                <TextBox Width="200" HorizontalAlignment="Left" Name="codfilial"></TextBox>                  
-                <CheckBox Width="200" HorizontalAlignment="Left" Name="modo_debug" Content="Modo debug"></CheckBox>                
+                <TextBox Width="200" HorizontalAlignment="Left" Name="codfilial"></TextBox>
+                <Label>Ultima sincronização</Label>
+                <TextBox Width="200" HorizontalAlignment="Left" Name="ult_sinc_produtos" IsEnabled="False" ></TextBox>
+                <Label>Modo depuração</Label>
+                <CheckBox Width="200" HorizontalAlignment="Left" Name="modo_debug" Content="Ativo"></CheckBox>                
                 <Label Style="{DynamicResource LabelStyleCabecalho}">Informações de acesso Eu Direto</Label>
                 <Label>Código Vendedor Eu Direto</Label>
                 <TextBox Width="400" HorizontalAlignment="Left" Name="eudireto_vendedor_id"></TextBox>

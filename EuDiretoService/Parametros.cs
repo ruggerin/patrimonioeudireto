@@ -2,8 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System.IO;
 using Crypto;
-
-
+using Newtonsoft.Json;
 
 namespace EuDiretoService
 {
@@ -21,7 +20,28 @@ namespace EuDiretoService
             return JObject.Parse(config);
         }
 
+        public void SalvarParametros()
+        {
+            string filepath = AppDomain.CurrentDomain.BaseDirectory + "\\propriedades.json";
 
+            Criptografia criptografia = new Criptografia(CryptProvider.RC2);
+            criptografia.Key = "23ko84jezk";
+
+            winthor_key = criptografia.Encrypt(winthor_key);
+            string parametros = JsonConvert.SerializeObject(this, Formatting.Indented);
+            // Create a file to write to.   
+            using (StreamWriter sw = File.CreateText(filepath))
+            {
+                sw.Write(parametros);
+            }
+        }
+
+        public DateTime get_sincronismo_cad_produtos()
+        {
+            CarregarConfiguracoes();
+            return ult_sinc_produtos;
+
+        }
 
 
         public Int32 sincronismo_cad_produtos()
@@ -57,6 +77,7 @@ namespace EuDiretoService
             Criptografia criptografia = new Criptografia(CryptProvider.RC2);
             criptografia.Key = "23ko84jezk";
             winthor_key = criptografia.Decrypt((string)config["winthor_key"]);
+            ult_sinc_produtos = (string)config["ult_sinc_produtos"] == null ? DateTime.MinValue : (DateTime)config["ult_sinc_produtos"];
 
 
         }
@@ -74,7 +95,7 @@ namespace EuDiretoService
         public string winthor_service_name { get; set; }
         public string winthor_user { get; set; }
         public string winthor_key { get; set; }
-
+        public DateTime ult_sinc_produtos { get; set; }
     }
     class AcessoWinthor
     {
