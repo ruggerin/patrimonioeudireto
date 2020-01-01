@@ -28,7 +28,7 @@ namespace ParamsConfig
             parametros = new Parametros();
             parametros.CarregarConfiguracoes();
             PreencherCampos();
-          
+
 
         }
 

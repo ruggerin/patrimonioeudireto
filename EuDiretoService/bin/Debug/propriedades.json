@@ -1,9 +1,9 @@
 {
-  "tempo_sincronismo_cad_produtos": 30,
+  "tempo_sincronismo_cad_produtos": 5,
   "regiao_tbl_preco": 7,
   "codfilial": "2",
   "modo_debug": true,
-  "eudireto_vendedor_id": 3,
+  "eudireto_vendedor_id": 8,
   "eudireto_api_usuario": "ruggeri.barbosa@viacerta.com.br",
   "eudireto_api_senha": "xHH68G08z5631H0d4564Q9V1P6W8u54a",
   "eudireto_api_host": "eudireto.com/eudireto_dev",
@@ -13,5 +13,5 @@
   "winthor_service_name": "WINT",
   "winthor_user": "cfmanaus",
   "winthor_key": "J8HKR7BkjvL8PlO602YGkQ==",
-  "ult_sinc_produtos": "2019-12-31T14:19:57.0513385-04:00"
+  "ult_sinc_produtos": "2020-01-01T18:34:24.0439831-04:00"
 }

@@ -86,6 +86,8 @@
     <Compile Include="Configscs.Designer.cs">
       <DependentUpon>Configscs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Evento_SincronismoProdutos.cs" />
+    <Compile Include="LogsManager.cs" />
     <Compile Include="Parametros.cs" />
     <Compile Include="Products.cs" />
     <Compile Include="ProjectInstaller.cs">
