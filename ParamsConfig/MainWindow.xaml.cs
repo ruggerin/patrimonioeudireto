@@ -45,7 +45,7 @@ namespace ParamsConfig
 
         private void TreeViewItem_MouseDoubleClick_2(object sender, MouseButtonEventArgs e)
         {
-            winthor_key.Focus();
+           
         }
 
         void PreencherCampos()
@@ -60,11 +60,8 @@ namespace ParamsConfig
             eudireto_api_senha.Text = parametros.eudireto_api_senha;
             eudireto_api_host.Text = parametros.eudireto_api_host;
             eudireto_api_port.Text = parametros.eudireto_api_port.ToString();
-            winthor_host.Text = parametros.winthor_host;
-            winthor_port.Text = parametros.winthor_port.ToString();
-            winthor_service_name.Text = parametros.winthor_service_name;
-            winthor_user.Text = parametros.winthor_user;         
-            winthor_key.Password =parametros.winthor_key;
+            dbf_host.Text = parametros.dbf_host;
+           
             ult_sinc_produtos.Text = parametros.ult_sinc_produtos.ToString();
         }
 
@@ -83,11 +80,8 @@ namespace ParamsConfig
                 parametros.eudireto_api_senha                       = eudireto_api_senha.Text  ;
                 parametros.eudireto_api_host                        = eudireto_api_host.Text  ;
                 parametros.eudireto_api_port                        = Convert.ToInt32(eudireto_api_port.Text) ;
-                parametros.winthor_host                             = winthor_host.Text  ;
-                parametros.winthor_port                             = Convert.ToInt32( winthor_port.Text);
-                parametros.winthor_service_name                     = winthor_service_name.Text;
-                parametros.winthor_user                             = winthor_user.Text;
-                parametros.winthor_key                              = winthor_key.Password;
+                parametros.dbf_host = dbf_host.Text  ;
+              
                // parametros.ult_sinc_produtos = ult_sinc_produtos.SelectedDate.Value;
                 parametros.SalvarParametros();
 

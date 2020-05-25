@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Oracle.ManagedDataAccess.Client;
 using RestSharp;
 using RestSharp.Authenticators;
 using DbfDataReader;
@@ -169,8 +168,12 @@ namespace EuDiretoService
                 List<Categories> categories = atualizarListaCategorias();
 
                 List<Estoque> lstEstoque = new List<Estoque>();
-              
-                var dbfPath = @"D:\LOG\estoque.DBF";
+                Parametros parametros = new Parametros();
+                parametros.CarregarConfiguracoes();
+                logs.WriteDebug(parametros.codfilial);
+                var dbfPath = parametros.dbf_host + "estoque.DBF";
+            
+                
                 dbfTable = new DbfTable(dbfPath, EncodingProvider.GetEncoding(1252));
                 var recordsEstoque = new DbfRecord(dbfTable);
                 var records = new DbfRecord(dbfTable);
@@ -187,8 +190,8 @@ namespace EuDiretoService
                 }
 
                 dbfTable.Close();
-
-                dbfPath = @"D:\LOG\PRODUTOS2.DBF";
+               
+                dbfPath = parametros.dbf_host+"PRODUTOS2.DBF";
                 dbfTable = new DbfTable(dbfPath, EncodingProvider.GetEncoding(1252));
 
                 List<Products> itemsRows = new List<Products>();

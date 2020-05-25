@@ -61,15 +61,7 @@
                 <TextBox Width="400" HorizontalAlignment="Left" Name="eudireto_api_port"></TextBox>
                 <Label Style="{DynamicResource LabelStyleCabecalho}">Informações para conexão com Winthor</Label>
                 <Label>Host/IP</Label>
-                <TextBox Width="400" HorizontalAlignment="Left" Name="winthor_host"></TextBox>
-                <Label>Porta Conexão</Label>
-                <TextBox Width="400" HorizontalAlignment="Left" Name="winthor_port"></TextBox>
-                <Label>Nome do serviço</Label>
-                <TextBox Width="400" HorizontalAlignment="Left" Name="winthor_service_name"></TextBox>
-                <Label>Usuário</Label>
-                <TextBox Width="400" HorizontalAlignment="Left" Name="winthor_user"></TextBox>
-                <Label>Senha</Label>
-                <PasswordBox Width="400" HorizontalAlignment="Left" Name="winthor_key"></PasswordBox>
+                <TextBox Width="400" HorizontalAlignment="Left" Name="dbf_host"></TextBox>              
                
 
             </StackPanel>
