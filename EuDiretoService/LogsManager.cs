@@ -9,9 +9,10 @@ namespace EuDiretoService
 {
     class LogsManager
     {
+        Parametros parametros = new Parametros();
         public void WriteDebug(string texto)
         {
-            if (new Parametros().debug_mode())
+            if (parametros.debug_mode())
             {
                 WriteToFile("\t" + DateTime.Now + "\t:" + texto);
             }
@@ -19,7 +20,7 @@ namespace EuDiretoService
 
         public void WriteDebugHeader(string texto)
         {
-            if (new Parametros().debug_mode())
+            if (parametros.debug_mode())
             {
                 WriteToFile(DateTime.Now + "\t:" + texto);
             }

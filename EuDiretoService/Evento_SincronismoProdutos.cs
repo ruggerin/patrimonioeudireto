@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using Oracle.ManagedDataAccess.Client;
 using RestSharp;
 using RestSharp.Authenticators;
+using DbfDataReader;
 
 namespace EuDiretoService
 {
@@ -161,64 +162,67 @@ namespace EuDiretoService
 
         private List<Products> LstProdutos()
         {
-            OracleConnection con = oCon();
+            DbfTable dbfTable;
             string produtoproblema = "";
             try
             {
                 List<Categories> categories = atualizarListaCategorias();
 
-                con.Open();
-                DataSet dataSet = new DataSet();
+                List<Estoque> lstEstoque = new List<Estoque>();
+              
+                var dbfPath = @"D:\LOG\estoque.DBF";
+                dbfTable = new DbfTable(dbfPath, EncodingProvider.GetEncoding(1252));
+                var recordsEstoque = new DbfRecord(dbfTable);
+                var records = new DbfRecord(dbfTable);
 
-                string query = Properties.Settings.Default.query_colecao_produtos;
-                OracleCommand fbcmd = new OracleCommand(query, con) { CommandType = CommandType.Text, BindByName = true };
-                FiltroWinthor filtroWinthor = new FiltroWinthor();
-                fbcmd.Parameters.Add(":CODFILIAL", filtroWinthor.codfilial);
-                fbcmd.Parameters.Add(":REGIAO", filtroWinthor.regiao_tbl_preco);
-                fbcmd.Parameters.Add(":DTULTALT", new Parametros().get_sincronismo_cad_produtos().ToString("dd/MM/yyyy HH:mm:ss"));
 
-                OracleDataAdapter da = new OracleDataAdapter(fbcmd);
-                da.Fill(dataSet);
-                con.Close();
-                List<Products> itemsRows = new List<Products>();
-                for (int cont = 0; cont < dataSet.Tables[0].Rows.Count; cont++)
+                while (dbfTable.Read(records))
                 {
-                    //Criando jObject da sub-classe product_features
+                    logs.WriteDebug(records.Values[0].ToString() + ":" +
+                       Convert.ToInt32(records.Values[1].ToString()).ToString());
+                    lstEstoque.Add(new Estoque(
+                       records.Values[0].ToString(),
+                       Convert.ToInt32(records.Values[1].ToString())
+                    ));
+                }
 
-                    JObject feature = SerializeFeatures(dataSet.Tables[0].Rows[cont]["NBM"].ToString(), dataSet.Tables[0].Rows[cont]["EAN"].ToString(), dataSet.Tables[0].Rows[cont]["DUN"].ToString(), dataSet.Tables[0].Rows[cont]["EMBALAGEM"].ToString());
-                    string codprod = dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
-                    produtoproblema = dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
-                    Int32 estoque = Convert.ToInt32(dataSet.Tables[0].Rows[cont]["ESTOQUE"].ToString());
-                    string descricao = dataSet.Tables[0].Rows[cont]["DESCRICAO"].ToString();
+                dbfTable.Close();
+
+                dbfPath = @"D:\LOG\PRODUTOS2.DBF";
+                dbfTable = new DbfTable(dbfPath, EncodingProvider.GetEncoding(1252));
+
+                List<Products> itemsRows = new List<Products>();
+                 records = new DbfRecord(dbfTable);
+                while (dbfTable.Read(records))
+                {
+                    JObject feature = null;
+                    string codprod = records.Values[0].ToString();
+                    // produtoproblema = dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
+                    Int32 estoque = 0;
+                    if (lstEstoque.Where(tbl => tbl.codprod == records.Values[0].ToString()).Count() > 0)
+                    {
+                        Estoque est = lstEstoque.Where(tbl => tbl.codprod == records.Values[0].ToString()).First();
+                        estoque = est.estoque;
+                    }
+                    string descricao = records.Values[1].ToString();
                     System.Globalization.CultureInfo provider = new System.Globalization.CultureInfo("en-us");
-                    double preco = Convert.ToDouble(dataSet.Tables[0].Rows[cont]["PRECO"].ToString().Replace(",", "."), provider);
-                    double peso = Convert.ToDouble(dataSet.Tables[0].Rows[cont]["pesobruto"].ToString().Replace(",", "."), provider);
-                    char status = (char)dataSet.Tables[0].Rows[cont]["STATUS"].ToString().ToCharArray()[0];
+                    double preco = Convert.ToDouble(records.Values[5].ToString().Replace(",", "."), provider);
+                    double peso = Convert.ToDouble(records.Values[17].ToString().Replace(",", "."), provider);
+                    char status = (char)(records.Values[35].ToString() == "true"?   "A" :    "D").ToCharArray()[0];
                     int category_id = 0;
-                    if (categories.Where(x => x.category == dataSet.Tables[0].Rows[cont]["CATEGORIA"].ToString()).Count() == 0)
-                    {
-                        logs.WriteDebug(JsonConvert.SerializeObject(categories, Formatting.Indented));
-                        category_id = cadastrarCatetory(dataSet.Tables[0].Rows[cont]["CATEGORIA"].ToString());
-                        categories = atualizarListaCategorias();
-                    }
-                    else
-                    {
-                        Categories categoriesY = categories.Where(x => x.category == dataSet.Tables[0].Rows[cont]["CATEGORIA"].ToString()).First();
-                        category_id = categoriesY.category_id;
-                    }
 
                     itemsRows.Add(new Products(codprod, descricao, category_id, peso, status, estoque, preco, feature));
+
                 }
-                con.Close();
+                dbfTable.Close();
                 return itemsRows;
+
+               
             }
             catch (Exception ex)
             {
                 logs.erroLogGeneration(ex.ToString() + "\n Produto problema: " + produtoproblema,service);
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
+              
                 return null;
             }
         }
@@ -310,11 +314,18 @@ namespace EuDiretoService
 
 
 
-        public OracleConnection oCon()
+
+        
+    }
+    public class Estoque
+    {
+        public Estoque(string codprod, Int32 estoque)
         {
-            AcessoWinthor acessoWinthor = new AcessoWinthor();
-            string stringConnection = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=" + acessoWinthor.winthor_host + ")(PORT=" + acessoWinthor.winthor_port + "))(CONNECT_DATA=(SERVICE_NAME=" + acessoWinthor.winthor_service_name + ")));user id=" + acessoWinthor.winthor_user + ";password=" + acessoWinthor.winthor_key + ";";
-            return new OracleConnection(stringConnection);
+            this.codprod = codprod;
+            this.estoque = estoque;
+
         }
+        public string  codprod { get; set; }
+        public Int32  estoque { get; set; }
     }
 }

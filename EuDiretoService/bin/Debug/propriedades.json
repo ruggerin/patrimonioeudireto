@@ -4,14 +4,14 @@
   "codfilial": "2",
   "modo_debug": true,
   "eudireto_vendedor_id": 8,
-  "eudireto_api_usuario": "ruggeri.barbosa@viacerta.com.br",
-  "eudireto_api_senha": "xHH68G08z5631H0d4564Q9V1P6W8u54a",
-  "eudireto_api_host": "eudireto.com/eudireto_dev",
+  "eudireto_api_usuario": "sao_jose@eudireto.com",
+  "eudireto_api_senha": "A7cd35296udq72r2O2970MQZ8Py93ZPm",
+  "eudireto_api_host": "eudireto.com",
   "eudireto_api_port": 80,
-  "winthor_host": "viacerta.ddns.net",
-  "winthor_port": 8016,
-  "winthor_service_name": "WINT",
-  "winthor_user": "cfmanaus",
-  "winthor_key": "J8HKR7BkjvL8PlO602YGkQ==",
-  "ult_sinc_produtos": "2020-01-01T18:34:24.0439831-04:00"
+  "winthor_host": "aa",
+  "winthor_port": 0,
+  "winthor_service_name": "aa",
+  "winthor_user": "aa",
+  "winthor_key": "pAczqzUMnmQ=",
+  "ult_sinc_produtos": "2020-05-24T22:11:55.4154487-04:00"
 }

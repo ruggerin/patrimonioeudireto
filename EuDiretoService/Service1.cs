@@ -12,9 +12,8 @@ namespace EuDiretoService
             InitializeComponent();
             this.ServiceName = "EuDiretoSync";
         }
-       public Timer upProdutos = new Timer();
+        public Timer upProdutos = new Timer();
         
-       // DateTime ult_sinc_produtos = DateTime.MinValue;
         DateTime timer = DateTime.MinValue;
       
 
@@ -47,11 +46,8 @@ namespace EuDiretoService
                 logsManager.WriteDebug("Conexão com servidor Eu Direto estabelecida?: " + statusEuDiretoServer);
                 logsManager.WriteDebug("Vericiando status servidor Winthor - Oracle");
                 AcessoWinthor parametros = new AcessoWinthor();
-                bool statusWinthor = PingHost(parametros.winthor_host, parametros.winthor_port);
-                logsManager.WriteDebug("Conexão com servidor Winthor - Oracle estabelecida?: " + statusWinthor);
-                logsManager.WriteDebugHeader("\n] Verificação status Servidore Concluída");
-
-                if (statusEuDiretoServer && statusWinthor)
+                
+                if (statusEuDiretoServer && true)
                 {
                     logsManager.WriteDebugHeader("Início evento Cadastro de Produtos[");
                     new Evento_SincronismoProdutos( this, logsManager).up_variants();
