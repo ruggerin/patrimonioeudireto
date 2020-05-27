@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using RestSharp;
 using RestSharp.Authenticators;
 using DbfDataReader;
+using Advantage.Data.Provider;
 
 namespace EuDiretoService
 {
@@ -171,7 +172,7 @@ namespace EuDiretoService
                 Parametros parametros = new Parametros();
                 parametros.CarregarConfiguracoes();
                 logs.WriteDebug(parametros.codfilial);
-                var dbfPath = parametros.dbf_host + "estoque.DBF";
+                var dbfPath = parametros.dbf_host + @"\estoque.DBF";
             
                 
                 dbfTable = new DbfTable(dbfPath, EncodingProvider.GetEncoding(1252));
@@ -181,8 +182,8 @@ namespace EuDiretoService
 
                 while (dbfTable.Read(records))
                 {
-                    logs.WriteDebug(records.Values[0].ToString() + ":" +
-                       Convert.ToInt32(records.Values[1].ToString()).ToString());
+                  
+                    
                     lstEstoque.Add(new Estoque(
                        records.Values[0].ToString(),
                        Convert.ToInt32(records.Values[1].ToString())
@@ -190,16 +191,20 @@ namespace EuDiretoService
                 }
 
                 dbfTable.Close();
-               
-                dbfPath = parametros.dbf_host+"PRODUTOS2.DBF";
-                dbfTable = new DbfTable(dbfPath, EncodingProvider.GetEncoding(1252));
-
                 List<Products> itemsRows = new List<Products>();
-                 records = new DbfRecord(dbfTable);
-                while (dbfTable.Read(records))
+                 
+                AdsConnection conn = new AdsConnection(@"data source="+ parametros.dbf_host + ";ServerType=local;");
+                conn.Open();
+                AdsCommand cmd = new AdsCommand("select * from produtos ", conn);
+                AdsDataAdapter adapter = new AdsDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                for (Int32 i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
+                    
                     JObject feature = null;
-                    string codprod = records.Values[0].ToString();
+                    string codprod = ds.Tables[0].Rows[i]["codigo"].ToString();
+                    produtoproblema = codprod;
                     // produtoproblema = dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
                     Int32 estoque = 0;
                     if (lstEstoque.Where(tbl => tbl.codprod == records.Values[0].ToString()).Count() > 0)
@@ -207,17 +212,17 @@ namespace EuDiretoService
                         Estoque est = lstEstoque.Where(tbl => tbl.codprod == records.Values[0].ToString()).First();
                         estoque = est.estoque;
                     }
-                    string descricao = records.Values[1].ToString();
+                    string descricao = ds.Tables[0].Rows[i]["descricao"].ToString();
                     System.Globalization.CultureInfo provider = new System.Globalization.CultureInfo("en-us");
-                    double preco = Convert.ToDouble(records.Values[5].ToString().Replace(",", "."), provider);
-                    double peso = Convert.ToDouble(records.Values[17].ToString().Replace(",", "."), provider);
-                    char status = (char)(records.Values[35].ToString() == "true"?   "A" :    "D").ToCharArray()[0];
+                    //logs.WriteDebug(ds.Tables[0].Rows[i]["preco"].ToString().Replace(",", "."));
+                    double preco = ds.Tables[0].Rows[i]["preco"].ToString().Length > 0? Convert.ToDouble(ds.Tables[0].Rows[i]["preco"].ToString().Replace(",", "."), provider) : 0;
+                    double peso = Convert.ToDouble(ds.Tables[0].Rows[i]["pesoLiq"].ToString().Replace(",", "."), provider);
+                    char status = (char)(ds.Tables[0].Rows[i]["palmtop"].ToString() == "True" ? "A" : "D").ToCharArray()[0];
                     int category_id = 0;
-
+                    //logs.WriteDebug(ds.Tables[0].Rows[i]["palmtop"].ToString());
+                    //logs.WriteDebug(status.ToString());
                     itemsRows.Add(new Products(codprod, descricao, category_id, peso, status, estoque, preco, feature));
-
                 }
-                dbfTable.Close();
                 return itemsRows;
 
                

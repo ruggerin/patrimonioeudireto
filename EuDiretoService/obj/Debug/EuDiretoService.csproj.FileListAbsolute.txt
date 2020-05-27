@@ -117,3 +117,4 @@ D:\Projetos\patrimonioeudireto\EuDiretoService\obj\Debug\EuDiretoService.csproj.
 D:\Projetos\patrimonioeudireto\EuDiretoService\obj\Debug\EuDiretoService.csproj.CopyComplete
 D:\Projetos\patrimonioeudireto\EuDiretoService\obj\Debug\EuDiretoService.exe
 D:\Projetos\patrimonioeudireto\EuDiretoService\obj\Debug\EuDiretoService.pdb
+D:\Projetos\patrimonioeudireto\EuDiretoService\bin\Debug\Advantage.Data.Provider.dll

@@ -51,6 +51,9 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Advantage.Data.Provider, Version=8.10.1.38, Culture=neutral, PublicKeyToken=e33137c86a38dc06">
+      <HintPath>..\packages\Advantage.Data.Provider.8.10.1.2\lib\net\Advantage.Data.Provider.dll</HintPath>
+    </Reference>
     <Reference Include="Crypto, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Crypto\bin\Debug\Crypto.dll</HintPath>

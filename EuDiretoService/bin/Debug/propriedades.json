@@ -1,5 +1,5 @@
 {
-  "tempo_sincronismo_cad_produtos": 5,
+  "tempo_sincronismo_cad_produtos": 720,
   "regiao_tbl_preco": 7,
   "codfilial": "2",
   "modo_debug": true,
@@ -8,11 +8,11 @@
   "eudireto_api_senha": "A7cd35296udq72r2O2970MQZ8Py93ZPm",
   "eudireto_api_host": "eudireto.com",
   "eudireto_api_port": 80,
-  "winthor_host": "aa",
+  "winthor_host": null,
   "winthor_port": 0,
-  "winthor_service_name": "aa",
-  "winthor_user": "aa",
+  "winthor_service_name": null,
+  "winthor_user": null,
   "winthor_key": "pAczqzUMnmQ=",
-  "dbf_host": "D:\\LOG\\",
-  "ult_sinc_produtos": "2020-05-24T22:11:55.4154487-04:00"
+  "dbf_host": "D:\\Segunda",
+  "ult_sinc_produtos": "2020-05-26T22:10:02.1173616-04:00"
 }
