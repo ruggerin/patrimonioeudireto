@@ -59,7 +59,8 @@
       <HintPath>..\Crypto\bin\Debug\Crypto.dll</HintPath>
     </Reference>
     <Reference Include="DbfDataReader, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DbfDataReader.0.5.4\lib\net452\DbfDataReader.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\rugge\Downloads\DbfDataReader-master\DbfDataReader-master\src\DbfDataReader\bin\Debug\net452\DbfDataReader.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>

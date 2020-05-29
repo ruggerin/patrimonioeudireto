@@ -8,6 +8,8 @@ using RestSharp;
 using RestSharp.Authenticators;
 using DbfDataReader;
 using Advantage.Data.Provider;
+using System.Xml.Linq;
+using System.IO;
 
 namespace EuDiretoService
 {
@@ -173,9 +175,11 @@ namespace EuDiretoService
                 parametros.CarregarConfiguracoes();
                 logs.WriteDebug(parametros.codfilial);
                 var dbfPath = parametros.dbf_host + @"\estoque.DBF";
-            
-                
-                dbfTable = new DbfTable(dbfPath, EncodingProvider.GetEncoding(1252));
+
+                //System.IO.MemoryStream mStream = new System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes(dbfPath));
+
+                dbfTable = new DbfTable(dbfPath, EncodingProvider.GetEncoding(1252),FileAccess.Read,FileShare.ReadWrite);
+               
                 var recordsEstoque = new DbfRecord(dbfTable);
                 var records = new DbfRecord(dbfTable);
 
@@ -203,13 +207,13 @@ namespace EuDiretoService
                 {
                     
                     JObject feature = null;
-                    string codprod = ds.Tables[0].Rows[i]["codigo"].ToString();
-                    produtoproblema = codprod;
+                    string _codprod = ds.Tables[0].Rows[i]["codigo"].ToString();
+                    produtoproblema = _codprod;
                     // produtoproblema = dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
                     Int32 estoque = 0;
-                    if (lstEstoque.Where(tbl => tbl.codprod == records.Values[0].ToString()).Count() > 0)
+                    if (lstEstoque.Where(tbl => tbl.codprod == _codprod).Count() > 0)
                     {
-                        Estoque est = lstEstoque.Where(tbl => tbl.codprod == records.Values[0].ToString()).First();
+                        Estoque est = lstEstoque.Where(tbl => tbl.codprod == _codprod).First();
                         estoque = est.estoque;
                     }
                     string descricao = ds.Tables[0].Rows[i]["descricao"].ToString();
@@ -221,7 +225,7 @@ namespace EuDiretoService
                     int category_id = 0;
                     //logs.WriteDebug(ds.Tables[0].Rows[i]["palmtop"].ToString());
                     //logs.WriteDebug(status.ToString());
-                    itemsRows.Add(new Products(codprod, descricao, category_id, peso, status, estoque, preco, feature));
+                    itemsRows.Add(new Products(_codprod, descricao, category_id, peso, status, estoque, preco, feature));
                 }
                 return itemsRows;
 
