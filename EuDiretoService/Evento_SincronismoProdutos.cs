@@ -175,29 +175,35 @@ namespace EuDiretoService
                 parametros.CarregarConfiguracoes();
                 logs.WriteDebug(parametros.codfilial);
                 var dbfPath = parametros.dbf_host + @"\estoque.DBF";
-
-                //System.IO.MemoryStream mStream = new System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes(dbfPath));
-
-                dbfTable = new DbfTable(dbfPath, EncodingProvider.GetEncoding(1252),FileAccess.Read,FileShare.ReadWrite);
-               
-                var recordsEstoque = new DbfRecord(dbfTable);
-                var records = new DbfRecord(dbfTable);
-
-
-                while (dbfTable.Read(records))
+                try
                 {
-                  
-                    
-                    lstEstoque.Add(new Estoque(
-                       records.Values[0].ToString(),
-                       Convert.ToInt32(records.Values[1].ToString())
-                    ));
-                }
+                    //System.IO.MemoryStream mStream = new System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes(dbfPath));
 
-                dbfTable.Close();
+                    dbfTable = new DbfTable(dbfPath, EncodingProvider.GetEncoding(1252), FileAccess.Read, FileShare.ReadWrite);
+
+                    var recordsEstoque = new DbfRecord(dbfTable);
+                    var records = new DbfRecord(dbfTable);
+
+
+                    while (dbfTable.Read(records))
+                    {
+
+
+                        lstEstoque.Add(new Estoque(
+                           records.Values[0].ToString(),
+                           Convert.ToInt32(records.Values[1].ToString())
+                        ));
+                    }
+
+                    dbfTable.Close();
+                }catch(Exception ex)
+                {
+                    logs.WriteDebug(ex.ToString());
+                }
+               
                 List<Products> itemsRows = new List<Products>();
                  
-                AdsConnection conn = new AdsConnection(@"data source="+ parametros.dbf_host + ";ServerType=local;");
+                AdsConnection conn = new AdsConnection( parametros.dbf_host);
                 conn.Open();
                 AdsCommand cmd = new AdsCommand("select * from produtos ", conn);
                 AdsDataAdapter adapter = new AdsDataAdapter(cmd);
@@ -210,7 +216,7 @@ namespace EuDiretoService
                     string _codprod = ds.Tables[0].Rows[i]["codigo"].ToString();
                     produtoproblema = _codprod;
                     // produtoproblema = dataSet.Tables[0].Rows[cont]["CODPROD"].ToString();
-                    Int32 estoque = 0;
+                    Int32 estoque = 999;
                     if (lstEstoque.Where(tbl => tbl.codprod == _codprod).Count() > 0)
                     {
                         Estoque est = lstEstoque.Where(tbl => tbl.codprod == _codprod).First();

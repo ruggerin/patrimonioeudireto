@@ -1,0 +1,14 @@
+C:\Users\rugge\Downloads\TesteDBF\TesteDBF\obj\Debug\TesteDBF.csprojAssemblyReference.cache
+C:\Users\rugge\Downloads\TesteDBF\TesteDBF\obj\Debug\TesteDBF.Form1.resources
+C:\Users\rugge\Downloads\TesteDBF\TesteDBF\obj\Debug\TesteDBF.Properties.Resources.resources
+C:\Users\rugge\Downloads\TesteDBF\TesteDBF\obj\Debug\TesteDBF.csproj.GenerateResource.cache
+C:\Users\rugge\Downloads\TesteDBF\TesteDBF\obj\Debug\TesteDBF.csproj.CoreCompileInputs.cache
+C:\Users\rugge\Downloads\TesteDBF\TesteDBF\bin\Debug\TesteDBF.exe.config
+C:\Users\rugge\Downloads\TesteDBF\TesteDBF\bin\Debug\TesteDBF.exe
+C:\Users\rugge\Downloads\TesteDBF\TesteDBF\bin\Debug\TesteDBF.pdb
+C:\Users\rugge\Downloads\TesteDBF\TesteDBF\bin\Debug\DbfDataReader.dll
+C:\Users\rugge\Downloads\TesteDBF\TesteDBF\bin\Debug\System.Data.Common.dll
+C:\Users\rugge\Downloads\TesteDBF\TesteDBF\obj\Debug\TesteDBF.csproj.CopyComplete
+C:\Users\rugge\Downloads\TesteDBF\TesteDBF\obj\Debug\TesteDBF.exe
+C:\Users\rugge\Downloads\TesteDBF\TesteDBF\obj\Debug\TesteDBF.pdb
+C:\Users\rugge\Downloads\TesteDBF\TesteDBF\bin\Debug\Advantage.Data.Provider.dll
